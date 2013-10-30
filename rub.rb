@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
-#Used to generate masscan configuration files
-#
-require 'rubygems'
+
+# Generate masscan configuration files
+
 require 'rake'
 require 'date'
 require 'trollop'
 
-## Shell commands
-#http://trollop.rubyforge.org/
+# Shell commands
+# http://trollop.rubyforge.org/
 
 if ARGV.size != 1 then
   puts "n[-] Usage: ./rub.rb </home/scanner/conf/filename.conf>"
