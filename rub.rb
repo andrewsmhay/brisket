@@ -10,15 +10,15 @@ require 'trollop'
 # http://trollop.rubyforge.org/
 
 if ARGV.size != 1 then
-  puts "n[-] Usage: ./rub.rb </home/scanner/conf/filename.conf>"
+  puts "n[-] Usage: ./rub.rb <./conf/filename.conf>"
   exit
 end
 
-working_dir = "/home/scanner"
+working_dir = "."
 #rate = "1337" #restriction by the service provider is 4000/second
 #rate_cmd = "--rate " + rate
 cmd = "/usr/local/sbin/masscan"
-exclude_file = working_dir+"/masscan/data/exclude.conf"
+exclude_file = working_dir+"/conf/exclude.conf"
 results_dir = working_dir+"/results/"
 #data_dir = working_dir+"/data/"
 #include_file_cmd = " --includefile " + data_dir

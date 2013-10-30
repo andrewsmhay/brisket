@@ -9,7 +9,7 @@ require 'trollop'
 # Shell commands
 # http://trollop.rubyforge.org/
 
-working_dir = "/home/scanner"
+working_dir = "."
 remote_ports = 	"22,23,3389"
 app_ports = 	",21,80,139,443,445,1434,1521"
 rate = "1337" #restriction by the service provider is 4000/second
