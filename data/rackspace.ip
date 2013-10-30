@@ -1,0 +1,5 @@
+# source: http://www.rackspace.com/knowledge_center/article/updating-servicenet-routes-on-cloud-servers-created-before-june-3-2013
+# date: 10/23/2013
+#
+#
+10.176.0.0/12,10.208.0.0/12
