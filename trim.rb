@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
-#Used to generate masscan configuration files
-#
-require 'rubygems'
+
+# Generate masscan configuration files
+
 require 'rake'
 require 'date'
 require 'trollop'
 
-## Shell commands
-#http://trollop.rubyforge.org/
+# Shell commands
+# http://trollop.rubyforge.org/
 
 working_dir = "/home/scanner"
 remote_ports = 	"22,23,3389"
