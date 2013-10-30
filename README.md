@@ -26,11 +26,25 @@ Gems
 Gems
 * require 'nokogiri'
 * require 'geoip'
+
 Data
 * The most recent <a href="http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz" target="new">GeoLite City database</a> from MaxMind.
 
 ###Usage
-* Soon
+####trim.rb
+<i>Cooking Note: You must trim the brisket before adding the rub to it.</i>
+
+instructions coming soon....
+
+####rub.rb
+<i>Cooking Note: Once trimmed, the brisket must be seasoned.</i>
+
+instructions coming soon....
+
+####crutch.rb
+<i>Cooking Note: Once the brisket is cooked, you put a <a href="http://www.texasmonthly.com/story/importance-wrapping-brisket" target="new">"Texas Crutch"</a> on it to finish it off.</i>
+
+instructions coming soon....
 
 ###Contact
 
