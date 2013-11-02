@@ -4,7 +4,7 @@ require 'geoip'
 # Special thanks to PentestGeek - http://www.pentestgeek.com/2012/08/23/creds-or-hash-where-the-admin-at/
 
 if ARGV.size != 1 then
-  puts "n[-] Usage: ./crutch.rb <filename.xml>"
+  puts "[-] Usage: ./crutch.rb <filename.xml>"
   exit
 end
 
@@ -33,3 +33,4 @@ xml.css('nmaprun host').each do |host|
     next
   end
 end
+puts "[+] Analysis and conversion complete."

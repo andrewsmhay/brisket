@@ -84,6 +84,6 @@ open('GeoIP.dat.gz', 'w') do |local_file|
     local_file.write(Zlib::GzipReader.new(remote_file).read)
   end
 end
-puts "GeoIP database downloaded..."
+puts "[+] GeoIP database downloaded..."
 File.rename("GeoLiteCity.dat.gz", "GeoLiteCity.dat")
 File.rename("GeoIP.dat.gz", "GeoIP.dat") 
