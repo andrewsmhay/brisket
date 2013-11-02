@@ -11,6 +11,7 @@ results_dir_date = results_dir + dir_date
 item_dir= []
 opt_sel_region = ['apac','europe','us_east','us_west','south_america','all']
 commands = []
+inputter = []
 ARGV.each {|arg| commands << arg}
 
 puts "[+] Beginning conversion..."
@@ -27,7 +28,7 @@ if ARGV[0] == opt_sel_region[0] #apac
           else
             target_banner = host.css('banner')
           end
-          puts target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -47,7 +48,7 @@ elsif ARGV[0] == opt_sel_region[1] #europe
           else
             target_banner = host.css('banner')
           end
-          puts target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -67,7 +68,7 @@ elsif ARGV[0] == opt_sel_region[2] #us_east
           else
             target_banner = host.css('banner')
           end
-          puts target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -87,7 +88,7 @@ elsif ARGV[0] == opt_sel_region[3] #us_west
           else
             target_banner = host.css('banner')
           end
-          puts target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -107,7 +108,7 @@ elsif ARGV[0] == opt_sel_region[4] #south_america
           else
             target_banner = host.css('banner')
           end
-          puts target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -127,7 +128,7 @@ elsif ARGV[0] == opt_sel_region[5] #all
           else
             target_banner = host.css('banner')
           end
-          puts target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -136,4 +137,5 @@ elsif ARGV[0] == opt_sel_region[5] #all
     end
 else puts opt_sel_err
 end
+File.open(results_dir_date+".csv", "w"){ |f| f.write(inputter)}
 puts "[+] Analysis and conversion complete."
