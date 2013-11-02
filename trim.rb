@@ -1,17 +1,13 @@
 #!/usr/bin/env ruby
 
-# Generate masscan configuration files
-
 require 'rake'
 require 'date'
-require 'trollop'
 
-# Shell commands
-# http://trollop.rubyforge.org/
-
-working_dir = "/home/scanner"
+working_dir = "."
 remote_ports = 	"22,23,3389"
-app_ports = 	",21,80,139,443,445,1434,1521"
+app_ports = 	"21,139,445"
+web_ports =		"80,443,8080"
+db_ports =		"1434,1521,3306,5432"
 rate = "1337" #restriction by the service provider is 4000/second
 rate_cmd = "--rate " + rate
 cmd = "/usr/local/sbin/masscan"
@@ -23,15 +19,48 @@ conf_dir = working_dir+"/conf/"
 dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
 results_dir_date = results_dir + dir_date
 results_out = "-oX " + results_dir_date
+opt_sel = ['remote', 'apps', 'web', 'db', 'all']
+opt_sel_err = "[-] Usage: ./trim.rb <remote|apps|web|db|all>"
 
-## Create a command line switch for each type of region
-#
+commands = []
+ARGV.each {|arg| commands << arg}
 ## Create the latest conf files
-Dir.foreach(data_dir) do |item|
-  next if item == '.' or item == '..'
-  # do work on real items
-  item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-  item_xml = item.gsub(/(.ip)/, '.xml')
-  #puts cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir
-  system(cmd + " -p" + remote_ports+app_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
+if ARGV[1] == opt_sel[0]
+elsif ARGV[1] == opt_sel[1]
+	Dir.foreach(data_dir) do |item|
+		next if item == '.' or item == '..'
+  		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
+  		item_xml = item.gsub(/(.ip)/, '.xml')
+  		system(cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
+	end
+elsif ARGV[1] == opt_sel[2]
+	Dir.foreach(data_dir) do |item|
+		next if item == '.' or item == '..'
+  		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
+  		item_xml = item.gsub(/(.ip)/, '.xml')
+  		system(cmd + " -p" + app_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
+	end	
+elsif ARGV[1] == opt_sel[3]
+	Dir.foreach(data_dir) do |item|
+		next if item == '.' or item == '..'
+  		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
+  		item_xml = item.gsub(/(.ip)/, '.xml')
+  		system(cmd + " -p" + web_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
+	end	
+elsif ARGV[1] == opt_sel[4]
+	Dir.foreach(data_dir) do |item|
+		next if item == '.' or item == '..'
+  		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
+  		item_xml = item.gsub(/(.ip)/, '.xml')
+  		system(cmd + " -p" + db_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
+	end	
+elsif ARGV[1] == opt_sel[5]
+	Dir.foreach(data_dir) do |item|
+		next if item == '.' or item == '..'
+  		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
+  		item_xml = item.gsub(/(.ip)/, '.xml')
+  		system(cmd + " -p" + remote_ports + "," + app_ports + "," + web_ports + "," + db_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
+	end
+else puts opt_sel_err
 end
+
