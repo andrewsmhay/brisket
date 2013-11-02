@@ -2,6 +2,8 @@
 
 require 'rake'
 require 'date'
+require 'open-uri'
+require 'zlib'
 
 working_dir = "."
 remote_ports = 	"22,23,3389"
@@ -21,6 +23,21 @@ results_dir_date = results_dir + dir_date
 results_out = "-oX " + results_dir_date
 opt_sel = ['remote', 'apps', 'web', 'db', 'all']
 opt_sel_err = "[-] Usage: ./trim.rb <remote|apps|web|db|all>"
+geo_dat_city = "http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz"
+geo_dat_country = "http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz"
+
+open('GeoLiteCity.dat.gz', 'w') do |local_file|
+  open(geo_dat_city) do |remote_file|
+    local_file.write(Zlib::GzipReader.new(remote_file).read)
+  end
+end
+open('GeoIP.dat.gz', 'w') do |local_file|
+  open(geo_dat_country) do |remote_file|
+    local_file.write(Zlib::GzipReader.new(remote_file).read)
+  end
+end
+File.rename("GeoLiteCity.dat.gz", "GeoLiteCity.dat")
+File.rename("GeoIP.dat.gz", "GeoIP.dat") 
 
 commands = []
 ARGV.each {|arg| commands << arg}
