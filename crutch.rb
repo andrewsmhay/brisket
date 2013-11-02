@@ -34,7 +34,8 @@ if ARGV[0] == opt_sel_region[0] #apac
           next
         end
       end
-    end
+    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
+  end
 elsif ARGV[0] == opt_sel_region[1] #europe
   Dir.glob(results_dir_date+"/*"+opt_sel_region[1]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
@@ -54,7 +55,8 @@ elsif ARGV[0] == opt_sel_region[1] #europe
           next
         end
       end
-    end
+    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
+  end
 elsif ARGV[0] == opt_sel_region[2] #us_east
   Dir.glob(results_dir_date+"/*"+opt_sel_region[2]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
@@ -74,7 +76,8 @@ elsif ARGV[0] == opt_sel_region[2] #us_east
           next
         end
       end
-    end
+    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
+  end
 elsif ARGV[0] == opt_sel_region[3] #us_west
   Dir.glob(results_dir_date+"/*"+opt_sel_region[3]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
@@ -94,7 +97,8 @@ elsif ARGV[0] == opt_sel_region[3] #us_west
           next
         end
       end
-    end
+    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
+  end
 elsif ARGV[0] == opt_sel_region[4] #south_america
   Dir.glob(results_dir_date+"/*"+opt_sel_region[4]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
@@ -115,7 +119,7 @@ elsif ARGV[0] == opt_sel_region[4] #south_america
         end
       end
     File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
-    end
+  end
 elsif ARGV[0] == opt_sel_region[5] #all
   Dir.glob(results_dir_date+"/*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
@@ -135,7 +139,8 @@ elsif ARGV[0] == opt_sel_region[5] #all
           next
         end
       end
-    end
+    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
+  end
 else puts opt_sel_err
 end
 puts "[+] Analysis and conversion complete."
