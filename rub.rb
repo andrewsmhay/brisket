@@ -17,7 +17,7 @@ europe_reg = ['softlayer_eu_west.conf','aws_eu.conf','azure_europe_north.conf','
 north_america_reg_east = ['tier3_us_central.conf','tier3_us_east.conf','softlayer_us_central.conf','softlayer_us_east.conf','aws_us_east.conf','azure_us_central.conf','azure_us_east.conf','virtustream_us_east.conf']
 north_america_reg_west = ['tier3_us_west.conf','softlayer_us_west.conf','aws_gov_us_west.conf','aws_us_west.conf','azure_us_west.conf','dimension_data_us_west.conf','gogrid_us_west.conf','hp_us_west.conf','rackspace.conf','joyent_us_west.conf']
 north_america_reg = north_america_reg_east+north_america_reg_west
-south_america_reg = ['aws_south_america.conf','azure_south_america.conf']
+south_america_reg = ['aws_south_america.conf']
 all_reg = apac_reg+europe_reg+north_america_reg+south_america_reg
 opt_sel_err = "[-] Usage: ./rub.rb <apac|europe|us_east|us_west|us_all|south_america|all>"
 
