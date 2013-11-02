@@ -25,35 +25,35 @@ opt_sel_err = "[-] Usage: ./trim.rb <remote|apps|web|db|all>"
 commands = []
 ARGV.each {|arg| commands << arg}
 ## Create the latest conf files
-if ARGV[1] == opt_sel[0]
+if ARGV[0] == opt_sel[0]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
   		item_xml = item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end
-elsif ARGV[1] == opt_sel[1]
+elsif ARGV[0] == opt_sel[1]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
   		item_xml = item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + app_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
-elsif ARGV[1] == opt_sel[2]
+elsif ARGV[0] == opt_sel[2]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
   		item_xml = item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + web_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
-elsif ARGV[1] == opt_sel[3]
+elsif ARGV[0] == opt_sel[3]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
   		item_xml = item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + db_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
-elsif ARGV[1] == opt_sel[4]
+elsif ARGV[0] == opt_sel[4]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
