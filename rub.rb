@@ -1,32 +1,26 @@
 #!/usr/bin/env ruby
-
-# Generate masscan configuration files
-
 require 'rake'
 require 'date'
 
-if ARGV.size != 1 then
-<<<<<<< HEAD
-  puts "[-] Usage: ./rub.rb </home/scanner/conf/filename.conf>"
-=======
-  puts "n[-] Usage: ./rub.rb <./conf/filename.conf>"
->>>>>>> c7dfb2073a463dd76232dbe78a5cf8bbe7ff8774
-  exit
-end
-
 working_dir = "."
-<<<<<<< HEAD
-=======
-#rate = "1337" #restriction by the service provider is 4000/second
-#rate_cmd = "--rate " + rate
->>>>>>> c7dfb2073a463dd76232dbe78a5cf8bbe7ff8774
 cmd = "/usr/local/sbin/masscan"
 exclude_file = working_dir+"/conf/exclude.conf"
 results_dir = working_dir+"/results/"
 conf_dir = working_dir+"/conf/"
 dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
 results_dir_date = results_dir + dir_date
-confpath = conf_dir + ARGV[0]
+confpath = conf_dir
+
+opt_sel = ['apac','europe','north_america','south_america','all']
+apac_reg = ['aws_apac.conf','azure_apac.conf','dimension_data_apac.conf','huawei_apac.conf']
+europe_reg = ['aws_eu.conf','azure_europe_north.conf','azure_europe_west.conf','gogrid_europe_north.conf','joyent_eu.conf','thinkgrid_eu.conf']
+north_america_reg = ['aws_gov.conf','aws_us_east.conf','aws_us_west.conf','azure_us_central.conf','azure_us_east.conf','azure_us_west.conf','dimension_data_us_west.conf','gogrid_us_west.conf','hp.conf','joyent_us.conf','rackspace.conf','virtustream.conf']
+south_america_reg = ['aws_south_america.conf','azure_south_america.conf']
+all_reg = apac_reg+europe_reg+north_america_reg+south_america_reg
+opt_sel_err = "[-] Usage: ./rub.rb <region>"
+
+commands = []
+ARGV.each {|arg| commands << arg}
  
 ## Create directory for current day (if it doesn't already exist)
 if File.directory?(dir_date)
@@ -37,4 +31,25 @@ else
 end
 ## Run scan
 puts "Beginning scan..."
-system(cmd + " -c " + confpath + " --banners --excludefile " + exclude_file)
+if ARGV[0] == opt_sel[0]
+	apac_reg.each do |a|
+		system(cmd + " -c " + confpath + a + " --banners --excludefile " + exclude_file)
+	end
+elsif ARGV[0] == opt_sel[1]
+	europe_reg.each do |e|
+		system(cmd + " -c " + confpath + e + " --banners --excludefile " + exclude_file)
+	end
+elsif ARGV[0] == opt_sel[2]
+	north_america_reg.each do |i|
+		system(cmd + " -c " + confpath + i + " --banners --excludefile " + exclude_file)
+	end
+elsif ARGV[0] == opt_sel[3]
+	south_america_reg.each do |o|
+		system(cmd + " -c " + confpath + o + " --banners --excludefile " + exclude_file)
+	end
+elsif ARGV[0] == opt_sel[4]
+	all_reg.each do |u|
+		system(cmd + " -c " + confpath + u + " --banners --excludefile " + exclude_file)
+	end
+else puts opt_sel_err
+end
