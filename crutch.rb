@@ -115,6 +115,7 @@ elsif ARGV[0] == opt_sel_region[4] #south_america
         end
       end
     end
+    File.open(results_dir_date+".csv", "w"){ |f| f.write(inputter)}
 elsif ARGV[0] == opt_sel_region[5] #all
   Dir.glob(results_dir_date+"/*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
