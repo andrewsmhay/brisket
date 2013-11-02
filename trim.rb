@@ -25,6 +25,7 @@ opt_sel = ['remote', 'apps', 'web', 'db', 'all']
 opt_sel_err = "[-] Usage: ./trim.rb <remote|apps|web|db|all>"
 geo_dat_city = "http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz"
 geo_dat_country = "http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz"
+conf_txt = "Configuration files successfully generated."
 
 commands = []
 ARGV.each {|arg| commands << arg}
@@ -36,6 +37,7 @@ if ARGV[0] == opt_sel[0]
   		item_xml = item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end
+	puts conf_txt
 elsif ARGV[0] == opt_sel[1]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
@@ -43,6 +45,7 @@ elsif ARGV[0] == opt_sel[1]
   		item_xml = item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + app_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
+	puts conf_txt	
 elsif ARGV[0] == opt_sel[2]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
@@ -50,6 +53,7 @@ elsif ARGV[0] == opt_sel[2]
   		item_xml = item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + web_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
+	puts conf_txt	
 elsif ARGV[0] == opt_sel[3]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
@@ -57,6 +61,7 @@ elsif ARGV[0] == opt_sel[3]
   		item_xml = item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + db_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
+	puts conf_txt	
 elsif ARGV[0] == opt_sel[4]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
@@ -64,6 +69,7 @@ elsif ARGV[0] == opt_sel[4]
   		item_xml = item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + remote_ports + "," + app_ports + "," + web_ports + "," + db_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end
+	puts conf_txt
 else puts opt_sel_err
 end
 
