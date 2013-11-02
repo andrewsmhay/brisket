@@ -1,0 +1,7 @@
+# source: http://knowledgelayer.softlayer.com/faq/what-ip-ranges-do-i-allow-through-firewall 
+# date: 11/2/2013 
+#
+66.228.118.0/23
+173.192.118.0/23
+50.22.118.0/23
+173.193.118.0/23
