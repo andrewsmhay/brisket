@@ -12,6 +12,7 @@ opt_sel_region = ['apac','europe','us_east','us_west','south_america','all']
 commands = []
 inputter_ip = ''
 inputter_port = ''
+timenow = Time.new
 ARGV.each {|arg| commands << arg}
 
 #.count.uniq
@@ -144,6 +145,6 @@ elsif ARGV[0] == opt_sel_region[5] #all
   end
 else puts opt_sel_err
 end
-puts "[+] Final counts generated..."
+puts "[+] Final counts generated at "+timenow.inspect +"."
 puts "IP Count: " + inputter_ip
 puts "Port Count: " + inputter_port

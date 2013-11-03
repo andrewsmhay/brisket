@@ -13,6 +13,7 @@ opt_sel_region = ['apac','europe','us_east','us_west','south_america','all']
 commands = []
 inputter = []
 ARGV.each {|arg| commands << arg}
+timenow = Time.new
 
 puts "[+] Beginning conversion..."
 if ARGV[0] == opt_sel_region[0] #apac
@@ -143,4 +144,4 @@ elsif ARGV[0] == opt_sel_region[5] #all
   end
 else puts opt_sel_err
 end
-puts "[+] Analysis and conversion complete."
+puts "[+] Analysis and conversion of "+ARGV[0]+" completed at "+timenow.inspect +"."

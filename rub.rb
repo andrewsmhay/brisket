@@ -20,7 +20,7 @@ north_america_reg = north_america_reg_east+north_america_reg_west
 south_america_reg = ['aws_south_america.conf']
 all_reg = apac_reg+europe_reg+north_america_reg+south_america_reg
 opt_sel_err = "[-] Usage: ./rub.rb <apac|europe|us_east|us_west|us_all|south_america|all>"
-
+timenow = Time.new
 commands = []
 ARGV.each {|arg| commands << arg}
  
@@ -63,4 +63,4 @@ elsif ARGV[0] == opt_sel[6]
 	end
 else puts opt_sel_err
 end
-puts "[+] Scan complete."
+puts "[+] Scan completed for "+ARGV[0]+" at "+timenow.inspect +"."
