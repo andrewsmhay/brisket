@@ -10,8 +10,7 @@ results_dir_date = results_dir + dir_date
 item_dir= []
 opt_sel_region = ['apac','europe','us_east','us_west','south_america','all']
 commands = []
-inputter_ip = ''
-inputter_port = ''
+inputter = []
 timenow = Time.new
 ARGV.each {|arg| commands << arg}
 
@@ -29,14 +28,12 @@ if ARGV[0] == opt_sel_region[0] #apac
           else
             target_banner = host.css('banner')
           end
-          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
         end
       end
-    inputter_ip = target_address.count.uniq
-    inputter_port = target_ports.count.uniq
   end
 elsif ARGV[0] == opt_sel_region[1] #europe
   Dir.glob(results_dir_date+"/*"+opt_sel_region[1]+"*.xml") do |rb_file|
@@ -51,13 +48,12 @@ elsif ARGV[0] == opt_sel_region[1] #europe
           else
             target_banner = host.css('banner')
           end
-          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
         end
       end
-    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
   end
 elsif ARGV[0] == opt_sel_region[2] #us_east
   Dir.glob(results_dir_date+"/*"+opt_sel_region[2]+"*.xml") do |rb_file|
@@ -72,13 +68,12 @@ elsif ARGV[0] == opt_sel_region[2] #us_east
           else
             target_banner = host.css('banner')
           end
-          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
         end
       end
-    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
   end
 elsif ARGV[0] == opt_sel_region[3] #us_west
   Dir.glob(results_dir_date+"/*"+opt_sel_region[3]+"*.xml") do |rb_file|
@@ -93,13 +88,12 @@ elsif ARGV[0] == opt_sel_region[3] #us_west
           else
             target_banner = host.css('banner')
           end
-          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
         end
       end
-    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
   end
 elsif ARGV[0] == opt_sel_region[4] #south_america
   Dir.glob(results_dir_date+"/*"+opt_sel_region[4]+"*.xml") do |rb_file|
@@ -107,20 +101,19 @@ elsif ARGV[0] == opt_sel_region[4] #south_america
       xml.css('nmaprun host').each do |host|
         begin
           target_address = host.css('address').first['addr']
-          target_geo = GeoIP.new('GeoLiteCity.dat').city(target_address)
           target_ports = host.css('port').first['portid']
           if host.css('banner').empty?
             target_banner = 'NULL'
           else
             target_banner = host.css('banner')
           end
-          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          #inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
         end
       end
-    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
   end
 elsif ARGV[0] == opt_sel_region[5] #all
   Dir.glob(results_dir_date+"/*.xml") do |rb_file|
@@ -135,13 +128,12 @@ elsif ARGV[0] == opt_sel_region[5] #all
           else
             target_banner = host.css('banner')
           end
-          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
         end
       end
-    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
   end
 else puts opt_sel_err
 end
