@@ -63,4 +63,4 @@ elsif ARGV[0] == opt_sel[6]
 	end
 else puts opt_sel_err
 end
-puts "[+] Scan completed for "+ARGV[0]+" at "+timenow.inspect +"."
+puts "[+] Scan completed for " + ARGV[0] + " at " + timenow.inspect + "."

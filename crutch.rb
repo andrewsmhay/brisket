@@ -144,4 +144,4 @@ elsif ARGV[0] == opt_sel_region[5] #all
   end
 else puts opt_sel_err
 end
-puts "[+] Analysis and conversion of "+ARGV[0]+" completed at "+timenow.inspect +"."
+puts "[+] Analysis and conversion of " + ARGV[0] + " completed at " + timenow.inspect + "."
