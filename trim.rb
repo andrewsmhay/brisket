@@ -3,7 +3,7 @@
 require 'rake'
 require 'date'
 
-working_dir = "."
+working_dir = "/home/scanner/brisket/"
 remote_ports = 	"22,23,3389,5900"
 app_ports = 	"21,69,53,389"
 ms_ports =    "135,139,445"

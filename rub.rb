@@ -2,7 +2,7 @@
 require 'rake'
 require 'date'
 
-working_dir = "."
+working_dir = "/home/scanner/brisket/"
 cmd = "/usr/local/sbin/masscan"
 exclude_file = working_dir+"/conf/exclude.conf"
 results_dir = working_dir+"/results/"
