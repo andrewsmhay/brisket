@@ -73,6 +73,7 @@ elsif ARGV[0] == opt_sel[4]
       item_xml = item.gsub(/(.ip)/, '.xml')
       system(cmd + " -p" + special_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
   end
+  puts conf_txt
 elsif ARGV[0] == opt_sel[5]
   Dir.foreach(data_dir) do |item|
     next if item == '.' or item == '..'
@@ -80,6 +81,7 @@ elsif ARGV[0] == opt_sel[5]
       item_xml = item.gsub(/(.ip)/, '.xml')
       system(cmd + " -p" + ms_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
   end  
+  puts conf_txt
 elsif ARGV[0] == opt_sel[6]
   Dir.foreach(data_dir) do |item|
     next if item == '.' or item == '..'
@@ -87,6 +89,7 @@ elsif ARGV[0] == opt_sel[6]
       item_xml = item.gsub(/(.ip)/, '.xml')
       system(cmd + " -p" + mail_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
   end
+  puts conf_txt
 elsif ARGV[0] == opt_sel[7]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
