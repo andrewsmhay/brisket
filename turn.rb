@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+      b#!/usr/bin/env ruby
 require 'nokogiri'
 require 'geoip'
 
@@ -145,6 +145,6 @@ elsif ARGV[0] == opt_sel_region[5] #all
   end
 else puts opt_sel_err
 end
-puts "[+] Final counts generated at "+timenow.inspect +"."
+puts "[+] Final counts generated at " + timenow.inspect + "."
 puts "IP Count: " + inputter_ip
 puts "Port Count: " + inputter_port
