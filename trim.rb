@@ -6,10 +6,12 @@ require 'open-uri'
 require 'zlib'
 
 working_dir = "."
-remote_ports = 	"22,23,3389"
-app_ports = 	"21,139,445"
+remote_ports = 	"22,23,3389,5900"
+app_ports = 	"21,69,135,139,445"
 web_ports =		"80,443,8080"
-db_ports =		"1434,1521,3306,5432"
+db_ports =		"1433,1521,3306,5432"
+# IRC, tor, dns, smtp, DNP3 (SCADA networks)
+special_ports = "6667,9050,53,25,20000"
 rate = "2337" #restriction by the service provider is 4000/second
 rate_cmd = "--rate " + rate
 cmd = "/usr/local/sbin/masscan"
@@ -21,7 +23,7 @@ conf_dir = working_dir+"/conf/"
 dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
 results_dir_date = results_dir + dir_date
 results_out = "-oX " + results_dir_date
-opt_sel = ['remote', 'apps', 'web', 'db', 'all']
+opt_sel = ['remote', 'apps', 'web', 'db','special','all']
 opt_sel_err = "[-] Usage: ./trim.rb <remote|apps|web|db|all>"
 geo_dat_city = "http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz"
 geo_dat_country = "http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz"
@@ -63,11 +65,18 @@ elsif ARGV[0] == opt_sel[3]
 	end	
 	puts conf_txt	
 elsif ARGV[0] == opt_sel[4]
+  Dir.foreach(data_dir) do |item|
+    next if item == '.' or item == '..'
+      item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
+      item_xml = item.gsub(/(.ip)/, '.xml')
+      system(cmd + " -p" + special_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
+  end
+elsif ARGV[0] == opt_sel[5]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
   		item_xml = item.gsub(/(.ip)/, '.xml')
-  		system(cmd + " -p" + remote_ports + "," + app_ports + "," + web_ports + "," + db_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
+  		system(cmd + " -p" + remote_ports + "," + app_ports + "," + web_ports + "," + db_ports + "," + special_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end
 	puts conf_txt
 else puts opt_sel_err
