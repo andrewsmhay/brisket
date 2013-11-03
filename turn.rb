@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'geoip'
 
 opt_sel_err = "[-] Usage: ./turn.rb <apac|europe|us_east|us_west|south_america|all>"
-working_dir = "/home/scanner/brisket/"
+working_dir = "/home/scanner/brisket"
 results_dir = working_dir+"/results/"
 dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
 results_dir_date = results_dir + dir_date
