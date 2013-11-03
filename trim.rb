@@ -26,7 +26,7 @@ results_out = "-oX " + results_dir_date
 opt_sel = ['remote', 'apps', 'web', 'db','special', 'ms', 'mail', 'all']
 opt_sel_err = "[-] Usage: ./trim.rb <remote|apps|web|db|all>"
 timenow = Time.new
-conf_txt = "[+] Configuration files successfully generated for "+ARGV[0]+" ports at "+timenow.inspect +".""
+conf_txt = "[+] Configuration files successfully generated for "+ARGV[0]+" ports at "+timenow.inspect +"."
 
 commands = []
 ARGV.each {|arg| commands << arg}
