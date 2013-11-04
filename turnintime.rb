@@ -14,7 +14,6 @@ inputter = []
 timenow = Time.new
 ARGV.each {|arg| commands << arg}
 
-#.count.uniq
 puts "[+] Generating Statistics..."
 if ARGV[0] == opt_sel_region[0] #apac
   Dir.glob(results_dir_date+"/*"+opt_sel_region[0]+"*.xml") do |rb_file|
@@ -146,10 +145,13 @@ else puts opt_sel_err
 end
 puts "[+] Final counts generated at " + timenow.inspect + "."
 ip_ary = []
-inputter.each {|ip_num| ip_ary << ip_num[0] }
-p ip_ary
-#puts "IP Count: " + ip_ary.uniq.count.to_s
+inputter.each { |ip_num| ip_ary << ip_num[0] }
+puts "IP Count: " + ip_ary.uniq.count.to_s
 
 port_ary = []
-inputter.each {|port_num| port_ary << port_num[1] }
+inputter.each { |port_num| port_ary << port_num[1] }
 puts "Port Count: " + port_ary.count.to_s
+
+banner_ary = []
+inputter.each { |banner_item| banner_ary << banner_item[2] }
+p banner_ary
