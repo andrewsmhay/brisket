@@ -14,7 +14,7 @@ inputter = []
 timenow = Time.new
 ARGV.each {|arg| commands << arg}
 
-puts "[+] Generating Statistics..."
+puts "[+] Generating Statistics for " + ARGV[0].upcase + "."
 if ARGV[0] == opt_sel_region[0] #apac
   Dir.glob(results_dir_date+"/*"+opt_sel_region[0]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
