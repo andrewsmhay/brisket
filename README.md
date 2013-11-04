@@ -46,16 +46,12 @@ Data
 
 Used to prepare the scan configuration file with the appropriate set of ports for the scan.
 
-Usage:
-
 ./trim.rb remote|apps|web|db|all
 
 ####rub.rb
 <i>Cooking Note: Once trimmed, the brisket must be seasoned.</i>
 
 Used to call the masscan scanner and export the results in the appropriate results date directory and file.
-
-Usage:
 
 ./rub.rb apac|europe|us_east|us_west|us_all|south_america|all
 
@@ -64,8 +60,6 @@ Usage:
 
 Crutch is used to perform analysis on the collected IP, port, banner, and geolocation data.
 
-Usage: 
-
 ./crutch.rb apac|europe|us_east|us_west|south_america|all
 
 ####fixins.rb
@@ -73,14 +67,10 @@ Usage:
 
 This script downloads and unpacks the most recent GeoLiteCity database file for use in converting IP addresses to latitude and longitude data.
 
-Usage:
-
 ./trim.rb city
 
 ####turnintime.rb
 <i>You can't win the competition if you don't turn your meat in on time.</i>
-
-Usage:
 
 ./turnintime.rb <apac|europe|us_east|us_west|south_america|all>
 
