@@ -25,10 +25,12 @@ if ARGV[0] == opt_sel_region[0] #apac
           target_ports = host.css('port').first['portid']
           if host.css('banner').empty?
             target_banner = 'NULL'
+          elsif host.css('banner').to_s =~ /cert/
+            target_banner = 'SSL Certificate'
           else
             target_banner = host.css('banner')
           end
-          inputter << target_address.to_s + "|" + target_ports.to_s + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << [target_address.to_s,target_ports.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -41,14 +43,15 @@ elsif ARGV[0] == opt_sel_region[1] #europe
       xml.css('nmaprun host').each do |host|
         begin
           target_address = host.css('address').first['addr']
-          target_geo = GeoIP.new('GeoLiteCity.dat').city(target_address)
           target_ports = host.css('port').first['portid']
           if host.css('banner').empty?
             target_banner = 'NULL'
+          elsif host.css('banner').to_s =~ /cert/
+            target_banner = 'SSL Certificate'
           else
             target_banner = host.css('banner')
           end
-          inputter << target_address.to_s + "|" + target_ports.to_s + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << [target_address.to_s,target_ports.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -61,14 +64,15 @@ elsif ARGV[0] == opt_sel_region[2] #us_east
       xml.css('nmaprun host').each do |host|
         begin
           target_address = host.css('address').first['addr']
-          target_geo = GeoIP.new('GeoLiteCity.dat').city(target_address)
           target_ports = host.css('port').first['portid']
           if host.css('banner').empty?
             target_banner = 'NULL'
+          elsif host.css('banner').to_s =~ /cert/
+            target_banner = 'SSL Certificate'
           else
             target_banner = host.css('banner')
           end
-          inputter << target_address.to_s + "|" + target_ports.to_s + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << [target_address.to_s,target_ports.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -81,14 +85,15 @@ elsif ARGV[0] == opt_sel_region[3] #us_west
       xml.css('nmaprun host').each do |host|
         begin
           target_address = host.css('address').first['addr']
-          target_geo = GeoIP.new('GeoLiteCity.dat').city(target_address)
           target_ports = host.css('port').first['portid']
           if host.css('banner').empty?
             target_banner = 'NULL'
+          elsif host.css('banner').to_s =~ /cert/
+            target_banner = 'SSL Certificate'
           else
             target_banner = host.css('banner')
           end
-          inputter << target_address.to_s + "|" + target_ports.to_s + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << [target_address.to_s,target_ports.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -109,7 +114,6 @@ elsif ARGV[0] == opt_sel_region[4] #south_america
           else
             target_banner = host.css('banner')
           end
-          #inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
           inputter << [target_address.to_s,target_ports.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
@@ -123,14 +127,15 @@ elsif ARGV[0] == opt_sel_region[5] #all
       xml.css('nmaprun host').each do |host|
         begin
           target_address = host.css('address').first['addr']
-          target_geo = GeoIP.new('GeoLiteCity.dat').city(target_address)
           target_ports = host.css('port').first['portid']
           if host.css('banner').empty?
             target_banner = 'NULL'
+          elsif host.css('banner').to_s =~ /cert/
+            target_banner = 'SSL Certificate'
           else
             target_banner = host.css('banner')
           end
-          inputter << target_address.to_s + "|" + target_ports.to_s + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << [target_address.to_s,target_ports.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -140,5 +145,10 @@ elsif ARGV[0] == opt_sel_region[5] #all
 else puts opt_sel_err
 end
 puts "[+] Final counts generated at " + timenow.inspect + "."
-puts "IP Count: " + inputter.count
-puts "Port Count: " + inputter.count
+ip_ary = []
+inputter.each {|ip_num| ip_ary << ip_num[0] }
+puts "IP Count: " + ip_ary.uniq.count_to_s
+
+port_ary = []
+inputter.each {|port_num| port_ary << port_num[1] }
+puts "Port Count: " + port_ary.count.to_s
