@@ -147,7 +147,7 @@ end
 puts "[+] Final counts generated at " + timenow.inspect + "."
 ip_ary = []
 inputter.each {|ip_num| ip_ary << ip_num[0] }
-puts "IP Count: " + ip_ary.uniq.count_to_s
+puts "IP Count: " + ip_ary.uniq.count.to_s
 
 port_ary = []
 inputter.each {|port_num| port_ary << port_num[1] }
