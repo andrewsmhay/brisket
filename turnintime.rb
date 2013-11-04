@@ -2,7 +2,7 @@
 require 'nokogiri'
 require 'geoip'
 
-opt_sel_err = "[-] Usage: ./turn.rb <apac|europe|us_east|us_west|south_america|all>"
+opt_sel_err = "[-] Usage: ./turnintime.rb <apac|europe|us_east|us_west|south_america|all>"
 working_dir = "/home/scanner/brisket"
 results_dir = working_dir+"/results/"
 dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
@@ -147,19 +147,19 @@ puts "[+] Final counts generated at " + timenow.inspect + "."
 ip_ary = []
 inputter.each { |ip_num| ip_ary << ip_num[0] }
 puts ""
-puts "IP Count: " + ip_ary.uniq.count.to_s
+puts "[+] Unique IP Count: " + ip_ary.uniq.count.to_s
 
 port_ary = []
 inputter.each { |port_num| port_ary << port_num[1] }
 puts ""
-puts "Unique Port Count: " + port_ary.count.to_s
+puts "[+] Unique Port Count: " + port_ary.count.to_s
 puts ""
-puts "Unique Ports\n"
+puts "[+] Unique Ports\n"
 port_ary.uniq.each { |port_uniq| puts port_uniq.to_s }
 
 banner_ary = []
 inputter.each { |banner_item| banner_ary << banner_item[2] }
-puts "Unique Banner Count: " + banner_ary.uniq.count.to_s
+puts "[+] Unique Banner Count: " + banner_ary.uniq.count.to_s
 puts ""
-puts "Unique Banners\n"
+puts "[+] Unique Banners\n"
 banner_ary.uniq.each { |banner_uniq| puts banner_uniq.to_s }
