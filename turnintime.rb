@@ -154,4 +154,4 @@ puts "Port Count: " + port_ary.count.to_s
 
 banner_ary = []
 inputter.each { |banner_item| banner_ary << banner_item[2] }
-p banner_ary
+puts "Unique Banner Count: " + banner_ary.uniq.count.to_s
