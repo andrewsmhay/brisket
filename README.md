@@ -72,6 +72,8 @@ This script downloads and unpacks the most recent GeoLiteCity database file for 
 ####turnintime.rb
 <i>You can't win the competition if you don't turn your meat in on time.</i>
 
+Simple script to display the unique IP, port, and banner counts in addition to the types of ports and banners discovered.
+
 ./turnintime.rb <apac|europe|us_east|us_west|south_america|all>
 
 ###Contact
