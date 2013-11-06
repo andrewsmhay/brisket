@@ -29,8 +29,7 @@ if ARGV[0] == opt_sel_region[0] #apac
           else
             target_banner = host.css('banner')
           end
-          inputter << [target_address.to_s,target_ports.to_s,target_geo.latitude.to_s,target_geo.longitude.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
-          #inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -51,8 +50,7 @@ elsif ARGV[0] == opt_sel_region[1] #europe
           else
             target_banner = host.css('banner')
           end
-          inputter << [target_address.to_s,target_ports.to_s,target_geo.latitude.to_s,target_geo.longitude.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
-          #inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -73,8 +71,7 @@ elsif ARGV[0] == opt_sel_region[2] #us_east
           else
             target_banner = host.css('banner')
           end
-          inputter << [target_address.to_s,target_ports.to_s,target_geo.latitude.to_s,target_geo.longitude.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
-          #inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -95,8 +92,7 @@ elsif ARGV[0] == opt_sel_region[3] #us_west
           else
             target_banner = host.css('banner')
           end
-          inputter << [target_address.to_s,target_ports.to_s,target_geo.latitude.to_s,target_geo.longitude.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
-          #inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -117,8 +113,7 @@ elsif ARGV[0] == opt_sel_region[4] #south_america
           else
             target_banner = host.css('banner')
           end
-          inputter << [target_address.to_s,target_ports.to_s,target_geo.latitude.to_s,target_geo.longitude.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
-          #inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
@@ -139,8 +134,7 @@ elsif ARGV[0] == opt_sel_region[5] #all
           else
             target_banner = host.css('banner')
           end
-          inputter << [target_address.to_s,target_ports.to_s,target_geo.latitude.to_s,target_geo.longitude.to_s,target_banner.to_s.gsub(/<\/*banner>/, '')]
-          #inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
+          inputter << target_address.to_s + "|" + target_ports.to_s + "|" + target_geo.latitude.to_s+"|"+target_geo.longitude.to_s + "|" + target_banner.to_s.gsub(/<\/*banner>/, '')
         rescue Exception => e
           puts "[-] Error On: #{target_address}"
           next
