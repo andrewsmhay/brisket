@@ -120,6 +120,9 @@ elsif ARGV[0] == opt_sel_region[4] #south_america
           next
         end
       end
+    inputter.each do |new_input|
+      File.open(rb_file+".csv", "w"){ |f| f.write(new_input)}
+    end
   end
 elsif ARGV[0] == opt_sel_region[5] #all
   Dir.glob(results_dir_date+"/*.xml") do |rb_file|
@@ -144,9 +147,4 @@ elsif ARGV[0] == opt_sel_region[5] #all
   end
 else puts opt_sel_err
 end
-simp_ary = []
-inputter.each do |new_input|
-      simp_ary << new_input
-      File.open(results_dir_date+"andrew.csv", "w"){ |f| f.write(simp_ary)}
-    end
 puts "[+] Analysis and conversion of " + ARGV[0] + " completed at " + timenow.inspect + "."
