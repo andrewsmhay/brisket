@@ -120,7 +120,9 @@ elsif ARGV[0] == opt_sel_region[4] #south_america
           next
         end
       end
-    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
+    inputter.each do |new_input|
+      File.open(rb_file+".csv", "w"){ |f| f.write(new_input)}
+    end
   end
 elsif ARGV[0] == opt_sel_region[5] #all
   Dir.glob(results_dir_date+"/*.xml") do |rb_file|
