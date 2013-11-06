@@ -4,11 +4,11 @@ require 'rake'
 require 'date'
 
 working_dir = "/home/scanner/brisket"
-remote_ports = 	"22,23,3389,5900"
-app_ports = 	"21,69,53,389"
+remote_ports = 	"22,23,513,3389,5900"
+app_ports = 	"21,69,53,389,161"
 ms_ports =    "135,139,445"
 mail_ports =  "25,110,995,993,465"
-web_ports =		"80,443,8080"
+web_ports =		"80,443,8080,8443"
 db_ports =		"1433,1521,3306,5432"
 # IRC, tor, tcp syslog, DNP3 (SCADA networks)
 special_ports = "6667,9050,1514,20000"
