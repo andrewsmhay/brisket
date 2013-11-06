@@ -145,6 +145,6 @@ elsif ARGV[0] == opt_sel_region[5] #all
 else puts opt_sel_err
 end
 inputter.each do |new_input|
-      File.open(rb_file+".csv", "w"){ |f| f.write(new_input)}
+      File.open(results_dir_date+"andrew.csv", "w"){ |f| f.write(new_input)}
     end
 puts "[+] Analysis and conversion of " + ARGV[0] + " completed at " + timenow.inspect + "."
