@@ -144,7 +144,9 @@ elsif ARGV[0] == opt_sel_region[5] #all
   end
 else puts opt_sel_err
 end
+simp_ary = []
 inputter.each do |new_input|
-      File.open(results_dir_date+"andrew.csv", "w"){ |f| f.write(new_input)}
+      simp_ary << new_input
+      File.open(results_dir_date+"andrew.csv", "w"){ |f| f.write(simp_ary)}
     end
 puts "[+] Analysis and conversion of " + ARGV[0] + " completed at " + timenow.inspect + "."
