@@ -36,7 +36,7 @@ if ARGV[0] == opt_sel[0]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-  		item_xml = hostname + item.gsub(/(.ip)/, '.xml')
+  		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end
 	puts conf_txt
@@ -44,7 +44,7 @@ elsif ARGV[0] == opt_sel[1]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-  		item_xml = hostname + item.gsub(/(.ip)/, '.xml')
+  		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + app_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
 	puts conf_txt	
@@ -52,7 +52,7 @@ elsif ARGV[0] == opt_sel[2]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-  		item_xml = hostname + item.gsub(/(.ip)/, '.xml')
+  		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + web_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
 	puts conf_txt	
@@ -60,7 +60,7 @@ elsif ARGV[0] == opt_sel[3]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-  		item_xml = hostname + item.gsub(/(.ip)/, '.xml')
+  		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + db_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
 	puts conf_txt	
@@ -68,7 +68,7 @@ elsif ARGV[0] == opt_sel[4]
   Dir.foreach(data_dir) do |item|
     next if item == '.' or item == '..'
       item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-      item_xml = hostname + item.gsub(/(.ip)/, '.xml')
+      item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
       system(cmd + " -p" + special_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
   end
   puts conf_txt
@@ -76,7 +76,7 @@ elsif ARGV[0] == opt_sel[5]
   Dir.foreach(data_dir) do |item|
     next if item == '.' or item == '..'
       item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-      item_xml = hostname + item.gsub(/(.ip)/, '.xml')
+      item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
       system(cmd + " -p" + ms_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
   end  
   puts conf_txt
@@ -84,7 +84,7 @@ elsif ARGV[0] == opt_sel[6]
   Dir.foreach(data_dir) do |item|
     next if item == '.' or item == '..'
       item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-      item_xml = hostname + item.gsub(/(.ip)/, '.xml')
+      item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
       system(cmd + " -p" + mail_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
   end
   puts conf_txt
@@ -92,7 +92,7 @@ elsif ARGV[0] == opt_sel[7]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-  		item_xml = hostname + item.gsub(/(.ip)/, '.xml')
+  		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + remote_ports + "," + app_ports + "," + web_ports + "," + db_ports + "," + special_ports + "," + ms_ports + "," + mail_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end
 	puts conf_txt
