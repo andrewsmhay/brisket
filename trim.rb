@@ -5,7 +5,7 @@ require 'date'
 
 working_dir = "/home/scanner/brisket"
 remote_ports = 	"22,23,513,3389,5900"
-app_ports = 	"21,69,53,389,161"
+app_ports = 	"21,69,53,389,161,1984"
 ms_ports =    "135,139,445"
 mail_ports =  "25,110,995,993,465"
 web_ports =		"80,443,8080,8443"
@@ -27,6 +27,7 @@ opt_sel = ['remote', 'apps', 'web', 'db','special', 'ms', 'mail', 'all']
 opt_sel_err = "[-] Usage: ./trim.rb <remote|apps|web|db|all>"
 timenow = Time.new
 conf_txt = "[+] Configuration files successfully generated for " +ARGV[0]+ " ports at " +timenow.inspect + "."
+hostname = `hostname -s`.chomp
 
 commands = []
 ARGV.each {|arg| commands << arg}
@@ -35,7 +36,7 @@ if ARGV[0] == opt_sel[0]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-  		item_xml = item.gsub(/(.ip)/, '.xml')
+  		item_xml = hostname + item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end
 	puts conf_txt
@@ -43,7 +44,7 @@ elsif ARGV[0] == opt_sel[1]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-  		item_xml = item.gsub(/(.ip)/, '.xml')
+  		item_xml = hostname + item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + app_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
 	puts conf_txt	
@@ -51,7 +52,7 @@ elsif ARGV[0] == opt_sel[2]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-  		item_xml = item.gsub(/(.ip)/, '.xml')
+  		item_xml = hostname + item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + web_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
 	puts conf_txt	
@@ -59,7 +60,7 @@ elsif ARGV[0] == opt_sel[3]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-  		item_xml = item.gsub(/(.ip)/, '.xml')
+  		item_xml = hostname + item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + db_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end	
 	puts conf_txt	
@@ -67,7 +68,7 @@ elsif ARGV[0] == opt_sel[4]
   Dir.foreach(data_dir) do |item|
     next if item == '.' or item == '..'
       item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-      item_xml = item.gsub(/(.ip)/, '.xml')
+      item_xml = hostname + item.gsub(/(.ip)/, '.xml')
       system(cmd + " -p" + special_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
   end
   puts conf_txt
@@ -75,7 +76,7 @@ elsif ARGV[0] == opt_sel[5]
   Dir.foreach(data_dir) do |item|
     next if item == '.' or item == '..'
       item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-      item_xml = item.gsub(/(.ip)/, '.xml')
+      item_xml = hostname + item.gsub(/(.ip)/, '.xml')
       system(cmd + " -p" + ms_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
   end  
   puts conf_txt
@@ -83,7 +84,7 @@ elsif ARGV[0] == opt_sel[6]
   Dir.foreach(data_dir) do |item|
     next if item == '.' or item == '..'
       item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-      item_xml = item.gsub(/(.ip)/, '.xml')
+      item_xml = hostname + item.gsub(/(.ip)/, '.xml')
       system(cmd + " -p" + mail_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
   end
   puts conf_txt
@@ -91,7 +92,7 @@ elsif ARGV[0] == opt_sel[7]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
-  		item_xml = item.gsub(/(.ip)/, '.xml')
+  		item_xml = hostname + item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + remote_ports + "," + app_ports + "," + web_ports + "," + db_ports + "," + special_ports + "," + ms_ports + "," + mail_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end
 	puts conf_txt
