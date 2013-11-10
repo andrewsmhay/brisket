@@ -3,6 +3,30 @@
 require 'rake'
 require 'date'
 
+class Masscan
+  def self.generate
+    conf_dir = working_dir+"/conf/"
+    working_dir = "/home/scanner/brisket"
+    data_dir = working_dir+"/data/"
+    conf_txt = "[+] Configuration files successfully generated for " +ARGV[0]+ " ports at " +timenow.inspect + "."
+    hostname = `hostname -s`.chomp
+    include_file_cmd = " --includefile " + data_dir
+    rate = "2337" #restriction by the service provider is 4000/second
+    rate_cmd = "--rate " + rate
+    dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
+    results_dir_date = results_dir + dir_date
+    results_out = "-oX " + results_dir_date
+
+    Dir.foreach(data_dir) do |item|
+    next if item == '.' or item == '..'
+      item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
+      item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
+      system(cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
+    end
+    puts conf_txt
+  end
+end
+
 working_dir = "/home/scanner/brisket"
 remote_ports = 	"22,23,513,3389,5900"
 app_ports = 	"21,69,53,389,161,1984"
@@ -24,7 +48,7 @@ dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_
 results_dir_date = results_dir + dir_date
 results_out = "-oX " + results_dir_date
 opt_sel = ['remote', 'apps', 'web', 'db','special', 'ms', 'mail', 'all']
-opt_sel_err = "[-] Usage: ./trim.rb <remote|apps|web|db|all>"
+opt_sel_err = "[-] Usage: ./trim.rb <remote|apps|web|db|all> <masscan|nmap|zmap>"
 timenow = Time.new
 conf_txt = "[+] Configuration files successfully generated for " +ARGV[0]+ " ports at " +timenow.inspect + "."
 hostname = `hostname -s`.chomp
@@ -33,6 +57,8 @@ commands = []
 ARGV.each {|arg| commands << arg}
 ## Create the latest conf files
 if ARGV[0] == opt_sel[0]
+=begin
+  
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
@@ -40,6 +66,8 @@ if ARGV[0] == opt_sel[0]
   		system(cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end
 	puts conf_txt
+=end
+  Masscan.generate
 elsif ARGV[0] == opt_sel[1]
 	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
