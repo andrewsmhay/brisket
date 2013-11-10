@@ -4,18 +4,29 @@ require 'rake'
 require 'date'
 
 class Masscan
+  @@working_dir = "/home/scanner/brisket"
+  @@conf_dir = working_dir+"/conf/"
+  @@data_dir = working_dir+"/data/"
+  @@conf_txt = "[+] Configuration files successfully generated for " +ARGV[0]+ " ports at " +timenow.inspect + "."
+  @@hostname = `hostname -s`.chomp
+  @@include_file_cmd = " --includefile " + data_dir
+  @@rate = "2337" #restriction by the service provider is 4000/second
+  @@rate_cmd = "--rate " + rate
+  @@dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
+  @@results_dir_date = results_dir + dir_date
+  @@results_out = "-oX " + results_dir_date
   def self.generate
-    conf_dir = working_dir+"/conf/"
-    working_dir = "/home/scanner/brisket"
-    data_dir = working_dir+"/data/"
-    conf_txt = "[+] Configuration files successfully generated for " +ARGV[0]+ " ports at " +timenow.inspect + "."
-    hostname = `hostname -s`.chomp
-    include_file_cmd = " --includefile " + data_dir
-    rate = "2337" #restriction by the service provider is 4000/second
-    rate_cmd = "--rate " + rate
-    dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
-    results_dir_date = results_dir + dir_date
-    results_out = "-oX " + results_dir_date
+    @@working_dir
+    @@conf_dir
+    @@data_dir
+    @@conf_txt
+    @@hostname
+    @@include_file_cmd
+    @@rate
+    @@rate_cmd
+    @@dir_date
+    @@results_dir_date
+    @@results_out
 
     Dir.foreach(data_dir) do |item|
     next if item == '.' or item == '..'
