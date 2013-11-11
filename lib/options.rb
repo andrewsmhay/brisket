@@ -1,6 +1,6 @@
 class Options
 	def self.opt_sel
-		['apac','europe','us_east','us_west','us_all','south_america','all']
+		['apac','europe','us_east','us_west','south_america','us_all','all']
 	end
 	def self.prefix
 		['masscan','nmap','zmap']
@@ -10,9 +10,6 @@ class Options
 	end
 	def self.postfix
 		['.conf','.ip','.xml','.json']
-	end
-	def self.reg
-		['apac_reg','europe_reg','north_america_reg_east','north_america_reg_west','south_america_reg','north_america_reg','all_reg']
 	end
 	def self.apac_reg
 		[prefix[0]+'_softlayer_apac'+postfix[0],
