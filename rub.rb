@@ -2,9 +2,10 @@
 require 'rake'
 require 'date'
 require './lib/directories'
-require './lib/masscan'
+require './lib/scanner'
 require './lib/messages'
 
+=begin
 opt_sel = ['apac','europe','us_east','us_west','us_all','south_america','all']
 apac_reg = ['masscan_softlayer_apac.conf','masscan_aws_apac.conf','masscan_azure_apac.conf','masscan_dimension_data_apac.conf','masscan_huawei_apac.conf']
 europe_reg = ['masscan_tier3_eu_west.conf','masscan_softlayer_eu_west.conf','masscan_aws_eu.conf','masscan_azure_europe_north.conf',
@@ -16,6 +17,9 @@ north_america_reg_west = ['masscan_tier3_us_west.conf','masscan_softlayer_us_wes
 north_america_reg = north_america_reg_east+north_america_reg_west
 south_america_reg = ['masscan_aws_south_america.conf']
 all_reg = apac_reg+europe_reg+north_america_reg+south_america_reg
+f_ext = ['.conf','.ip','.xml','.json']
+scan_sel = ['masscan','nmap','zmap']
+=end
 
 commands = []
 ARGV.each {|arg| commands << arg}
@@ -28,35 +32,74 @@ else
 	puts "[+] Created " + Directories.results_dir_date
 end
 ## Run scan
-puts "[+] Beginning scan..."
-if ARGV[0] == opt_sel[0]
-	apac_reg.shuffle.each do |a|
-		system(Masscan.cmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+puts Messages.scanstart
+if ARGV[1] == Options.scan_sel[0]
+	if ARGV[0] == Options.opt_sel[0]
+		Options.apac_reg.shuffle.each do |a|
+			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		end
+	elsif ARGV[0] == Options.opt_sel[1]
+		Options.europe_reg.shuffle.each do |a|
+			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		end
+	elsif ARGV[0] == Options.opt_sel[2]
+		Options.north_america_reg_east.shuffle.each do |a|
+			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		end
+	elsif ARGV[0] == Options.opt_sel[3]
+		Options.north_america_reg_west.shuffle.each do |a|
+			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		end
+	elsif ARGV[0] == Options.opt_sel[4]
+		Options.north_america_reg.shuffle.each do |a|
+			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		end
+	elsif ARGV[0] == Options.opt_sel[5]
+		Options.south_america_reg.shuffle.each do |a|
+			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		end
+	elsif ARGV[0] == Options.opt_sel[6]
+		Options.all_reg.shuffle.each do |a|
+			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		end
+	else puts Messages.opt_sel_err
 	end
-elsif ARGV[0] == opt_sel[1]
-	europe_reg.shuffle.each do |a|
-		system(Masscan.cmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+
+=begin
+# sudo nmap -p 22,80 -sS -P0 -n -O --osscan-limit --version-light --max-rate 1337 --randomize-hosts --open --reason -iL ./data/aws_gov.ip --excludefile ./conf/exclude.conf -oX andrew.xml
+elsif ARGV[1] == scan_sel[1]
+	if ARGV[0] == opt_sel[0]
+		apac_reg.shuffle.each do |a| #<- this isn't right...need data_dir IP file
+		#	system(Scanner.nmapcmd + " -p " + Ports.remote_ports + Scanner.nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out+)
+		end
+	elsif ARGV[0] == opt_sel[1]
+		europe_reg.shuffle.each do |a|
+			system(
+		end
+	elsif ARGV[0] == opt_sel[2]
+		north_america_reg_east.shuffle.each do |a|
+			system(
+		end
+	elsif ARGV[0] == opt_sel[3]
+		north_america_reg_west.shuffle.each do |a|
+			system(
+		end
+	elsif ARGV[0] == opt_sel[4]
+		north_america_reg.shuffle.each do |a|
+			system(
+		end
+	elsif ARGV[0] == opt_sel[5]
+		south_america_reg.shuffle.each do |a|
+			system(
+		end
+	elsif ARGV[0] == opt_sel[6]
+		all_reg.shuffle.each do |a|
+			system(
+		end
+	else puts Messages.opt_sel_err
 	end
-elsif ARGV[0] == opt_sel[2]
-	north_america_reg_east.shuffle.each do |a|
-		system(Masscan.cmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-	end
-elsif ARGV[0] == opt_sel[3]
-	north_america_reg_west.shuffle.each do |a|
-		system(Masscan.cmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-	end
-elsif ARGV[0] == opt_sel[4]
-	north_america_reg.shuffle.each do |a|
-		system(Masscan.cmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-	end
-elsif ARGV[0] == opt_sel[5]
-	south_america_reg.shuffle.each do |a|
-		system(Masscan.cmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-	end
-elsif ARGV[0] == opt_sel[6]
-	all_reg.shuffle.each do |a|
-		system(Masscan.cmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-	end
+=end
+elsif ARGV[1] == scan_sel[2]
 else puts Messages.opt_sel_err
 end
 puts Messages.scan_complete

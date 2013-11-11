@@ -20,4 +20,7 @@ class Messages
   def self.dir_exists
   	"[+] Created " + Directories.results_dir_date
   end
+  def self.scanstart
+    "[+] Beginning scan..."
+  end
 end

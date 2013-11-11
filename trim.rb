@@ -4,7 +4,7 @@ require 'rake'
 require 'date'
 require './lib/directories'
 require './lib/ports'
-require './lib/masscan'
+require './lib/scanner'
 require './lib/messages'
 require './lib/naming'
 
@@ -20,7 +20,7 @@ if ARGV[1] == scan_sel[0]
       next if item == '.' or item == '..'
         item_dir = Directories.conf_dir + ARGV[1] + "_" + item.gsub(/(.ip)/, '.conf')
         item_xml = Naming.hostname + "_" + ARGV[1] + "_" + item.gsub(/(.ip)/, '.xml')
-        system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+        system(Scanner.masscmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Scanner.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
     end
   	puts Messages.conf_txt
   elsif ARGV[0] == opt_sel[1]
@@ -28,7 +28,7 @@ if ARGV[1] == scan_sel[0]
   		next if item == '.' or item == '..'
     		item_dir = Directories.conf_dir + ARGV[1] + "_" + item.gsub(/(.ip)/, '.conf')
     		item_xml = Naming.hostname + "_" + ARGV[1] + "_" + item.gsub(/(.ip)/, '.xml')
-    		system(Masscan.cmd + " -p" + Ports.app_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+    		system(Scanner.masscmd + " -p" + Ports.app_ports + Directories.include_file_cmd + item + " " + Scanner.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   	end	
   	puts Messages.conf_txt	
   elsif ARGV[0] == opt_sel[2]
@@ -36,7 +36,7 @@ if ARGV[1] == scan_sel[0]
   		next if item == '.' or item == '..'
     		item_dir = Directories.conf_dir + ARGV[1] + "_" + item.gsub(/(.ip)/, '.conf')
     		item_xml = Naming.hostname + "_" + ARGV[1] + "_" + item.gsub(/(.ip)/, '.xml')
-    		system(Masscan.cmd + " -p" + Ports.web_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+    		system(Scanner.masscmd + " -p" + Ports.web_ports + Directories.include_file_cmd + item + " " + Scanner.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   	end	
   	puts Messages.conf_txt	
   elsif ARGV[0] == opt_sel[3]
@@ -44,7 +44,7 @@ if ARGV[1] == scan_sel[0]
   		next if item == '.' or item == '..'
     		item_dir = Directories.conf_dir + ARGV[1] + "_" + item.gsub(/(.ip)/, '.conf')
     		item_xml = Naming.hostname + "_" + ARGV[1] + "_" + item.gsub(/(.ip)/, '.xml')
-    		system(Masscan.cmd + " -p" + Ports.db_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+    		system(Scanner.masscmd + " -p" + Ports.db_ports + Directories.include_file_cmd + item + " " + Scanner.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   	end	
   	puts Messages.conf_txt	
   elsif ARGV[0] == opt_sel[4]
@@ -52,7 +52,7 @@ if ARGV[1] == scan_sel[0]
       next if item == '.' or item == '..'
         item_dir = Directories.conf_dir + ARGV[1] + "_" + item.gsub(/(.ip)/, '.conf')
         item_xml = Naming.hostname + "_" + ARGV[1] + "_" + item.gsub(/(.ip)/, '.xml')
-        system(Masscan.cmd + " -p" + Ports.special_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+        system(Scanner.masscmd + " -p" + Ports.special_ports + Directories.include_file_cmd + item + " " + Scanner.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
     end
     puts Messages.conf_txt
   elsif ARGV[0] == opt_sel[5]
@@ -60,7 +60,7 @@ if ARGV[1] == scan_sel[0]
       next if item == '.' or item == '..'
         item_dir = Directories.conf_dir + ARGV[1] + "_" + item.gsub(/(.ip)/, '.conf')
         item_xml = Naming.hostname + "_" + ARGV[1] + "_" + item.gsub(/(.ip)/, '.xml')
-        system(Masscan.cmd + " -p" + Ports.ms_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+        system(Scanner.masscmd + " -p" + Ports.ms_ports + Directories.include_file_cmd + item + " " + Scanner.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
     end  
     puts Messages.conf_txt
   elsif ARGV[0] == opt_sel[6]
@@ -68,7 +68,7 @@ if ARGV[1] == scan_sel[0]
       next if item == '.' or item == '..'
         item_dir = Directories.conf_dir + ARGV[1] + "_" + item.gsub(/(.ip)/, '.conf')
         item_xml = Naming.hostname + "_" + ARGV[1] + "_" + item.gsub(/(.ip)/, '.xml')
-        system(Masscan.cmd + " -p" + Ports.mail_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+        system(Scanner.masscmd + " -p" + Ports.mail_ports + Directories.include_file_cmd + item + " " + Scanner.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
     end
     puts Messages.conf_txt
   elsif ARGV[0] == opt_sel[7]
@@ -76,7 +76,7 @@ if ARGV[1] == scan_sel[0]
   		next if item == '.' or item == '..'
     		item_dir = Directories.conf_dir + ARGV[1] + "_" + item.gsub(/(.ip)/, '.conf')
     		item_xml = Naming.hostname + "_" + ARGV[1] + "_" + item.gsub(/(.ip)/, '.xml')
-    		system(Masscan.cmd + " -p" + Ports.all_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+    		system(Scanner.masscmd + " -p" + Ports.all_ports + Directories.include_file_cmd + item + " " + Scanner.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   	end
   	puts Messages.conf_txt
   else puts Messages.trim_opt_sel_err
