@@ -4,27 +4,22 @@ require 'rake'
 require 'date'
 
 class Directories
-  attr_reader   :working_dir, :conf_dir, :data_dir, :dir_date, :results_dir_date
-  def initialize(working_dir, conf_dir, data_dir, dir_date, results_dir_date)
-    @working_dir  = working_dir
-    @conf_dir     = conf_dir
-    @data_dir     = data_dir
-    @dir_date     = dir_date
-    @results_dir_date = results_dir_date
-  end
-  def working_dir
+  def self.working_dir
     "/home/scanner/brisket"
   end
-  def conf_dir
+  def self.conf_dir
     working_dir + "/conf/"
   end
-  def data_dir
+  def self.data_dir
     working_dir + "/data/"
   end
-  def dir_date
+  def self.dir_date
     Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
   end
-  def results_dirdate
+  def self.results_dir
+    working_dir+"/results/"
+  end
+  def self.results_dir_date
     results_dir + dir_date
   end
 end
