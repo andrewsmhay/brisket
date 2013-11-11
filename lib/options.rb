@@ -49,13 +49,13 @@ class Options
 		prefix[0]+'_rackspace'+postfix[0],
 		prefix[0]+'_joyent_us_west'+postfix[0]]
 	end
-		def south_america_reg
+	def self.south_america_reg
 		[prefix[0]+'_aws_south_america'+postfix[0]]
 	end
-	def north_america_reg
+	def self.north_america_reg
 		north_america_reg_east+north_america_reg_west
 	end
-	def all_reg
+	def self.all_reg
 		apac_reg+europe_reg+north_america_reg+south_america_reg
 	end
 end
