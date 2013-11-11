@@ -58,9 +58,21 @@ class Ports
   end
 end
 
-rate = "2337" #restriction by the service provider is 4000/second
-rate_cmd = "--rate " + rate
-cmd = "/usr/local/sbin/masscan"
+class Masscan
+  def self.rate
+    "2337" #restriction by the service provider is 4000/second
+  end
+  def self.rate_cmd
+    "--rate " + rate
+  end
+  def self.cmd
+    "/usr/local/sbin/masscan"
+  end
+end
+
+#rate = "2337" #restriction by the service provider is 4000/second
+#rate_cmd = "--rate " + rate
+#cmd = "/usr/local/sbin/masscan"
 opt_sel = ['remote', 'apps', 'web', 'db','special', 'ms', 'mail', 'all']
 opt_sel_err = "[-] Usage: ./trim.rb <remote|apps|web|db|all> <masscan|nmap|zmap>"
 timenow = Time.new
@@ -75,7 +87,7 @@ if ARGV[0] == opt_sel[0]
     next if item == '.' or item == '..'
       item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
       item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
-      system(cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+      system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   end
 	puts conf_txt
 elsif ARGV[0] == opt_sel[1]
@@ -83,7 +95,7 @@ elsif ARGV[0] == opt_sel[1]
 		next if item == '.' or item == '..'
   		item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
   		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
-  		system(cmd + " -p" + Ports.app_ports + Directories.include_file_cmd + item + " " + rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+  		system(Masscan.cmd + " -p" + Ports.app_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
 	end	
 	puts conf_txt	
 elsif ARGV[0] == opt_sel[2]
@@ -91,7 +103,7 @@ elsif ARGV[0] == opt_sel[2]
 		next if item == '.' or item == '..'
   		item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
   		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
-  		system(cmd + " -p" + Ports.web_ports + Directories.include_file_cmd + item + " " + rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+  		system(Masscan.cmd + " -p" + Ports.web_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
 	end	
 	puts conf_txt	
 elsif ARGV[0] == opt_sel[3]
@@ -99,7 +111,7 @@ elsif ARGV[0] == opt_sel[3]
 		next if item == '.' or item == '..'
   		item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
   		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
-  		system(cmd + " -p" + Ports.db_ports + Directories.include_file_cmd + item + " " + rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+  		system(Masscan.cmd + " -p" + Ports.db_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
 	end	
 	puts conf_txt	
 elsif ARGV[0] == opt_sel[4]
@@ -107,7 +119,7 @@ elsif ARGV[0] == opt_sel[4]
     next if item == '.' or item == '..'
       item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
       item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
-      system(cmd + " -p" + Ports.special_ports + Directories.include_file_cmd + item + " " + rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+      system(Masscan.cmd + " -p" + Ports.special_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   end
   puts conf_txt
 elsif ARGV[0] == opt_sel[5]
@@ -115,7 +127,7 @@ elsif ARGV[0] == opt_sel[5]
     next if item == '.' or item == '..'
       item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
       item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
-      system(cmd + " -p" + Ports.ms_ports + Directories.include_file_cmd + item + " " + rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+      system(Masscan.cmd + " -p" + Ports.ms_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   end  
   puts conf_txt
 elsif ARGV[0] == opt_sel[6]
@@ -123,7 +135,7 @@ elsif ARGV[0] == opt_sel[6]
     next if item == '.' or item == '..'
       item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
       item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
-      system(cmd + " -p" + Ports.mail_ports + Directories.include_file_cmd + item + " " + rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+      system(Masscan.cmd + " -p" + Ports.mail_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   end
   puts conf_txt
 elsif ARGV[0] == opt_sel[7]
@@ -131,7 +143,7 @@ elsif ARGV[0] == opt_sel[7]
 		next if item == '.' or item == '..'
   		item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
   		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
-  		system(cmd + " -p" + Ports.all_ports + Directories.include_file_cmd + item + " " + rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+  		system(Masscan.cmd + " -p" + Ports.all_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
 	end
 	puts conf_txt
 else puts opt_sel_err
