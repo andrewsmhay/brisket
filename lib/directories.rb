@@ -25,4 +25,5 @@ class Directories
   end
   def self.exclude_file_cmd
     " --excludefile " + conf_dir + "exclude.conf"
+  end
 end
