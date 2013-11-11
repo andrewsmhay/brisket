@@ -4,6 +4,7 @@ require 'date'
 require './lib/directories'
 require './lib/scanner'
 require './lib/messages'
+require './lib/options'
 
 =begin
 opt_sel = ['apac','europe','us_east','us_west','us_all','south_america','all']
