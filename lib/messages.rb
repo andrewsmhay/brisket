@@ -14,4 +14,10 @@ class Messages
   def self.scan_complete 
   	"[+] Scan completed for " + ARGV[0] + " at " + timenow.inspect + "."
   end
+  def self.create_dir
+  	"[+] The directory" + Directories.results_dir_date + " already exists, no need to create it."
+  end
+  def self.dir_exists
+  	"[+] Created " + Directories.results_dir_date
+  end
 end
