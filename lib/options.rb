@@ -5,6 +5,9 @@ class Options
 	def self.prefix
 		['masscan','nmap','zmap']
 	end
+	def self.scan_sel
+		prefix
+	end
 	def self.postfix
 		['.conf','.ip','.xml','.json']
 	end
