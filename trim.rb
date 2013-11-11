@@ -68,6 +68,9 @@ class Masscan
   def self.cmd
     "/usr/local/sbin/masscan"
   end
+  def self.remote_port_scan
+    system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+  end
 end
 
 class Messages
@@ -82,23 +85,19 @@ class Messages
   end
 end
 
-#rate = "2337" #restriction by the service provider is 4000/second
-#rate_cmd = "--rate " + rate
-#cmd = "/usr/local/sbin/masscan"
 opt_sel = ['remote', 'apps', 'web', 'db','special', 'ms', 'mail', 'all']
-#timenow = Time.new
-#conf_txt = "[+] Configuration files successfully generated for " +ARGV[0]+ " ports at " +timenow.inspect + "."
 hostname = `hostname -s`.chomp
-
 commands = []
+
 ARGV.each {|arg| commands << arg}
-## Create the latest conf files
+
 if ARGV[0] == opt_sel[0]  
   Dir.foreach(Directories.data_dir) do |item|
     next if item == '.' or item == '..'
       item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
       item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
-      system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+      Masscan.remote_port_scan
+      #system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   end
 	puts Messages.conf_txt
 elsif ARGV[0] == opt_sel[1]
