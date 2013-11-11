@@ -19,4 +19,5 @@ class Scanner
   end
   def self.nmap_flags
   	nmap_options+nmap_input_file
+  end
 end
