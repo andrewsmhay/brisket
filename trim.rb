@@ -161,6 +161,7 @@ if ARGV[1] == scan_sel[0]
   	end
   	puts Messages.conf_txt
   else Messages.puts opt_sel_err
+  end
 elsif ARGV[1] == scan_sel[1]
   puts scan_sel[1] + " is not yet implemented..."
 elsif ARGV[1] == scan_sel[2]
