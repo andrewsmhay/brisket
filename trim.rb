@@ -100,7 +100,7 @@ if ARGV[0] == opt_sel[0]
       item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
       system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   end
-	puts conf_txt
+	puts Messages.conf_txt
 elsif ARGV[0] == opt_sel[1]
 	Dir.foreach(Directories.data_dir) do |item|
 		next if item == '.' or item == '..'
@@ -108,7 +108,7 @@ elsif ARGV[0] == opt_sel[1]
   		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
   		system(Masscan.cmd + " -p" + Ports.app_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
 	end	
-	puts conf_txt	
+	puts Messages.conf_txt	
 elsif ARGV[0] == opt_sel[2]
 	Dir.foreach(Directories.data_dir) do |item|
 		next if item == '.' or item == '..'
@@ -116,7 +116,7 @@ elsif ARGV[0] == opt_sel[2]
   		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
   		system(Masscan.cmd + " -p" + Ports.web_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
 	end	
-	puts conf_txt	
+	puts Messages.conf_txt	
 elsif ARGV[0] == opt_sel[3]
 	Dir.foreach(Directories.data_dir) do |item|
 		next if item == '.' or item == '..'
@@ -124,7 +124,7 @@ elsif ARGV[0] == opt_sel[3]
   		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
   		system(Masscan.cmd + " -p" + Ports.db_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
 	end	
-	puts conf_txt	
+	puts Messages.conf_txt	
 elsif ARGV[0] == opt_sel[4]
   Dir.foreach(Directories.data_dir) do |item|
     next if item == '.' or item == '..'
@@ -132,7 +132,7 @@ elsif ARGV[0] == opt_sel[4]
       item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
       system(Masscan.cmd + " -p" + Ports.special_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   end
-  puts conf_txt
+  puts Messages.conf_txt
 elsif ARGV[0] == opt_sel[5]
   Dir.foreach(Directories.data_dir) do |item|
     next if item == '.' or item == '..'
@@ -140,7 +140,7 @@ elsif ARGV[0] == opt_sel[5]
       item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
       system(Masscan.cmd + " -p" + Ports.ms_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   end  
-  puts conf_txt
+  puts Messages.conf_txt
 elsif ARGV[0] == opt_sel[6]
   Dir.foreach(Directories.data_dir) do |item|
     next if item == '.' or item == '..'
@@ -148,7 +148,7 @@ elsif ARGV[0] == opt_sel[6]
       item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
       system(Masscan.cmd + " -p" + Ports.mail_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   end
-  puts conf_txt
+  puts Messages.conf_txt
 elsif ARGV[0] == opt_sel[7]
 	Dir.foreach(Directories.data_dir) do |item|
 		next if item == '.' or item == '..'
@@ -156,6 +156,6 @@ elsif ARGV[0] == opt_sel[7]
   		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
   		system(Masscan.cmd + " -p" + Ports.all_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
 	end
-	puts conf_txt
+	puts Messages.conf_txt
 else Messages.puts opt_sel_err
 end
