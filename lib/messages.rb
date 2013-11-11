@@ -23,4 +23,7 @@ class Messages
   def self.scanstart
     "[+] Beginning scan..."
   end
+  def self.tbd
+    "This code has not yet been written..."
+  end
 end
