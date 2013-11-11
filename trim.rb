@@ -81,24 +81,6 @@ class Masscan
   def self.cmd
     "/usr/local/sbin/masscan"
   end
-  def self.lopper
-    Dir.foreach(Directories.data_dir) do |item|
-  end
-  def self.next_if_item
-    next if item == '.' or item == '..'
-  end
-  def self.item_dir
-    Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
-  end
-  def self.hostname
-    `hostname -s`.chomp
-  end
-  def self.item_xml
-    hostname + "_" + item.gsub(/(.ip)/, '.xml')
-  end
-  def self.remote_port_scan
-    system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
-  end
 end
 
 
@@ -109,14 +91,11 @@ commands = []
 ARGV.each {|arg| commands << arg}
 
 if ARGV[0] == opt_sel[0]  
-  Masscan.looper
-    Masscan.next_if_item
-  #Dir.foreach(Directories.data_dir) do |item|
-  #  next if item == '.' or item == '..'
-  #    item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
-  #    item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
-      Masscan.remote_port_scan
-      #system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+  Dir.foreach(Directories.data_dir) do |item|
+    next if item == '.' or item == '..'
+      item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
+      item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
+      system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   end
 	puts Messages.conf_txt
 elsif ARGV[0] == opt_sel[1]
