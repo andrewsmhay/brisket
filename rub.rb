@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'rake'
 require 'date'
+require '.lib/directories'
 
 working_dir = "/home/scanner/brisket"
 cmd = "/usr/local/sbin/masscan"
@@ -12,14 +13,14 @@ results_dir_date = results_dir + dir_date
 confpath = conf_dir
 
 opt_sel = ['apac','europe','us_east','us_west','us_all','south_america','all']
-apac_reg = ['softlayer_apac.conf','aws_apac.conf','azure_apac.conf','dimension_data_apac.conf','huawei_apac.conf']
-europe_reg = ['tier3_eu_west.conf','softlayer_eu_west.conf','aws_eu.conf','azure_europe_north.conf','azure_europe_west.conf','gogrid_europe_north.conf','joyent_eu.conf']
-north_america_reg_east = ['tier3_us_central.conf','tier3_us_east.conf','softlayer_us_central.conf','softlayer_us_east.conf','aws_us_east.conf','azure_us_central.conf','azure_us_east.conf','virtustream_us_east.conf']
-north_america_reg_west = ['tier3_us_west.conf','softlayer_us_west.conf','aws_gov_us_west.conf','aws_us_west.conf','azure_us_west.conf','dimension_data_us_west.conf','gogrid_us_west.conf','hp_us_west.conf','rackspace.conf','joyent_us_west.conf']
+apac_reg = ['masscan_softlayer_apac.conf','masscan_aws_apac.conf','masscan_azure_apac.conf','masscan_dimension_data_apac.conf','masscan_huawei_apac.conf']
+europe_reg = ['masscan_tier3_eu_west.conf','masscan_softlayer_eu_west.conf','masscan_aws_eu.conf','masscan_azure_europe_north.conf','masscan_azure_europe_west.conf','masscan_gogrid_europe_north.conf','masscan_joyent_eu.conf']
+north_america_reg_east = ['masscan_tier3_us_central.conf','masscan_tier3_us_east.conf','masscan_softlayer_us_central.conf','masscan_softlayer_us_east.conf','masscan_aws_us_east.conf','masscan_azure_us_central.conf','masscan_azure_us_east.conf','masscan_virtustream_us_east.conf']
+north_america_reg_west = ['masscan_tier3_us_west.conf','masscan_softlayer_us_west.conf','masscan_aws_gov_us_west.conf','masscan_aws_us_west.conf','masscan_azure_us_west.conf','masscan_dimension_data_us_west.conf','masscan_gogrid_us_west.conf','masscan_hp_us_west.conf','masscan_rackspace.conf','masscan_joyent_us_west.conf']
 north_america_reg = north_america_reg_east+north_america_reg_west
-south_america_reg = ['aws_south_america.conf']
+south_america_reg = ['masscan_aws_south_america.conf']
 all_reg = apac_reg+europe_reg+north_america_reg+south_america_reg
-opt_sel_err = "[-] Usage: ./rub.rb <apac|europe|us_east|us_west|us_all|south_america|all>"
+opt_sel_err = "[-] Usage: ./rub.rb <apac|europe|us_east|us_west|us_all|south_america|all> <masscan|nmap|zmap>"
 timenow = Time.new
 commands = []
 ARGV.each {|arg| commands << arg}

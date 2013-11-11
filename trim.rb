@@ -2,7 +2,8 @@
 
 require 'rake'
 require 'date'
-
+require '.lib/directories'
+=begin
 class Directories
   def self.working_dir
     "/home/scanner/brisket"
@@ -29,7 +30,7 @@ class Directories
     " --includefile " + data_dir
   end
 end
-
+=end
 class Ports
   def self.remote_ports
     "22,23,513,3389,5900"
