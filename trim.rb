@@ -161,11 +161,11 @@ if ARGV[1] == scan_sel[0]
     		system(Masscan.cmd + " -p" + Ports.all_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   	end
   	puts Messages.conf_txt
-  else Messages.puts opt_sel_err
+  else puts Messages.opt_sel_err
   end
 elsif ARGV[1] == scan_sel[1]
   puts scan_sel[1] + " is not yet implemented..."
 elsif ARGV[1] == scan_sel[2]
   puts scan_sel[2] + " is not yet implemented..."
-else Messages.puts opt_sel_err
+else puts Messages.opt_sel_err
 end
