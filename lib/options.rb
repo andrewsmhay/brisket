@@ -11,6 +11,9 @@ class Options
 	def self.postfix
 		['.conf','.ip','.xml','.json']
 	end
+	def self.reg
+		['apac_reg','europe_reg','north_america_reg_east','north_america_reg_west','south_america_reg','north_america_reg','all_reg']
+	end
 	def self.apac_reg
 		[prefix[0]+'_softlayer_apac'+postfix[0],
 		prefix[0]+'_aws_apac'+postfix[0],

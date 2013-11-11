@@ -6,22 +6,6 @@ require './lib/scanner'
 require './lib/messages'
 require './lib/options'
 
-=begin
-opt_sel = ['apac','europe','us_east','us_west','us_all','south_america','all']
-apac_reg = ['masscan_softlayer_apac.conf','masscan_aws_apac.conf','masscan_azure_apac.conf','masscan_dimension_data_apac.conf','masscan_huawei_apac.conf']
-europe_reg = ['masscan_tier3_eu_west.conf','masscan_softlayer_eu_west.conf','masscan_aws_eu.conf','masscan_azure_europe_north.conf',
-			  'masscan_azure_europe_west.conf','masscan_gogrid_europe_north.conf','masscan_joyent_eu.conf']
-north_america_reg_east = ['masscan_tier3_us_central.conf','masscan_tier3_us_east.conf','masscan_softlayer_us_central.conf','masscan_softlayer_us_east.conf','masscan_aws_us_east.conf',
-						  'masscan_azure_us_central.conf','masscan_azure_us_east.conf','masscan_virtustream_us_east.conf']
-north_america_reg_west = ['masscan_tier3_us_west.conf','masscan_softlayer_us_west.conf','masscan_aws_gov_us_west.conf','masscan_aws_us_west.conf','masscan_azure_us_west.conf',
-						  'masscan_dimension_data_us_west.conf','masscan_gogrid_us_west.conf','masscan_hp_us_west.conf','masscan_rackspace.conf','masscan_joyent_us_west.conf']
-north_america_reg = north_america_reg_east+north_america_reg_west
-south_america_reg = ['masscan_aws_south_america.conf']
-all_reg = apac_reg+europe_reg+north_america_reg+south_america_reg
-f_ext = ['.conf','.ip','.xml','.json']
-scan_sel = ['masscan','nmap','zmap']
-=end
-
 commands = []
 ARGV.each {|arg| commands << arg}
  
@@ -36,38 +20,19 @@ end
 puts Messages.scanstart
 if ARGV[1] == Options.scan_sel[0]
 	if ARGV[0] == Options.opt_sel[0]
-		Options.apac_reg.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+		Scanner.mass_apac
 	elsif ARGV[0] == Options.opt_sel[1]
-		Options.europe_reg.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
-		#Options.europe_reg.shuffle.each do |a|
-		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		#end
+		Scanner.mass_eu
 	elsif ARGV[0] == Options.opt_sel[2]
-		Options.north_america_reg_east.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
-		#Options.north_america_reg_east.shuffle.each do |a|
-		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		#end
+		Scanner.mass_us_east
 	elsif ARGV[0] == Options.opt_sel[3]
-		Options.north_america_reg_west.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
-		#Options.north_america_reg_west.shuffle.each do |a|
-		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		#end
+		Scanner.mass_us_west
 	elsif ARGV[0] == Options.opt_sel[4]
-		Options.north_america_reg.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
-		#Options.north_america_reg.shuffle.each do |a|
-		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		#end
+		Scanner.mass_south_america
 	elsif ARGV[0] == Options.opt_sel[5]
-		Options.south_america_reg.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
-		#Options.south_america_reg.shuffle.each do |a|
-		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		#end
+		Scanner.mass_us_all
 	elsif ARGV[0] == Options.opt_sel[6]
-		Options.all_reg.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
-		#Options.all_reg.shuffle.each do |a|
-		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		#end
-		
+		Scanner.mass_all
 	else puts Messages.opt_sel_err
 	end
 	puts Messages.scan_complete
