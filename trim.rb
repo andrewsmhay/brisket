@@ -58,20 +58,6 @@ class Ports
   end
 end
 
-class Masscan
-  def self.rate
-    "2337" #restriction by the service provider is 4000/second
-  end
-  def self.rate_cmd
-    "--rate " + rate
-  end
-  def self.cmd
-    "/usr/local/sbin/masscan"
-  end
-  def self.remote_port_scan
-    system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
-  end
-end
 
 class Messages
   def self.opt_sel_err
@@ -85,17 +71,50 @@ class Messages
   end
 end
 
+class Masscan
+  def self.rate
+    "2337" #restriction by the service provider is 4000/second
+  end
+  def self.rate_cmd
+    "--rate " + rate
+  end
+  def self.cmd
+    "/usr/local/sbin/masscan"
+  end
+  def self.lopper
+    Dir.foreach(Directories.data_dir) do |item|
+  end
+  def self.next_if_item
+    next if item == '.' or item == '..'
+  end
+  def self.item_dir
+    Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
+  end
+  def self.hostname
+    `hostname -s`.chomp
+  end
+  def self.item_xml
+    hostname + "_" + item.gsub(/(.ip)/, '.xml')
+  end
+  def self.remote_port_scan
+    system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
+  end
+end
+
+
 opt_sel = ['remote', 'apps', 'web', 'db','special', 'ms', 'mail', 'all']
-hostname = `hostname -s`.chomp
+#hostname = `hostname -s`.chomp
 commands = []
 
 ARGV.each {|arg| commands << arg}
 
 if ARGV[0] == opt_sel[0]  
-  Dir.foreach(Directories.data_dir) do |item|
-    next if item == '.' or item == '..'
-      item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
-      item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
+  Masscan.looper
+    Masscan.next_if_item
+  #Dir.foreach(Directories.data_dir) do |item|
+  #  next if item == '.' or item == '..'
+  #    item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
+  #    item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
       Masscan.remote_port_scan
       #system(Masscan.cmd + " -p" + Ports.remote_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   end
