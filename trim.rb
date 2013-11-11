@@ -70,13 +70,24 @@ class Masscan
   end
 end
 
+class Messages
+  def self.opt_sel_err
+    "[-] Usage: ./trim.rb <remote|apps|web|db|all> <masscan|nmap|zmap>"
+  end
+  def self.timenow
+    Time.new
+  end
+  def self.conf_txt
+    "[+] Configuration files successfully generated for " +ARGV[0]+ " ports at " +timenow.inspect + "."
+  end
+end
+
 #rate = "2337" #restriction by the service provider is 4000/second
 #rate_cmd = "--rate " + rate
 #cmd = "/usr/local/sbin/masscan"
 opt_sel = ['remote', 'apps', 'web', 'db','special', 'ms', 'mail', 'all']
-opt_sel_err = "[-] Usage: ./trim.rb <remote|apps|web|db|all> <masscan|nmap|zmap>"
-timenow = Time.new
-conf_txt = "[+] Configuration files successfully generated for " +ARGV[0]+ " ports at " +timenow.inspect + "."
+#timenow = Time.new
+#conf_txt = "[+] Configuration files successfully generated for " +ARGV[0]+ " ports at " +timenow.inspect + "."
 hostname = `hostname -s`.chomp
 
 commands = []
@@ -146,5 +157,5 @@ elsif ARGV[0] == opt_sel[7]
   		system(Masscan.cmd + " -p" + Ports.all_ports + Directories.include_file_cmd + item + " " + Masscan.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
 	end
 	puts conf_txt
-else puts opt_sel_err
+else Messages.puts opt_sel_err
 end
