@@ -36,36 +36,41 @@ end
 puts Messages.scanstart
 if ARGV[1] == Options.scan_sel[0]
 	if ARGV[0] == Options.opt_sel[0]
-		Options.apac_reg.shuffle.each do |a|
-			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		end
+		Options.apac_reg.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
 	elsif ARGV[0] == Options.opt_sel[1]
-		Options.europe_reg.shuffle.each do |a|
-			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		end
+		Options.europe_reg.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+		#Options.europe_reg.shuffle.each do |a|
+		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		#end
 	elsif ARGV[0] == Options.opt_sel[2]
-		Options.north_america_reg_east.shuffle.each do |a|
-			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		end
+		Options.north_america_reg_east.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+		#Options.north_america_reg_east.shuffle.each do |a|
+		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		#end
 	elsif ARGV[0] == Options.opt_sel[3]
-		Options.north_america_reg_west.shuffle.each do |a|
-			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		end
+		Options.north_america_reg_west.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+		#Options.north_america_reg_west.shuffle.each do |a|
+		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		#end
 	elsif ARGV[0] == Options.opt_sel[4]
-		Options.north_america_reg.shuffle.each do |a|
-			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		end
+		Options.north_america_reg.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+		#Options.north_america_reg.shuffle.each do |a|
+		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		#end
 	elsif ARGV[0] == Options.opt_sel[5]
-		Options.south_america_reg.shuffle.each do |a|
-			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		end
+		Options.south_america_reg.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+		#Options.south_america_reg.shuffle.each do |a|
+		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		#end
 	elsif ARGV[0] == Options.opt_sel[6]
-		Options.all_reg.shuffle.each do |a|
-			system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-		end
+		Options.all_reg.shuffle.each { |a| system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+		#Options.all_reg.shuffle.each do |a|
+		#	system(Scanner.masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+		#end
+		
 	else puts Messages.opt_sel_err
 	end
-
+	puts Messages.scan_complete
 
 # sudo nmap -p 22,80 -sS -P0 -n -O --osscan-limit --version-light --max-rate 1337 --randomize-hosts --open --reason -iL ./data/aws_gov.ip --excludefile ./conf/exclude.conf -oX andrew.xml
 elsif ARGV[1] == Options.scan_sel[1]
@@ -108,4 +113,3 @@ elsif ARGV[1] == Options.scan_sel[2]
 
 else puts Messages.rub_opt_sel_err
 end
-puts Messages.scan_complete
