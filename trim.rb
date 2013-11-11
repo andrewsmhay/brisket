@@ -102,9 +102,9 @@ if ARGV[0] == opt_sel[0]
   		system(cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end
 =end
-  Dir.foreach(Directories.datadir) do |item|
+  Dir.foreach(Directories.data_dir) do |item|
     next if item == '.' or item == '..'
-      item_dir = Directories.confdir + item.gsub(/(.ip)/, '.conf')
+      item_dir = Directories.conf_dir + item.gsub(/(.ip)/, '.conf')
       item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
       system(cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
   end
