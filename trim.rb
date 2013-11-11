@@ -12,20 +12,20 @@ class Directories
     @dir_date     = dir_date
     @results_dir_date = results_dir_date
   end
-  def workingdir
+  def working_dir
     "/home/scanner/brisket"
   end
-  def confdir
-    workingdir + "/conf/"
+  def conf_dir
+    working_dir + "/conf/"
   end
-  def datadir
-    workingdir + "/data/"
+  def data_dir
+    working_dir + "/data/"
   end
-  def dirdate
+  def dir_date
     Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
   end
-  def resultsdirdate
-    resultsdir + dirdate
+  def results_dirdate
+    results_dir + dir_date
   end
 end
 =begin
