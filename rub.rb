@@ -37,44 +37,53 @@ if ARGV[1] == Options.scan_sel[0]
 	end
 	puts Messages.scan_complete
 
-# sudo nmap -p 22,80 -sS -P0 -n -O --osscan-limit --version-light --max-rate 1337 --randomize-hosts --open --reason -iL ./data/aws_gov.ip --excludefile ./conf/exclude.conf -oX andrew.xml
+
 elsif ARGV[1] == Options.scan_sel[1]
 	puts Messages.tbd
 
 =begin
-	if ARGV[0] == opt_sel[0]
-		apac_reg.shuffle.each do |a| #<- this isn't right...need data_dir IP file
-		#	system(Scanner.nmapcmd + " -p " + Ports.remote_ports + Scanner.nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out+)
-		end
-	elsif ARGV[0] == opt_sel[1]
-		europe_reg.shuffle.each do |a|
-			system(
-		end
-	elsif ARGV[0] == opt_sel[2]
-		north_america_reg_east.shuffle.each do |a|
-			system(
-		end
-	elsif ARGV[0] == opt_sel[3]
-		north_america_reg_west.shuffle.each do |a|
-			system(
-		end
-	elsif ARGV[0] == opt_sel[4]
-		north_america_reg.shuffle.each do |a|
-			system(
-		end
-	elsif ARGV[0] == opt_sel[5]
-		south_america_reg.shuffle.each do |a|
-			system(
-		end
-	elsif ARGV[0] == opt_sel[6]
-		all_reg.shuffle.each do |a|
-			system(
-		end
+# sudo nmap -p 22,80 -sS -P0 -n -O --osscan-limit --version-light --max-rate 1337 --randomize-hosts --open --reason -iL ./data/aws_gov.ip --excludefile ./conf/exclude.conf -oX andrew.xml
+#	system(Scanner.nmapcmd + " -p " + Ports.remote_ports + Scanner.nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out+)
+
+	if ARGV[0] == Options.opt_sel[0]
+		Scanner.nmap_apac
+	elsif ARGV[0] == Options.opt_sel[1]
+		Scanner.nmap_eu
+	elsif ARGV[0] == Options.opt_sel[2]
+		Scanner.nmap_us_east
+	elsif ARGV[0] == Options.opt_sel[3]
+		Scanner.nmap_us_west
+	elsif ARGV[0] == Options.opt_sel[4]
+		Scanner.nmap_south_america
+	elsif ARGV[0] == Options.opt_sel[5]
+		Scanner.nmap_us_all
+	elsif ARGV[0] == Options.opt_sel[6]
+		Scanner.nmap_all
 	else puts Messages.opt_sel_err
 	end
-=end
+	puts Messages.scan_complete
+
+
 elsif ARGV[1] == Options.scan_sel[2]
 	puts Messages.tbd
+
+	if ARGV[0] == Options.opt_sel[0]
+		Scanner.zmap_apac
+	elsif ARGV[0] == Options.opt_sel[1]
+		Scanner.zmap_eu
+	elsif ARGV[0] == Options.opt_sel[2]
+		Scanner.zmap_us_east
+	elsif ARGV[0] == Options.opt_sel[3]
+		Scanner.zmap_us_west
+	elsif ARGV[0] == Options.opt_sel[4]
+		Scanner.zmap_south_america
+	elsif ARGV[0] == Options.opt_sel[5]
+		Scanner.zmap_us_all
+	elsif ARGV[0] == Options.opt_sel[6]
+		Scanner.zmap_all
+	else puts Messages.opt_sel_err
+	end
+	puts Messages.scan_complete
 
 else puts Messages.rub_opt_sel_err
 end
