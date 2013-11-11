@@ -2,8 +2,35 @@
 
 require 'rake'
 require 'date'
+
+class Directories
+  attr_reader   :working_dir, :conf_dir, :data_dir, :dir_date, :results_dir_date
+  def initialize(working_dir, conf_dir, data_dir, dir_date, results_dir_date)
+    @working_dir  = working_dir
+    @conf_dir     = conf_dir
+    @data_dir     = data_dir
+    @dir_date     = dir_date
+    @results_dir_date = results_dir_date
+  end
+  def workingdir
+    "/home/scanner/brisket"
+  end
+  def confdir
+    workingdir + "/conf/"
+  end
+  def datadir
+    workingdir + "/data/"
+  end
+  def dirdate
+    Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
+  end
+  def resultsdirdate
+    resultsdir + dirdate
+  end
+end
 =begin
 class Masscan
+  attr_reader   :rate,
   @@working_dir = "/home/scanner/brisket"
   @@conf_dir = working_dir+"/conf/"
   @@data_dir = working_dir+"/data/"
@@ -68,12 +95,19 @@ commands = []
 ARGV.each {|arg| commands << arg}
 ## Create the latest conf files
 if ARGV[0] == opt_sel[0]  
-	Dir.foreach(data_dir) do |item|
+=begin	Dir.foreach(data_dir) do |item|
 		next if item == '.' or item == '..'
   		item_dir = conf_dir + item.gsub(/(.ip)/, '.conf')
   		item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
   		system(cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
 	end
+=end
+  Dir.foreach(Directories.datadir) do |item|
+    next if item == '.' or item == '..'
+      item_dir = Directories.confdir + item.gsub(/(.ip)/, '.conf')
+      item_xml = hostname + "_" + item.gsub(/(.ip)/, '.xml')
+      system(cmd + " -p" + remote_ports + include_file_cmd + item + " " + rate_cmd + " " + results_out + item_xml + " --echo > " + item_dir)
+  end
 	puts conf_txt
 elsif ARGV[0] == opt_sel[1]
 	Dir.foreach(data_dir) do |item|
