@@ -106,6 +106,6 @@ elsif ARGV[1] == Options.scan_sel[1]
 elsif ARGV[1] == Options.scan_sel[2]
 	puts Messages.tbd
 
-else puts Messages.opt_sel_err
+else puts Messages.rub_opt_sel_err
 end
 puts Messages.scan_complete
