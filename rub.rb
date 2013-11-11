@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'rake'
 require 'date'
-require '.lib/directories'
+require './lib/directories'
 
 working_dir = "/home/scanner/brisket"
 cmd = "/usr/local/sbin/masscan"

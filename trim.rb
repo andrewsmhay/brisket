@@ -2,7 +2,7 @@
 
 require 'rake'
 require 'date'
-require '.lib/directories'
+require './lib/directories'
 =begin
 class Directories
   def self.working_dir
