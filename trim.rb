@@ -85,7 +85,7 @@ end
 
 
 opt_sel = ['remote', 'apps', 'web', 'db','special', 'ms', 'mail', 'all']
-#hostname = `hostname -s`.chomp
+hostname = `hostname -s`.chomp
 commands = []
 
 ARGV.each {|arg| commands << arg}
