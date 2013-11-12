@@ -6,6 +6,8 @@ require 'directories'
 require 'scanner'
 require 'messages'
 require 'options'
+require 'ports'
+require 'naming'
 
 commands = []
 ARGV.each {|arg| commands << arg}
