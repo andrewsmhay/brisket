@@ -37,7 +37,7 @@ class Scanner
   	"-sS -P0 -n -O --osscan-limit --version-light --max-rate "+rate+" --randomize-hosts --open --reason"
   end
   def self.nmap_input_file
-  	"-iL " + Directories.data_dir
+  	" -iL " + Directories.data_dir
   end
   def self.nmap_flags
   	nmap_options+nmap_input_file
