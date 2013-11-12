@@ -44,7 +44,7 @@ elsif ARGV[1] == Options.scan_sel[1]
 
 =begin
 # sudo nmap -p 22,80 -sS -P0 -n -O --osscan-limit --version-light --max-rate 1337 --randomize-hosts --open --reason -iL ./data/aws_gov.ip --excludefile ./conf/exclude.conf -oX andrew.xml
-#	system(Scanner.nmapcmd + " -p " + Ports.remote_ports + Scanner.nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out+)
+#	system(Scanner.nmapcmd + " -p " + Ports.remote_ports + Scanner.nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + <<<<need filename>>>> + Options.postfix)
 
 	if ARGV[0] == Options.opt_sel[0]
 		Scanner.nmap_apac

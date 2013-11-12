@@ -42,4 +42,25 @@ class Scanner
   def self.nmap_flags
   	nmap_options+nmap_input_file
   end
+   def self.nmap_apac
+  	Options.apac_ip.shuffle.each { |a| system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + a + Options.postfix[2])}
+  end
+  def self.nmap_eu
+  	Options.europe_ip.shuffle.each { |a| system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + a + Options.postfix[2])}
+  end
+  def self.nmap_us_east
+  	Options.na_east_ip.shuffle.each { |a| system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + a + Options.postfix[2])}
+  end
+  def self.nmap_us_west
+  	Options.na_west_ip.shuffle.each { |a| system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + a + Options.postfix[2])}
+  end
+  def self.nmap_south_america
+  	Options.sa_ip.shuffle.each { |a| system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + a + Options.postfix[2])}
+  end
+  def self.nmap_us_all
+  	Options.na_all_ip.shuffle.each { |a| system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + a + Options.postfix[2])}
+  end
+  def self.nmap_all
+  	Options.all_ip.shuffle.each { |a| system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + a + Options.postfix[2])}
+  end
 end

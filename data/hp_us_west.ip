@@ -1,4 +1,6 @@
-# source: http://h20195.www2.hp.com/V2/GetPDF.aspx%2F4AA4-7088ENW.pdf 
-# date: 10/23/2013
+# source1: http://h20195.www2.hp.com/V2/GetPDF.aspx%2F4AA4-7088ENW.pdf 
+# source2: http://bgp.he.net/AS132121#_prefixes
+# date: 11/11/2013
 #
 15.185.0.0/16
+168.87.80.0/20
