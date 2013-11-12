@@ -34,7 +34,7 @@ class Scanner
   	"/usr/bin/nmap"
   end
   def self.nmap_options
-  	"-sS -P0 -n -O --osscan-limit --version-light --max-rate "+rate+" --randomize-hosts --open --reason"
+  	" -sS -P0 -n -O --osscan-limit --version-light --max-rate "+rate+" --randomize-hosts --open --reason"
   end
   def self.nmap_input_file
   	" -iL " + Directories.data_dir
