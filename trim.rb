@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
-
+$LOAD_PATH << '/home/scanner/brisket/lib'
 require 'rake'
 require 'date'
-require './lib/directories'
-require './lib/ports'
-require './lib/scanner'
-require './lib/messages'
-require './lib/naming'
+require 'directories'
+require 'ports'
+require 'scanner'
+require 'messages'
+require 'naming'
 
 opt_sel = ['remote', 'apps', 'web', 'db','special', 'ms', 'mail', 'all']
 scan_sel = ['masscan','nmap','zmap']

@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
+$LOAD_PATH << '/home/scanner/brisket/lib'
 require 'rake'
 require 'date'
-require './lib/directories'
-require './lib/scanner'
-require './lib/messages'
-require './lib/options'
+require 'directories'
+require 'scanner'
+require 'messages'
+require 'options'
 
 commands = []
 ARGV.each {|arg| commands << arg}

@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
+$LOAD_PATH << '/home/scanner/brisket/lib'
 require 'nokogiri'
 require 'geoip'
+
 
 opt_sel_err = "[-] Usage: ./turnintime.rb <apac|europe|us_east|us_west|south_america|all>"
 working_dir = "/home/scanner/brisket"
