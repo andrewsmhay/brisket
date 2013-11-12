@@ -66,7 +66,7 @@ elsif ARGV[1] == Options.scan_sel[1]
 	end
 	puts Messages.scan_complete
 =end
-
+end
 elsif ARGV[1] == Options.scan_sel[2]
 	puts Messages.tbd
 =begin
