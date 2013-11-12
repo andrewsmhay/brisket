@@ -34,7 +34,7 @@ class Scanner
   	"/usr/bin/nmap"
   end
   def self.nmap_options
-  	" -sS -Pn -n --randomize-hosts -v --send-eth"
+  	" -sS -Pn -n --max-rate "+rate+" --randomize-hosts -v --send-eth"
   	#" -sS -P0 -n -O --osscan-limit --version-light --max-rate "+rate+" --randomize-hosts --open --reason"
   end
   def self.nmap_input_file
