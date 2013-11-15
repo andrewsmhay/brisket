@@ -23,20 +23,19 @@ end
 puts Messages.scanstart
 if ARGV[1] == Options.scan_sel[0]
 	if ARGV[0] == Options.opt_sel[0]
-		#Scanner.mass_apac
 		Scanner.mass Options.apac_reg
 	elsif ARGV[0] == Options.opt_sel[1]
-		Scanner.mass_eu
+		Scanner.mass Options.europe_reg
 	elsif ARGV[0] == Options.opt_sel[2]
-		Scanner.mass_us_east
+		Scanner.mass Options.north_america_reg_east
 	elsif ARGV[0] == Options.opt_sel[3]
-		Scanner.mass_us_west
+		Scanner.mass Options.north_america_reg_west
 	elsif ARGV[0] == Options.opt_sel[4]
-		Scanner.mass_south_america
+		Scanner.mass Options.south_america_reg
 	elsif ARGV[0] == Options.opt_sel[5]
-		Scanner.mass_us_all
+		Scanner.mass Options.north_america_reg
 	elsif ARGV[0] == Options.opt_sel[6]
-		Scanner.mass_all
+		Scanner.mass Options.all_reg
 	else puts Messages.opt_sel_err
 	end
 	puts Messages.scan_complete
