@@ -11,6 +11,12 @@ class Scanner
     "/usr/local/sbin/masscan"
   end
 
+  def self.mass scans
+    scans.shuffle.each do |a|
+      system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+    end    
+  end
+
   def self.mass_apac
     Options.apac_reg.shuffle.each do |a|
       system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
