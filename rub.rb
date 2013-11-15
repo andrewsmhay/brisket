@@ -24,7 +24,7 @@ puts Messages.scanstart
 if ARGV[1] == Options.scan_sel[0]
 	if ARGV[0] == Options.opt_sel[0]
 		#Scanner.mass_apac
-		Scanner.mass apac_reg
+		Scanner.mass Options.apac_reg
 	elsif ARGV[0] == Options.opt_sel[1]
 		Scanner.mass_eu
 	elsif ARGV[0] == Options.opt_sel[2]
