@@ -2,21 +2,33 @@ class Scanner
   def self.rate
     "2337" #restriction by the service provider is 4000/second
   end
+
   def self.rate_cmd
     " --rate " + rate
   end
+
   def self.masscmd
     "/usr/local/sbin/masscan"
   end
+
   def self.mass_apac
-  	Options.apac_reg.shuffle.each { |a| system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+    Options.apac_reg.shuffle.each do |a|
+      system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+    end
   end
+
   def self.mass_eu
-  	Options.europe_reg.shuffle.each { |a| system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+    Options.europe_reg.shuffle.each do |a|
+      system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+    end
   end
+
   def self.mass_us_east
-  	Options.north_america_reg_east.shuffle.each { |a| system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+    Options.north_america_reg_east.shuffle.each do |a|
+      system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
+    end
   end
+
   def self.mass_us_west
   	Options.north_america_reg_west.shuffle.each { |a| system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
   end
@@ -92,5 +104,4 @@ class Scanner
   def self.zmap_all
     Options.all_reg.shuffle.shuffle.each { |a| system(zmapcmd + " -p " + Ports.remote_ports + zmap_seed + rate_cmd + " -w " + a + " -b " + Directories.blacklist + " -O json " + "-o " + Directories.results_dir_date + Naming.hostname + "_" + Options.prefix[2] + "_" + a.gsub(/.conf/, '') + Options.postfix[3])}
   end
-
 end
