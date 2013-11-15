@@ -65,8 +65,7 @@ elsif ARGV[1] == Options.scan_sel[1]
 	puts Messages.scan_complete
 
 elsif ARGV[1] == Options.scan_sel[2]
-	puts Messages.tbd
-=begin
+#	puts Messages.tbd
 	if ARGV[0] == Options.opt_sel[0]
 		Scanner.zmap_apac
 	elsif ARGV[0] == Options.opt_sel[1]
@@ -84,6 +83,6 @@ elsif ARGV[1] == Options.scan_sel[2]
 	else puts Messages.opt_sel_err
 	end
 	puts Messages.scan_complete
-=end
+
 else puts Messages.rub_opt_sel_err
 end
