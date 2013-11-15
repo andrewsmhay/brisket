@@ -85,13 +85,11 @@ if ARGV[1] == scan_sel[0]
 
 elsif ARGV[1] == scan_sel[1]
   puts scan_sel[1] + " does not require a configuration file to be created."
-
-
+end
 elsif ARGV[1] == scan_sel[2]
   puts scan_sel[2] + " does not require a configuration file to be created."
-
-
-  else puts Messages.trim_opt_sel_err
+end
+else puts Messages.trim_opt_sel_err
   end
 else puts Messages.trim_opt_sel_err
 end
