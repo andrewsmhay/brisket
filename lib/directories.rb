@@ -23,7 +23,10 @@ class Directories
   def self.include_file_cmd
     " --includefile " + data_dir
   end
+  def self.blacklist
+    conf_dir + "exclude.conf"
+  end
   def self.exclude_file_cmd
-    " --excludefile " + conf_dir + "exclude.conf"
+    " --excludefile " + blacklist
   end
 end

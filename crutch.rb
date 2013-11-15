@@ -1,16 +1,17 @@
 #!/usr/bin/env ruby
 require 'nokogiri'
 require 'geoip'
+require 'date'
 
 # Special thanks to PentestGeek - http://www.pentestgeek.com/2012/08/23/creds-or-hash-where-the-admin-at/
 opt_sel_err = "[-] Usage: ./crutch.rb <apac|europe|us_east|us_west|south_america|all> <yyyy/mm/dd>"
 working_dir = "/home/scanner/brisket/"
 results_dir = working_dir+"/results/"
-dir_date = ARGV[1]
-#dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
+#dir_date = ARGV[1]
+dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
 results_dir_date = results_dir + dir_date + "/"
 item_dir= []
-opt_sel_region = ['apac','europe','us_east','us_west','south_america','all']
+opt_sel_region = ['apac','eu','us_east','us_west','south_america','all']
 commands = []
 inputter = []
 ARGV.each {|arg| commands << arg}

@@ -64,4 +64,34 @@ class Scanner
   def self.nmap_all
   	Options.all_ip.shuffle.each { |a| system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[1] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])}
   end
+
+  def self.zmapcmd
+    "/usr/local/sbin/zmap"
+  end
+  def self.zmap_seed
+    " -e 1337"
+  end
+  def self.zmap_apac
+    Options.apac_reg.shuffle.each { |a| puts zmapcmd + " -p " + Ports.remote_ports + Options.zmap_seed + rate_cmd + " -w " + a + " -b " + Directories.blacklist + " -O json " + "-o " + + Directories.results_out + Naming.hostname + "_" + Options.prefix[2] + "_" + a.gsub(/.ip/, '') + Options.postfix[3]}
+    #Options.apac_reg.shuffle.each { |a| system(zmapcmd + " -p " + Ports.remote_ports + Options.zmap_seed + rate_cmd + " -w " + a + " -b " + Directories.blacklist + " -O json " + "-o " + + Directories.results_out + Naming.hostname + "_" + Options.prefix[2] + "_" + a.gsub(/.ip/, '') + Options.postfix[3] )}
+  end
+  def self.zmap_eu
+    Options.europe_reg.shuffle.each { |a| system(zmapcmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+  end
+  def self.zmap_us_east
+    Options.north_america_reg_east.shuffle.each { |a| system(zmapcmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+  end
+  def self.zmap_us_west
+    Options.north_america_reg_west.shuffle.each { |a| system(zmapcmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+  end
+  def self.zmap_south_america
+    Options.south_america_reg.shuffle.each { |a| system(zmapcmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+  end
+  def self.zmap_us_all
+    Options.north_america_reg.shuffle.each { |a| system(zmapcmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+  end
+  def self.zmap_all
+    Options.all_reg.shuffle.each { |a| system(zmapcmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
+  end
+
 end
