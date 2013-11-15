@@ -72,7 +72,7 @@ class Scanner
     " -e 1337"
   end
   def self.zmap_apac
-    Options.apac_reg.shuffle.each { |a| puts zmapcmd + " -p " + Ports.remote_ports + zmap_seed + rate_cmd + " -w " + a + " -b " + Directories.blacklist + " -O json " + "-o " + + Directories.results_dir_date + Naming.hostname + "_" + Options.prefix[2] + "_" + a.gsub(/.ip/, '') + Options.postfix[3]}
+    Options.apac_reg.shuffle.each { |a| puts zmapcmd + " -p " + Ports.remote_ports + zmap_seed + rate_cmd + " -w " + a + " -b " + Directories.blacklist + " -O json " + "-o " + Directories.results_dir_date + Naming.hostname + "_" + Options.prefix[2] + "_" + a.gsub(/.ip/, '') + Options.postfix[3]}
     #Options.apac_reg.shuffle.each { |a| system(zmapcmd + " -p " + Ports.remote_ports + zmap_seed + rate_cmd + " -w " + a + " -b " + Directories.blacklist + " -O json " + "-o " + + Directories.results_out + Naming.hostname + "_" + Options.prefix[2] + "_" + a.gsub(/.ip/, '') + Options.postfix[3] )}
   end
   def self.zmap_eu
