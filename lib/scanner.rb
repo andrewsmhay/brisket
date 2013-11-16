@@ -39,6 +39,8 @@ class Scanner
       end
     end
 
+    
+
     def zmapcmd
       "/usr/local/sbin/zmap"
     end
