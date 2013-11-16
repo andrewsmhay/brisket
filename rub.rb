@@ -13,14 +13,24 @@ commands = []
 ARGV.each {|arg| commands << arg}
  
 ## Create directory for current day (if it doesn't already exist)
-if File.directory?(Directories.dir_date)
+if File.directory?(Directories.results_dir_date)
 	puts "[+] The directory" + Directories.results_dir_date + " already exists, no need to create it."
+	f = File.open('/var/log/brisket.log', 'w')
+	f.puts "[+] The directory" + Directories.results_dir_date + " already exists, no need to create it."
+	f.close
 else
 	FileUtils.mkdir_p Directories.results_dir_date
 	puts "[+] Created " + Directories.results_dir_date
+	f = File.open('/var/log/brisket.log', 'w')
+	f.puts "[+] Created " + Directories.results_dir_date
+	f.close
 end
 ## Run scan
 puts Messages.scanstart
+f = File.open('/var/log/brisket.log', 'w')
+f.puts Messages.scanstart
+f.close
+
 if ARGV[1] == Options.scan_sel[0]
 	if ARGV[0] == Options.opt_sel[0]
 		Scanner.mass Options.apac_reg
@@ -39,7 +49,9 @@ if ARGV[1] == Options.scan_sel[0]
 	else puts Messages.opt_sel_err
 	end
 puts Messages.scan_complete
-
+f = File.open('/var/log/brisket.log', 'w')
+f.puts Messages.scan_complete
+f.close
 
 elsif ARGV[1] == Options.scan_sel[1]
 	if ARGV[0] == Options.opt_sel[0]
@@ -59,6 +71,9 @@ elsif ARGV[1] == Options.scan_sel[1]
 	else puts Messages.opt_sel_err
 	end
 puts Messages.scan_complete
+f = File.open('/var/log/brisket.log', 'w')
+f.puts Messages.scan_complete
+f.close
 
 elsif ARGV[1] == Options.scan_sel[2]
 	if ARGV[0] == Options.opt_sel[0]
@@ -78,6 +93,12 @@ elsif ARGV[1] == Options.scan_sel[2]
 	else puts Messages.opt_sel_err
 	end
 puts Messages.scan_complete
-
-else puts Messages.rub_opt_sel_err
+f = File.open('/var/log/brisket.log', 'w')
+f.puts Messages.scan_complete
+f.close
+else 
+	puts Messages.rub_opt_sel_err
+	f = File.open('/var/log/brisket.log', 'w')
+	f.puts Messages.rub_opt_sel_err
+	f.close
 end
