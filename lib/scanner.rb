@@ -69,7 +69,9 @@ class Scanner
     end
     def zmap scans
       scans.shuffle.each do |a|
-        system(zmapcmd + " -p " + Ports.remote_ports + zmap_seed + rate_cmd + " -w " + a + " -b " + Directories.blacklist + " -O json " + "-o " + Directories.results_dir_date + Naming.hostname + "_" + Options.prefix[2] + "_" + a.gsub(/.conf/, '') + Options.postfix[3])}
+        Ports.all_ports_ary.each do |b|
+          system(zmapcmd + " -p " + b + zmap_seed + rate_cmd + " -w " + a + " -b " + Directories.blacklist + " -O json " + "-o " + Directories.results_dir_date + Naming.hostname + "_" + Options.prefix[2] + "_" + a.gsub(/.conf/, '') + Options.postfix[3])}
+        end
       end    
     end
 =begin
