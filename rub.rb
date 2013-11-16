@@ -63,21 +63,20 @@ puts Messages.scan_complete
 
 elsif ARGV[1] == Options.scan_sel[2]
 	if ARGV[0] == Options.opt_sel[0]
-		Scanner.zmap_apac
+		Scanner.zmap Options.apac_ip
+		#Scanner.nmap_apac
 	elsif ARGV[0] == Options.opt_sel[1]
-		Scanner.zmap_eu
+		Scanner.zmap Options.europe_ip
 	elsif ARGV[0] == Options.opt_sel[2]
-		Scanner.zmap_us_east
+		Scanner.zmap Options.na_east_ip
 	elsif ARGV[0] == Options.opt_sel[3]
-		Scanner.zmap_us_west
+		Scanner.zmap Options.na_west_ip
 	elsif ARGV[0] == Options.opt_sel[4]
-		Scanner.zmap_south_america
+		Scanner.zmap Options.sa_ip
 	elsif ARGV[0] == Options.opt_sel[5]
-		Scanner.zmap_us_all
+		Scanner.zmap Options.na_all_ip
 	elsif ARGV[0] == Options.opt_sel[6]
-		Scanner.zmap_all
-	else puts Messages.opt_sel_err
-	end
+		Scanner.zmap Options.all_ip
 	puts Messages.scan_complete
 
 else puts Messages.rub_opt_sel_err
