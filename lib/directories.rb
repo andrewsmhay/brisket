@@ -1,32 +1,34 @@
 class Directories
-  def self.working_dir
-    "/home/scanner/brisket"
-  end
-  def self.conf_dir
-    working_dir + "/conf/"
-  end
-  def self.data_dir
-    working_dir + "/data/"
-  end
-  def self.dir_date
-    Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
-  end
-  def self.results_dir
-    working_dir+"/results/"
-  end
-  def self.results_dir_date
-    results_dir + dir_date
-  end
-  def self.results_out
-    "-oX " + results_dir_date
-  end
-  def self.include_file_cmd
-    " --includefile " + data_dir
-  end
-  def self.blacklist
-    conf_dir + "exclude.conf"
-  end
-  def self.exclude_file_cmd
-    " --excludefile " + blacklist
+  class << self
+    def working_dir
+      "/home/scanner/brisket"
+    end
+    def conf_dir
+      working_dir + "/conf/"
+    end
+    def data_dir
+      working_dir + "/data/"
+    end
+    def dir_date
+      Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
+    end
+    def results_dir
+      working_dir+"/results/"
+    end
+    def results_dir_date
+      results_dir + dir_date
+    end
+    def results_out
+      "-oX " + results_dir_date
+    end
+    def include_file_cmd
+      " --includefile " + data_dir
+    end
+    def blacklist
+      conf_dir + "exclude.conf"
+    end
+    def exclude_file_cmd
+      " --excludefile " + blacklist
+    end
   end
 end
