@@ -46,6 +46,8 @@ if ARGV[1] == Options.scan_sel[0]
 		Scanner.mass Options.north_america_reg
 	elsif ARGV[0] == Options.opt_sel[6]
 		Scanner.mass Options.all_reg
+	elsif ARGV[0] == Options.opt_sel[7]
+		Scanner.mass Options.gov_reg		
 	else puts Messages.opt_sel_err
 	end
 puts Messages.scan_complete
@@ -68,6 +70,8 @@ elsif ARGV[1] == Options.scan_sel[1]
 		Scanner.nmap Options.na_all_ip
 	elsif ARGV[0] == Options.opt_sel[6]
 		Scanner.nmap Options.all_ip
+	elsif ARGV[0] == Options.opt_sel[7]
+		Scanner.nmap Options.reg_ip
 	else puts Messages.opt_sel_err
 	end
 puts Messages.scan_complete
@@ -90,15 +94,13 @@ elsif ARGV[1] == Options.scan_sel[2]
 		Scanner.zmap Options.na_all_ip
 	elsif ARGV[0] == Options.opt_sel[6]
 		Scanner.zmap Options.all_ip
+	elsif ARGV[0] == Options.opt_sel[7]
+		Scanner.zmap Options.gov_ip
 	else puts Messages.opt_sel_err
 	end
 puts Messages.scan_complete
 f = File.open('/var/log/brisket.log', 'a+')
 f.puts Messages.scan_complete
 f.close
-else 
-	puts Messages.rub_opt_sel_err
-	f = File.open('/var/log/brisket.log', 'a+')
-	f.puts Messages.rub_opt_sel_err
-	f.close
+else puts Messages.rub_opt_sel_err
 end

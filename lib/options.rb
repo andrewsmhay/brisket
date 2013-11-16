@@ -1,7 +1,7 @@
 class Options
 	class << self
 		def opt_sel
-			['apac','europe','us_east','us_west','south_america','us_all','all']
+			['apac','europe','us_east','us_west','south_america','us_all','all','gov']
 		end
 		def prefix
 			['masscan','nmap','zmap']
@@ -12,6 +12,18 @@ class Options
 		def postfix
 			['.conf','.ip','.xml','.json']
 		end
+		def gov
+			['aws_gov_us_west']
+		end
+
+		def gov_reg
+			[prefix[0]+'_'+gov[0]+postfix[0]]
+		end
+
+		def gov_ip
+			[gov[0]+postfix[1]]
+		end
+		
 		def apac
 			['softlayer_apac',
 			'aws_apac',
