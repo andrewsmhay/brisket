@@ -77,7 +77,9 @@ elsif ARGV[1] == Options.scan_sel[2]
 		Scanner.zmap Options.na_all_ip
 	elsif ARGV[0] == Options.opt_sel[6]
 		Scanner.zmap Options.all_ip
-	puts Messages.scan_complete
+	else puts Messages.opt_sel_err
+	end
+puts Messages.scan_complete
 
 else puts Messages.rub_opt_sel_err
 end
