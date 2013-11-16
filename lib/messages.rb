@@ -29,7 +29,7 @@ class Messages
     end
 
     def syslog_stamp
-      `date "+%b %d %H:%I:%M"` + `hostname` + " "
+      `date "+%b %d %H:%I:%M"`.chomp + " " + `hostname`.chomp + " "
     end
 
   end
