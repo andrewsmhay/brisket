@@ -38,27 +38,28 @@ if ARGV[1] == Options.scan_sel[0]
 		Scanner.mass Options.all_reg
 	else puts Messages.opt_sel_err
 	end
-	puts Messages.scan_complete
+puts Messages.scan_complete
 
 
 elsif ARGV[1] == Options.scan_sel[1]
 	if ARGV[0] == Options.opt_sel[0]
-		Scanner.nmap_apac
+		Scanner.nmap Options.apac_ip
+		#Scanner.nmap_apac
 	elsif ARGV[0] == Options.opt_sel[1]
-		Scanner.nmap_eu
+		Scanner.nmap Options.europe_ip
 	elsif ARGV[0] == Options.opt_sel[2]
-		Scanner.nmap_us_east
+		Scanner.nmap Options.na_east_ip
 	elsif ARGV[0] == Options.opt_sel[3]
-		Scanner.nmap_us_west
+		Scanner.nmap Options.na_west_ip
 	elsif ARGV[0] == Options.opt_sel[4]
-		Scanner.nmap_south_america
+		Scanner.nmap Options.sa_ip
 	elsif ARGV[0] == Options.opt_sel[5]
-		Scanner.nmap_us_all
+		Scanner.nmap Options.na_all_ip
 	elsif ARGV[0] == Options.opt_sel[6]
-		Scanner.nmap_all
+		Scanner.nmap Options.all_ip
 	else puts Messages.opt_sel_err
 	end
-	puts Messages.scan_complete
+puts Messages.scan_complete
 
 elsif ARGV[1] == Options.scan_sel[2]
 	if ARGV[0] == Options.opt_sel[0]

@@ -17,36 +17,7 @@ class Scanner
     end    
   end
 
-  def self.mass_apac
-    Options.apac_reg.shuffle.each do |a|
-      system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-    end
-  end
 
-  def self.mass_eu
-    Options.europe_reg.shuffle.each do |a|
-      system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-    end
-  end
-
-  def self.mass_us_east
-    Options.north_america_reg_east.shuffle.each do |a|
-      system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)
-    end
-  end
-
-  def self.mass_us_west
-  	Options.north_america_reg_west.shuffle.each { |a| system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
-  end
-  def self.mass_south_america
-  	Options.south_america_reg.shuffle.each { |a| system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
-  end
-  def self.mass_us_all
-  	Options.north_america_reg.shuffle.each { |a| system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
-  end
-  def self.mass_all
-  	Options.all_reg.shuffle.each { |a| system(masscmd + " -c " + Directories.conf_dir + a + " --banners" + Directories.exclude_file_cmd)}
-  end
 
   def self.nmapcmd
   	"/usr/bin/nmap"
@@ -61,7 +32,12 @@ class Scanner
   def self.nmap_flags
   	nmap_options+nmap_input_file
   end
-   def self.nmap_apac
+  def self.nmapcmd scans
+    scans.shuffle.each do |a|
+      system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[1] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])}
+    end
+=begin
+  def self.nmap_apac
   	Options.apac_ip.shuffle.each { |a| system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[1] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])}
   end
   def self.nmap_eu
@@ -82,6 +58,7 @@ class Scanner
   def self.nmap_all
   	Options.all_ip.shuffle.each { |a| system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[1] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])}
   end
+=end
 
   def self.zmapcmd
     "/usr/local/sbin/zmap"
