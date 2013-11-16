@@ -22,7 +22,7 @@ class Messages
     	"[+] Created " + Directories.results_dir_date
     end
     def scanstart
-      "[+] Beginning scan..."
+      "[+] Beginning scan for " + ARGV[0] + "..."
     end
     def tbd
       "This code has not yet been written..."
