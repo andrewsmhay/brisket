@@ -33,7 +33,7 @@ class Scanner
     def nmap_flags
     	nmap_options+nmap_input_file
     end
-    def nmapcmd scans
+    def nmap scans
       scans.shuffle.each do |a|
         system(nmapcmd + " -p " + Ports.remote_ports + nmap_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[1] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])
       end

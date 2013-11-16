@@ -44,7 +44,6 @@ puts Messages.scan_complete
 elsif ARGV[1] == Options.scan_sel[1]
 	if ARGV[0] == Options.opt_sel[0]
 		Scanner.nmap Options.apac_ip
-		#Scanner.nmap_apac
 	elsif ARGV[0] == Options.opt_sel[1]
 		Scanner.nmap Options.europe_ip
 	elsif ARGV[0] == Options.opt_sel[2]
@@ -64,7 +63,6 @@ puts Messages.scan_complete
 elsif ARGV[1] == Options.scan_sel[2]
 	if ARGV[0] == Options.opt_sel[0]
 		Scanner.zmap Options.apac_ip
-		#Scanner.nmap_apac
 	elsif ARGV[0] == Options.opt_sel[1]
 		Scanner.zmap Options.europe_ip
 	elsif ARGV[0] == Options.opt_sel[2]
