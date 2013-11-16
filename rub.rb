@@ -53,7 +53,7 @@ if ARGV[1] == Options.scan_sel[0]
 puts Messages.scan_complete
 f = File.open('/var/log/brisket.log', 'a+')
 f.puts Messages.syslog_stamp+Messages.scan_complete
-f.puts Messages.syslog_stamp+"[+] Results file written to " + Directories.results_dir_date + 
+f.puts Messages.syslog_stamp+"[+] Results file written to " + Directories.results_dir_date
 f.close
 
 elsif ARGV[1] == Options.scan_sel[1]
@@ -77,7 +77,8 @@ elsif ARGV[1] == Options.scan_sel[1]
 	end
 puts Messages.scan_complete
 f = File.open('/var/log/brisket.log', 'a+')
-f.puts Messages.scan_complete
+f.puts Messages.syslog_stamp+Messages.scan_complete
+f.puts Messages.syslog_stamp+"[+] Results file written to " + Directories.results_dir_date
 f.close
 
 elsif ARGV[1] == Options.scan_sel[2]
@@ -102,6 +103,7 @@ elsif ARGV[1] == Options.scan_sel[2]
 puts Messages.scan_complete
 f = File.open('/var/log/brisket.log', 'a+')
 f.puts Messages.syslog_stamp+Messages.scan_complete
+f.puts Messages.syslog_stamp+"[+] Results file written to " + Directories.results_dir_date
 f.close
 else puts Messages.rub_opt_sel_err
 end
