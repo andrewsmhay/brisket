@@ -27,5 +27,10 @@ class Messages
     def tbd
       "This code has not yet been written..."
     end
+
+    def syslog_stamp
+      `date "+%b %d %H:%I:%M"` + `hostname` + " "
+    end
+
   end
 end
