@@ -35,7 +35,7 @@ if ARGV[0] == Options.opt_sel_region[0] #apac
       end
       f = File.open(rb_file+".csv", "w")
       #f.write(inputter)
-      f.each do |g|
+      rb_file.each do |g|
         g.write(inputter)
       end
       f.close
