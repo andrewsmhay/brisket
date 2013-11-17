@@ -15,7 +15,7 @@ ARGV.each {|arg| commands << arg}
 
 puts "[+] Beginning conversion..."
 if ARGV[0] == Options.opt_sel_region[0] #apac
-  Dir.glob(Directories.crutch_opt_sel_err+"/*"+Options.opt_sel_region[0]+"*.xml") do |rb_file|
+  Dir.glob(Messages.crutch_opt_sel_err+"/*"+Options.opt_sel_region[0]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
@@ -38,7 +38,7 @@ if ARGV[0] == Options.opt_sel_region[0] #apac
     f.close
   end
 elsif ARGV[0] == Options.opt_sel_region[1] #europe
-  Dir.glob(Directories.crutch_opt_sel_err+"/*"+Options.opt_sel_region[1]+"*.xml") do |rb_file|
+  Dir.glob(Messages.crutch_opt_sel_err+"/*"+Options.opt_sel_region[1]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
@@ -61,7 +61,7 @@ elsif ARGV[0] == Options.opt_sel_region[1] #europe
     f.close
   end
 elsif ARGV[0] == Options.opt_sel_region[2] #us_east
-  Dir.glob(Directories.crutch_opt_sel_err+"/*"+Options.opt_sel_region[2]+"*.xml") do |rb_file|
+  Dir.glob(Messages.crutch_opt_sel_err+"/*"+Options.opt_sel_region[2]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
@@ -84,7 +84,7 @@ elsif ARGV[0] == Options.opt_sel_region[2] #us_east
     f.close
   end
 elsif ARGV[0] == Options.opt_sel_region[3] #us_west
-  Dir.glob(Directories.crutch_opt_sel_err+"/*"+Options.opt_sel_region[3]+"*.xml") do |rb_file|
+  Dir.glob(Messages.crutch_opt_sel_err+"/*"+Options.opt_sel_region[3]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
@@ -107,7 +107,7 @@ elsif ARGV[0] == Options.opt_sel_region[3] #us_west
     f.close
   end
 elsif ARGV[0] == Options.opt_sel_region[4] #south_america
-  Dir.glob(Directories.crutch_opt_sel_err+"/*"+Options.opt_sel_region[4]+"*.xml") do |rb_file|
+  Dir.glob(Messages.crutch_opt_sel_err+"/*"+Options.opt_sel_region[4]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
@@ -130,7 +130,7 @@ elsif ARGV[0] == Options.opt_sel_region[4] #south_america
     f.close
   end
 elsif ARGV[0] == Options.opt_sel_region[5] #all
-  Dir.glob(Directories.crutch_opt_sel_err+"/*.xml") do |rb_file|
+  Dir.glob(Messages.crutch_opt_sel_err+"/*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
