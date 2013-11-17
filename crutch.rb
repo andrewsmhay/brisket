@@ -34,10 +34,7 @@ if ARGV[0] == Options.opt_sel_region[0] #apac
         end
       end
       f = File.open(rb_file+".csv", "w")
-      #f.write(inputter)
-      rb_file.each do |g|
-        g.write(inputter)
-      end
+      f.write.each(inputter)
       f.close
   end
 elsif ARGV[0] == Options.opt_sel_region[1] #europe
