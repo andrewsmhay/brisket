@@ -9,11 +9,11 @@ class Ports
     end
 
     def app_ports_ary
-      ['21','69','53','389','161','1984']
+      ['21','69','389','161']
     end
 
     def app_ports
-      "21,69,53,389,161,1984"
+      "21,69,389,161"
     end
 
     def ms_ports_ary
@@ -49,12 +49,12 @@ class Ports
     end
 
     def special_ports_ary
-      ['6667','9050','1514']
+      ['6667','9050','1514','1984']
     end
 
     def special_ports
-      # IRC, tor, tcp syslog
-      "6667,9050,1514"
+      # IRC, tor, tcp syslog, rackspace agent
+      "6667,9050,1514,1984"
     end
 
     def all_ports_ary
