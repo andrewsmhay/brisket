@@ -15,7 +15,7 @@ ARGV.each {|arg| commands << arg}
 
 puts "[+] Beginning conversion..."
 if ARGV[0] == Options.opt_sel_region[0] #apac
-  Dir.glob(Messages.crutch_opt_sel_err+"/*"+Options.opt_sel_region[0]+"*.xml") do |rb_file|
+  Dir.glob(Directories.crutch_results_dir_date+"/*"+Options.opt_sel_region[0]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin

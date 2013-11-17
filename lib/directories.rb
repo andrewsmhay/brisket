@@ -34,7 +34,7 @@ class Directories
     end
 
     def crutch_results_dir_date
-      crutch_results_dir+ARGV[0]+"/"
+      crutch_results_dir+ARGV[1]+"/"
     end
     
     def results_out
