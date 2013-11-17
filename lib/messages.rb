@@ -21,6 +21,10 @@ class Messages
     def dir_exists
     	"[+] Created " + Directories.results_dir_date
     end
+
+    def dir_sys_create
+      syslog_stamp+"[+] Created " + Directories.results_dir_date
+    end
     def scanstart
       "[+] Beginning scan for " + ARGV[0] + "..."
     end
@@ -30,6 +34,17 @@ class Messages
 
     def syslog_stamp
       `date "+%b %d %H:%I:%M"`.chomp + " " + `hostname`.chomp + " "
+    end
+    def dir_sys_exist
+      syslog_stamp+"[+] The directory" + Directories.results_dir_date + " already exists, no need to create it."  
+    end
+
+    def res_written
+      syslog_stamp+"[+] Results file written to " + Directories.results_dir_date
+    end
+
+    def scan_sys_comp
+      syslog_stamp+scan_complete
     end
 
   end
