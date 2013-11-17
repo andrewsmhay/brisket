@@ -61,7 +61,7 @@ class Messages
     end
 
     def converted
-      "[+] Analysis and conversion of " + ARGV[0] + " completed at " + timenow + "."
+      "[+] Analysis and conversion of " + ARGV[0] + " completed at " + timenow.inspect + "."
     end
   end
 end
