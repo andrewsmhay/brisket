@@ -49,12 +49,12 @@ class Ports
     end
 
     def special_ports_ary
-      ['6667','9050','1514','20000']
+      ['6667','9050','1514']
     end
 
     def special_ports
-      # IRC, tor, tcp syslog, DNP3 (SCADA networks)
-      "6667,9050,1514,20000"
+      # IRC, tor, tcp syslog
+      "6667,9050,1514"
     end
 
     def all_ports_ary
