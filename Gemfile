@@ -5,3 +5,4 @@ gem 'trollop'
 gem 'rspec'
 gem 'rake'
 gem 'geoip'
+gem 'whenever', :require => false
