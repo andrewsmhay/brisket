@@ -33,13 +33,13 @@ if ARGV[0] == Options.opt_sel_region[0] #apac
           next
         end
       end
+      f = File.open(rb_file+".csv", "w")
+      f.write(inputter)
+      #f.each do |g|
+      #  g.write(inputter)
+      #end
+      f.close
   end
-  f = File.open(rb_file+".csv", "w")
-  f.write(inputter)
-  #f.each do |g|
-  #  g.write(inputter)
-  #end
-  f.close
 elsif ARGV[0] == Options.opt_sel_region[1] #europe
   Dir.glob(Directories.crutch_results_dir_date+"*"+Options.opt_sel_region[1]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
