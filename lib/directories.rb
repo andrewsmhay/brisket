@@ -1,8 +1,12 @@
 class Directories
   class << self
     
+    def scanner_dir
+      "/home/scanner/"
+    end
+
     def working_dir
-      "/home/scanner/brisket"
+      scanner_dir+"brisket"
     end
 
     def conf_dir
@@ -20,9 +24,17 @@ class Directories
     def results_dir
       working_dir+"/results/"
     end
+
+    def crutch_results_dir
+      scanner_dir+"results/"
+    end
     
     def results_dir_date
       results_dir + dir_date
+    end
+
+    def crutch_results_dir_date
+      crutch_results_dir+ARGV[0]+"/"
     end
     
     def results_out

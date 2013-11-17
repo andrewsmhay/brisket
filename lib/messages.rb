@@ -7,6 +7,10 @@ class Messages
     def rub_opt_sel_err
     	"[-] Usage: ./rub.rb <apac|europe|us_east|us_west|us_all|south_america|all> <masscan|nmap|zmap>"
     end
+
+    def crutch_opt_sel_err
+      "[-] Usage: ./crutch.rb <apac|europe|us_east|us_west|south_america|all> <yyyy/mm/dd>"
+    end
     
     def timenow
       Time.new
@@ -54,6 +58,10 @@ class Messages
 
     def scan_sys_comp
       syslog_stamp+scan_complete
+    end
+
+    def converted
+      "[+] Analysis and conversion of " + ARGV[0] + " completed at " + Messages.timenow + "."
     end
   end
 end

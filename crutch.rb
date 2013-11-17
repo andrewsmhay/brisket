@@ -2,25 +2,19 @@
 require 'nokogiri'
 require 'geoip'
 require 'date'
+require 'options'
+require 'directories'
+require 'messages'
 
-home_dir = "/home/"+`whoami`+"/results/"
-# Special thanks to PentestGeek - http://www.pentestgeek.com/2012/08/23/creds-or-hash-where-the-admin-at/
-opt_sel_err = "[-] Usage: ./crutch.rb <apac|europe|us_east|us_west|south_america|all> <yyyy/mm/dd>"
-working_dir = "/home/scanner/"
-results_dir = working_dir+"/results/"
 dir_date = ARGV[1]
-#dir_date = Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
-results_dir_date = results_dir + dir_date + "/"
-item_dir= []
-opt_sel_region = ['apac','eu','us_east','us_west','south_america','all']
+#item_dir= []
 commands = []
 inputter = []
 ARGV.each {|arg| commands << arg}
-timenow = Time.new
 
 puts "[+] Beginning conversion..."
-if ARGV[0] == opt_sel_region[0] #apac
-  Dir.glob(results_dir_date+"/*"+opt_sel_region[0]+"*.xml") do |rb_file|
+if ARGV[0] == Options.opt_sel_region[0] #apac
+  Dir.glob(Directories.crutch_opt_sel_err+"/*"+Options.opt_sel_region[0]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
@@ -38,10 +32,12 @@ if ARGV[0] == opt_sel_region[0] #apac
           next
         end
       end
-    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
+    f = File.open(rb_file+".csv", "w")
+    f.write(inputter)
+    f.close
   end
-elsif ARGV[0] == opt_sel_region[1] #europe
-  Dir.glob(results_dir_date+"/*"+opt_sel_region[1]+"*.xml") do |rb_file|
+elsif ARGV[0] == Options.opt_sel_region[1] #europe
+  Dir.glob(Directories.crutch_opt_sel_err+"/*"+Options.opt_sel_region[1]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
@@ -59,10 +55,12 @@ elsif ARGV[0] == opt_sel_region[1] #europe
           next
         end
       end
-    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
+    f = File.open(rb_file+".csv", "w")
+    f.write(inputter)
+    f.close
   end
-elsif ARGV[0] == opt_sel_region[2] #us_east
-  Dir.glob(results_dir_date+"/*"+opt_sel_region[2]+"*.xml") do |rb_file|
+elsif ARGV[0] == Options.opt_sel_region[2] #us_east
+  Dir.glob(Directories.crutch_opt_sel_err+"/*"+Options.opt_sel_region[2]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
@@ -80,10 +78,12 @@ elsif ARGV[0] == opt_sel_region[2] #us_east
           next
         end
       end
-    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
+    f = File.open(rb_file+".csv", "w")
+    f.write(inputter)
+    f.close
   end
-elsif ARGV[0] == opt_sel_region[3] #us_west
-  Dir.glob(results_dir_date+"/*"+opt_sel_region[3]+"*.xml") do |rb_file|
+elsif ARGV[0] == Options.opt_sel_region[3] #us_west
+  Dir.glob(Directories.crutch_opt_sel_err+"/*"+Options.opt_sel_region[3]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
@@ -101,10 +101,12 @@ elsif ARGV[0] == opt_sel_region[3] #us_west
           next
         end
       end
-    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
+    f = File.open(rb_file+".csv", "w")
+    f.write(inputter)
+    f.close
   end
-elsif ARGV[0] == opt_sel_region[4] #south_america
-  Dir.glob(results_dir_date+"/*"+opt_sel_region[4]+"*.xml") do |rb_file|
+elsif ARGV[0] == Options.opt_sel_region[4] #south_america
+  Dir.glob(Directories.crutch_opt_sel_err+"/*"+Options.opt_sel_region[4]+"*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
@@ -122,12 +124,12 @@ elsif ARGV[0] == opt_sel_region[4] #south_america
           next
         end
       end
-    inputter.each do |new_input|
-      File.open(rb_file+".csv", "w"){ |f| f.write(new_input)}
-    end
+    f = File.open(rb_file+".csv", "w")
+    f.write(inputter)
+    f.close
   end
-elsif ARGV[0] == opt_sel_region[5] #all
-  Dir.glob(results_dir_date+"/*.xml") do |rb_file|
+elsif ARGV[0] == Options.opt_sel_region[5] #all
+  Dir.glob(Directories.crutch_opt_sel_err+"/*.xml") do |rb_file|
     xml = Nokogiri::XML.parse(open rb_file)
       xml.css('nmaprun host').each do |host|
         begin
@@ -145,8 +147,10 @@ elsif ARGV[0] == opt_sel_region[5] #all
           next
         end
       end
-    File.open(rb_file+".csv", "w"){ |f| f.write(inputter)}
+    f = File.open(rb_file+".csv", "w")
+    f.write(inputter)
+    f.close
   end
-else puts opt_sel_err
+else puts Messages.crutch_opt_sel_err
 end
-puts "[+] Analysis and conversion of " + ARGV[0] + " completed at " + timenow.inspect + "."
+puts Messages.converted

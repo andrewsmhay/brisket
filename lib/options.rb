@@ -4,6 +4,10 @@ class Options
 			['apac','europe','us_east','us_west','south_america','us_all','all','gov']
 		end
 
+		def opt_sel_region
+			['apac','eu','us_east','us_west','south_america','all']
+		end
+
 		def prefix
 			['masscan','nmap','zmap']
 		end
