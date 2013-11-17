@@ -37,7 +37,6 @@ if ARGV[0] == Options.opt_sel_region[0] #apac
       inputter.each do |g|
         f.write(g+"\n")
       end
-      #f.write(inputter.to_s)
       f.close
   end
 elsif ARGV[0] == Options.opt_sel_region[1] #europe
@@ -59,9 +58,11 @@ elsif ARGV[0] == Options.opt_sel_region[1] #europe
           next
         end
       end
-    f = File.open(rb_file+".csv", "w")
-    f.write(inputter)
-    f.close
+      f = File.open(rb_file+".csv", "w")
+      inputter.each do |g|
+        f.write(g+"\n")
+      end
+      f.close
   end
 elsif ARGV[0] == Options.opt_sel_region[2] #us_east
   Dir.glob(Directories.crutch_results_dir_date+"*"+Options.opt_sel_region[2]+"*.xml") do |rb_file|
@@ -83,7 +84,9 @@ elsif ARGV[0] == Options.opt_sel_region[2] #us_east
         end
       end
     f = File.open(rb_file+".csv", "w")
-    f.write(inputter)
+    inputter.each do |g|
+        f.write(g+"\n")
+    end
     f.close
   end
 elsif ARGV[0] == Options.opt_sel_region[3] #us_west
@@ -106,7 +109,9 @@ elsif ARGV[0] == Options.opt_sel_region[3] #us_west
         end
       end
     f = File.open(rb_file+".csv", "w")
-    f.write(inputter)
+    inputter.each do |g|
+        f.write(g+"\n")
+    end
     f.close
   end
 elsif ARGV[0] == Options.opt_sel_region[4] #south_america
@@ -129,7 +134,9 @@ elsif ARGV[0] == Options.opt_sel_region[4] #south_america
         end
       end
     f = File.open(rb_file+".csv", "w")
-    f.write(inputter)
+    inputter.each do |g|
+      f.write(g+"\n")
+    end
     f.close
   end
 elsif ARGV[0] == Options.opt_sel_region[5] #all
@@ -152,7 +159,9 @@ elsif ARGV[0] == Options.opt_sel_region[5] #all
         end
       end
     f = File.open(rb_file+".csv", "w")
-    f.write(inputter)
+    inputter.each do |g|
+      f.write(g+"\n")
+    end
     f.close
   end
 else puts Messages.crutch_opt_sel_err
