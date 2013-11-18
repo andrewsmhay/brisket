@@ -76,7 +76,7 @@ if ARGV[1] == Options.scan_sel[0]
 puts Messages.conf_txt
 f = File.open(Directories.brisket_log, 'a+')
 f.puts Messages.conf_sys_txt
-f.puts Directories.conf_dir
+f.puts Directories.conf_dir_txt
 f.close
 
 elsif ARGV[1] == Options.scan_sel[1]
