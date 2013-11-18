@@ -23,6 +23,10 @@ class Messages
     def conf_sys_txt
       syslog_stamp+conf_txt
     end
+
+    def conf_dir_txt
+      "[+] Configuration files stored in " + Directories.conf_dir + "."
+    end
     
     def scan_complete 
     	"[+] Scan of " + ARGV[1] + " ports completed for " + ARGV[0] + " at " + timenow.inspect + "."
@@ -41,7 +45,7 @@ class Messages
     end
     
     def scanstart
-      "[+] Beginning " + ARGV[1] " scan for " + ARGV[0] + "..."
+      "[+] Beginning " + ARGV[1] + " scan for " + ARGV[0] + "..."
     end
     
     def tbd
