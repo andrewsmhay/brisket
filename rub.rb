@@ -16,7 +16,7 @@ ARGV.each {|arg| commands << arg}
 if File.directory?(Directories.results_dir_date)
 	puts Messages.create_dir
 	f = File.open(Directories.brisket_log, 'a+')
-	f.puts Messages.sydir_sys_exist
+	f.puts Messages.dir_sys_exist
 	f.close
 else
 	FileUtils.mkdir_p Directories.results_dir_date
