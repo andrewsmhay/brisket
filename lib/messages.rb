@@ -19,13 +19,17 @@ class Messages
     def conf_txt
       "[+] Configuration files successfully generated for " +ARGV[0]+ " ports at " +timenow.inspect + "."
     end
+
+    def conf_sys_txt
+      syslog_stamp+conf_txt
+    end
     
     def scan_complete 
-    	"[+] Scan completed for " + ARGV[0] + " at " + timenow.inspect + "."
+    	"[+] Scan of " + ARGV[1] + " ports completed for " + ARGV[0] + " at " + timenow.inspect + "."
     end
     
     def create_dir
-    	"[+] The directory" + Directories.results_dir_date + " already exists, no need to create it."
+    	"[+] The directory" + Directories.results_dir_date + " already exists."
     end
     
     def dir_exists
@@ -37,7 +41,7 @@ class Messages
     end
     
     def scanstart
-      "[+] Beginning scan for " + ARGV[0] + "..."
+      "[+] Beginning " + ARGV[1] " scan for " + ARGV[0] + "..."
     end
     
     def tbd

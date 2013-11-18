@@ -8,6 +8,10 @@ class Options
 			['apac','eu','us_east','us_west','south_america','all']
 		end
 
+		def opt_sel_ports
+			['remote', 'apps', 'web', 'db','special', 'ms', 'mail', 'all']
+		end
+
 		def prefix
 			['masscan','nmap','zmap']
 		end
