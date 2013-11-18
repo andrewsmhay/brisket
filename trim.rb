@@ -7,6 +7,7 @@ require 'ports'
 require 'scanner'
 require 'messages'
 require 'naming'
+require 'options'
 
 commands = []
 
