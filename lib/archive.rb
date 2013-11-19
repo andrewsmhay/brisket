@@ -46,7 +46,7 @@ class Archive
 		end
 
 		def date_yesterday_filename
-			date_yesterday.to_s.gsub(/-/, '\_')
+			date_yesterday.to_s.gsub(/-/, '_')
 		end
 
 		def archive_name
