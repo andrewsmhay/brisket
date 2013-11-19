@@ -71,7 +71,7 @@ class Archive
 
 		def scp
 			#/usr/bin/scp -i /home/scanner/andrewsmhay.pem /home/scanner/`/bin/hostname -s`.`/bin/date --date yesterday +\%Y_\%m_\%d`.tar.bz2 ubuntu@54.204.15.249:./results/.
-			system(xferprot+ " -i "+cert_file_location+cert_file+" "+archive_name+" "+cert_user+"@"+master_server+":./results/.")
+			system(xferprot+ " -i "+cert_file_location+cert_file+" "+archive_name+" -q "+cert_user+"@"+master_server+":./results/.")
 		end
 
 		def remove
