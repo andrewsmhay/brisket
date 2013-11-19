@@ -27,7 +27,7 @@ Archive.scp
 puts Archive.cleanup
 f.puts Messages.syslog_stamp+Archive.cleanup
 
-Archive.cleanup
+Archive.cleanup_zip
 
 puts Archive.cleanup_done
 f.puts Messages.syslog_stamp+Archive.cleanup_done

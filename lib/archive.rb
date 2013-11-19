@@ -86,7 +86,7 @@ class Archive
 			"[+] Cleanup complete."
 		end
 
-		def cleanup
+		def cleanup_zip
 			system(remove+data_to_zip+" "+archive_name)
 		end
 	end
