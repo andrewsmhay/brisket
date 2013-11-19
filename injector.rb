@@ -3,7 +3,7 @@ $LOAD_PATH << '/home/scanner/brisket/lib'
 require 'messages'
 require 'archive'
 require 'naming'
-require 'Date'
+require 'date'
 require 'directories'
 
 =begin
