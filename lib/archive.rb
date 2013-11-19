@@ -10,7 +10,7 @@ class Archive
 		end
 
 		def zip_comp_ext
-			"tar.bz2"
+			".tar.bz2"
 		end
 
 		def zip_cmd
@@ -38,15 +38,23 @@ class Archive
 		end
 
 		def date_yesterday
-			(Date.today-1).to_s.gsub(/-/, '/')
+			(Date.today-1)
+		end
+
+		def date_yesterday_dir
+			date_yesterday.to_s.gsub(/-/, '/')
+		end
+
+		def date_yesterday_filename
+			date_yesterday.to_s.gsub(/-/, '.')
 		end
 
 		def archive_name
-			Directories.scanner_dir+Naming.hostname+"."+date_yesterday+zip_comp_ext
+			Directories.scanner_dir+Naming.hostname+"_"+date_yesterday_filename+zip_comp_ext
 		end
 
 		def data_to_zip
-			Directories.results_dir+"/"+date_yesterday+"/*"
+			Directories.results_dir+date_yesterday_dir+"/*"
 		end
 
 		def prep
