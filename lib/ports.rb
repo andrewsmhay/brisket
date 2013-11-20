@@ -9,11 +9,11 @@ class Ports
     end
 
     def app_ports_ary
-      ['21','69','389','161']
+      ['21','69','161']
     end
 
     def app_ports
-      "21,69,389,161"
+      "21,69,161"
     end
 
     def ms_ports_ary
