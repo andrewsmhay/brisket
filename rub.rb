@@ -107,7 +107,7 @@ f.puts Messages.scan_sys_comp
 f.puts Messages.res_written
 f.close
 
-elsif ARGV[1] == Options.scan_sel[4]
+elsif ARGV[1] == Options.scan_sel[3]
 	if ARGV[0] == Options.opt_sel[0]
 		Scanner.nmap_virt Options.apac_ip
 	elsif ARGV[0] == Options.opt_sel[1]
