@@ -43,6 +43,28 @@ class Scanner
       end
     end
 
+    def nmap_virt_ip
+      Socket.ip_address_list.detect{|intf| intf.ipv4? and !intf.ipv4_loopback? and !intf.ipv4_multicast? and !intf.ipv4_private?}
+    end
+
+    def nmap_ip
+      nmap_virt_ip.ip_address
+    end
+
+    def nmap_eth
+      "venet0:0"
+    end
+
+    def nmap_virt_flags
+      nmap_options + " -e "+nmap_eth+" -S "+nmap_ip
+    end
+
+    def nmap_virt scans
+      scans.shuffle.each do |a|
+        system(nmapcmd + " -p " + Ports.remote_ports + nmap_virt_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[1] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])
+      end
+    end    
+
 
 
     def zmapcmd

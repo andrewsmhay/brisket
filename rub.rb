@@ -8,6 +8,7 @@ require 'messages'
 require 'options'
 require 'ports'
 require 'naming'
+require 'socket'
 
 commands = []
 ARGV.each {|arg| commands << arg}
@@ -98,6 +99,31 @@ elsif ARGV[1] == Options.scan_sel[2]
 		Scanner.zmap Options.all_ip
 	elsif ARGV[0] == Options.opt_sel[7]
 		Scanner.zmap Options.gov_ip
+	else puts Messages.opt_sel_err
+	end
+puts Messages.scan_complete
+f = File.open(Directories.brisket_log, 'a+')
+f.puts Messages.scan_sys_comp
+f.puts Messages.res_written
+f.close
+
+elsif ARGV[1] == Options.scan_sel[4]
+	if ARGV[0] == Options.opt_sel[0]
+		Scanner.nmap_virt Options.apac_ip
+	elsif ARGV[0] == Options.opt_sel[1]
+		Scanner.nmap_virt Options.europe_ip
+	elsif ARGV[0] == Options.opt_sel[2]
+		Scanner.nmap_virt Options.na_east_ip
+	elsif ARGV[0] == Options.opt_sel[3]
+		Scanner.nmap_virt Options.na_west_ip
+	elsif ARGV[0] == Options.opt_sel[4]
+		Scanner.nmap_virt Options.sa_ip
+	elsif ARGV[0] == Options.opt_sel[5]
+		Scanner.nmap_virt Options.na_all_ip
+	elsif ARGV[0] == Options.opt_sel[6]
+		Scanner.nmap_virt Options.all_ip
+	elsif ARGV[0] == Options.opt_sel[7]
+		Scanner.nmap_virt Options.reg_ip
 	else puts Messages.opt_sel_err
 	end
 puts Messages.scan_complete
