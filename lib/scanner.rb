@@ -44,11 +44,7 @@ class Scanner
     end
 
     def nmap_virt_ip
-      Socket.ip_address_list.detect{|intf| intf.ipv4? and !intf.ipv4_loopback? and !intf.ipv4_multicast? and !intf.ipv4_private?}
-    end
-
-    def nmap_ip
-      nmap_virt_ip.ip_address
+      Socket.ip_address_list.detect{|intf| intf.ipv4? and !intf.ipv4_loopback? and !intf.ipv4_multicast? and !intf.ipv4_private?}.ip_address
     end
 
     def nmap_eth
@@ -56,7 +52,7 @@ class Scanner
     end
 
     def nmap_virt_flags
-      nmap_options + " -e "+nmap_eth+" -S "+nmap_ip
+      nmap_options + " -e "+nmap_eth+" -S "+nmap_virt_ip+" "
     end
 
     def nmap_virt scans
