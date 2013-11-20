@@ -48,7 +48,7 @@ class Scanner
     end
 
     def nmap_eth
-      "venet0:0"
+      "venet0\:0"
     end
 
     def nmap_virt_flags
