@@ -38,7 +38,7 @@ class Scanner
     end
     
     def nmap_flags
-    	nmap_virt_options+nmap_input_file
+    	nmap_options+nmap_input_file
     end
     
     def nmap scans
@@ -56,7 +56,7 @@ class Scanner
     end
 
     def nmap_virt_flags
-      nmap_options + " -e \""+nmap_eth+"\" -S "+nmap_virt_ip+nmap_input_file
+      nmap_virt_options + " -e \""+nmap_eth+"\" -S "+nmap_virt_ip+nmap_input_file
     end
 
     def nmap_virt scans
