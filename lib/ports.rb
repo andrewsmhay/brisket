@@ -9,11 +9,11 @@ class Ports
     end
 
     def app_ports_ary
-      ['21','69','161']
+      ['21','69','161','443']
     end
 
     def app_ports
-      "21,69,161"
+      "21,69,161,443"
     end
 
     def ms_ports_ary
@@ -33,11 +33,11 @@ class Ports
     end
 
     def web_ports_ary
-      ['80','443','8080','8443','8888']
+      ['80','8080','8443','8888']
     end
 
     def web_ports
-      "80,443,8080,8443,8888"
+      "80,8080,8443,8888"
     end
 
     def db_ports_ary
