@@ -5,7 +5,7 @@ class Scanner
     end
 
     def rate_virt
-      "1337"
+      "2337"
     end
 
     def rate_cmd_virt
