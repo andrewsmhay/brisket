@@ -69,7 +69,7 @@ class Scanner
 
     def nmap_virt scans
       scans.shuffle.each do |a|
-        system(nmapcmd + " -p " + Ports.all_ports + nmap_virt_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[1] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])
+        system(nmapcmd + " -p " + Ports.all_ports + nmap_virt_flags + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[3] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])
       end
     end    
 
