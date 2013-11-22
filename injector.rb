@@ -5,6 +5,8 @@ require 'archive'
 require 'naming'
 require 'date'
 require 'directories'
+require 'net/scp'
+require 'net/ssh'
 
 f = File.open(Directories.brisket_log, 'a+')
 puts Archive.prep
