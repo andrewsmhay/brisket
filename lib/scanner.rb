@@ -4,6 +4,14 @@ class Scanner
       "2337" #restriction by the service provider is 4000/second
     end
 
+    def rate_virt
+      "1337"
+    end
+
+    def rate_cmd_virt
+      " --rate " + rate_virt
+    end
+
     def rate_cmd
       " --rate " + rate
     end
@@ -30,7 +38,7 @@ class Scanner
     end
 
     def nmap_virt_options
-      " -Pn -n --max-rate "+rate+" --open --randomize-hosts "
+      " -Pn -n --max-rate "+rate_virt+" --open --randomize-hosts "
     end
     
     def nmap_input_file
