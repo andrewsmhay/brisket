@@ -38,7 +38,7 @@ class Scanner
     end
 
     def nmap_virt_options
-      " -Pn -n --max-rate "+rate_virt+" --open --randomize-hosts "
+      " -sS -Pn -n --max-rate "+rate_virt+" --open --randomize-hosts "
     end
     
     def nmap_input_file
