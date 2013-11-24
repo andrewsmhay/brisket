@@ -159,21 +159,21 @@ f.close
 
 elsif ARGV[1] == Options.scan_sel[5]
 	if ARGV[0] == Options.opt_sel[0]
-		Scanner.nmap_virt_host Options.apac_ip
+		Scanner.nmap_virt_ping Options.apac_ip
 	elsif ARGV[0] == Options.opt_sel[1]
-		Scanner.nmap_virt_host Options.europe_ip
+		Scanner.nmap_virt_ping Options.europe_ip
 	elsif ARGV[0] == Options.opt_sel[2]
-		Scanner.nmap_virt_host Options.na_east_ip
+		Scanner.nmap_virt_ping Options.na_east_ip
 	elsif ARGV[0] == Options.opt_sel[3]
-		Scanner.nmap_virt_host Options.na_west_ip
+		Scanner.nmap_virt_ping Options.na_west_ip
 	elsif ARGV[0] == Options.opt_sel[4]
-		Scanner.nmap_virt_host Options.sa_ip
+		Scanner.nmap_virt_ping Options.sa_ip
 	elsif ARGV[0] == Options.opt_sel[5]
-		Scanner.nmap_virt_host Options.na_all_ip
+		Scanner.nmap_virt_ping Options.na_all_ip
 	elsif ARGV[0] == Options.opt_sel[6]
-		Scanner.nmap_virt_host Options.all_ip
+		Scanner.nmap_virt_ping Options.all_ip
 	elsif ARGV[0] == Options.opt_sel[7]
-		Scanner.nmap_virt_host Options.reg_ip
+		Scanner.nmap_virt_ping Options.reg_ip
 	else puts Messages.opt_sel_err
 	end
 puts Messages.scan_complete
