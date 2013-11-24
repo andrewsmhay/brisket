@@ -78,8 +78,13 @@ class Scanner
       scans.shuffle.each do |a|
         system(nmapcmd + " -sL --randomize-hosts --max-rate "+rate_virt+ nmap_input_file + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[4] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])
       end
-    end        
+    end
 
+    def nmap_virt_ping scans
+      scans.shuffle.each do |a|
+        system(nmapcmd + " -PO -n --randomize-hosts --max-rate "+rate_virt+ nmap_input_file + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[4] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])
+      end
+    end
 
 
     def zmapcmd

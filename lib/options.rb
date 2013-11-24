@@ -13,7 +13,7 @@ class Options
 		end
 
 		def prefix
-			['masscan','nmap','zmap','nmap_virt','nmap_virt_host']
+			['masscan','nmap','zmap','nmap_virt','nmap_virt_host','nmap_virt_ping']
 		end
 		
 		def scan_sel
