@@ -5,7 +5,7 @@ class Scanner
     end
 
     def rate_virt
-      "2337"
+      "3337"
     end
 
     def rate_cmd_virt
@@ -82,7 +82,7 @@ class Scanner
 
     def nmap_virt_ping scans
       scans.shuffle.each do |a|
-        system(nmapcmd + " -PO -n -sn --randomize-hosts --max-rate "+rate_virt+ nmap_input_file + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[4] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])
+        system(nmapcmd + " -PO -n -sn --randomize-hosts --max-rate "+rate_virt+nmap_input_file + a + Directories.exclude_file_cmd + " " + Directories.results_out + Naming.hostname + "_" + Options.prefix[4] + "_" + a.gsub(/.ip/, '') + Options.postfix[2])
       end
     end
 
