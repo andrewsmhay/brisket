@@ -59,7 +59,7 @@ Make and configure 'zmap':
 	$ make > /dev/null
 	$ sudo make install > /dev/null
 
-Install the required ruby gems for brisket:
+Install the required ruby gems for 'brisket':
 
 	$ cd /home/scanner/brisket/
 	$ sudo gem install bundler > /dev/null
