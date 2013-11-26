@@ -19,8 +19,6 @@ f.puts Messages.syslog_stamp+Archive.copyfile
 
 Archive.scp
 
-=begin
-## Stoping cleanup to test
 puts Archive.cleanup
 f.puts Messages.syslog_stamp+Archive.cleanup
 
@@ -28,5 +26,5 @@ Archive.cleanup_zip
 
 puts Archive.cleanup_done
 f.puts Messages.syslog_stamp+Archive.cleanup_done
-=end
+
 f.close
