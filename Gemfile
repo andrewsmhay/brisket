@@ -8,4 +8,3 @@ gem 'whenever', :require => false
 gem 'net-ssh'
 gem 'net-scp'
 gem 'open-uri'
-gem 'zlib'
