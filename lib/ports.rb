@@ -49,12 +49,12 @@ class Ports
     end
 
     def special_ports_ary
-      ['6667','9050','1514','1984']
+      ['6667','9050','1514','1984','3128']
     end
 
     def special_ports
       # IRC, tor, tcp syslog, rackspace agent
-      "6667,9050,1514,1984"
+      "6667,9050,1514,1984,3128"
     end
 
     def all_ports_ary
