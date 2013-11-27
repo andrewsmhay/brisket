@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'open-uri'
-#require 'zlib'
+require 'zlib'
 
 working_dir = "/home/scanner/brisket"
 geo_dat_city = "http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz"
