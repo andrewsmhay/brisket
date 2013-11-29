@@ -1,5 +1,9 @@
 class Scanner
   class << self
+    def random_seed
+      Random.new_seed
+    end
+
     def rate
       "2337" #restriction by the service provider is 4000/second
     end
@@ -92,7 +96,7 @@ class Scanner
     end
     
     def zmap_seed
-      " -e 1337"
+      " -e "+random_seed
     end
     
     def verbosity
