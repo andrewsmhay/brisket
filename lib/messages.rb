@@ -75,5 +75,17 @@ class Messages
     def converted
       "[+] Analysis and conversion of " + ARGV[0] + " completed at " + timenow.inspect + "."
     end
+
+    def ssh_to_bnode
+      "[+] Connecting to "
+    end
+
+    def update_git
+      "[+] Updating all brisket nodes..."
+    end
+
+    def git_pull
+      "[+] Pulling from brisket git repo..."
+    end
   end
 end
