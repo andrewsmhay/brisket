@@ -96,7 +96,7 @@ class Scanner
     end
     
     def zmap_seed
-      " -e "+random_seed
+      " -e "+random_seed.to_s
     end
     
     def verbosity
