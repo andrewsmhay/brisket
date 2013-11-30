@@ -5,11 +5,11 @@ class Scanner
     end
 
     def rate
-      "2337" #restriction by the service provider is 4000/second
+      "1337" #restriction by the service provider is 4000/second
     end
 
     def rate_virt
-      "3337"
+      "2337"
     end
 
     def rate_cmd_virt
