@@ -38,7 +38,7 @@ class Archive
 		end
 
 		def date_yesterday
-			(Date.today-1)
+			(Date.today-1).to_s.gsub( /-0/, '-' )
 		end
 
 		def date_yesterday_dir
