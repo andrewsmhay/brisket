@@ -5,17 +5,28 @@ require 'messages'
 require 'naming'
 require 'options'
 require 'bnodes'
+require 'socket'
 
-=begin
 commands = []
 ARGV.each {|arg| commands << arg}
-=end
+port = 22
 
 i=0
+
+if ARGV[0] == 'git'
 puts Messages.update_git
 while i < Bnodes.brisket_nodes.count
 	puts Messages.ssh_to_bnode+Bnodes.brisket_nodes[i]
 	puts Messages.git_pull
 	system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"sh -c 'cd /home/scanner/brisket && git pull'\"")
 	i+=1
+end
+elsif ARGV[0] == 'status'
+	while i < Bnodes.brisket_nodes.count
+		s = TCPSocket.open(Bnodes.brisket_nodes[i], port)	
+		puts "[+] "+Bnodes.brisket_nodes[i]+" is up..."
+		puts "[-->] "+s.gets
+		i+=1
+	end
+	s.close
 end
