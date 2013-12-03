@@ -36,12 +36,20 @@ class Options
 			[gov[0]+postfix[1]]
 		end
 		
-		def apac
-			['softlayer_apac',
-			'aws_apac',
-			'azure_apac',
-			'dimension_data_apac',
-			'huawei_apac']
+		def apac #and us_central to spread the load
+			%w[ softlayer_apac
+				aws_apac
+				azure_apac
+				dimension_data_apac
+				huawei_apac
+				linode_apac
+				azure_us_central
+				firehost_us_central
+				gce_us_central
+				linode_us_central
+				softlayer_us_central
+				tier3_us_central
+			]
 		end
 		
 		def apac_reg
@@ -49,7 +57,14 @@ class Options
 			prefix[0]+'_'+apac[1]+postfix[0],
 			prefix[0]+'_'+apac[2]+postfix[0],
 			prefix[0]+'_'+apac[3]+postfix[0],
-			prefix[0]+'_'+apac[4]+postfix[0]]
+			prefix[0]+'_'+apac[4]+postfix[0],
+			prefix[0]+'_'+apac[5]+postfix[0],
+			prefix[0]+'_'+apac[6]+postfix[0],
+			prefix[0]+'_'+apac[7]+postfix[0],
+			prefix[0]+'_'+apac[8]+postfix[0],
+			prefix[0]+'_'+apac[9]+postfix[0],
+			prefix[0]+'_'+apac[10]+postfix[0],
+			prefix[0]+'_'+apac[11]+postfix[0]]
 		end
 		
 		def apac_ip
@@ -57,19 +72,30 @@ class Options
 			apac[1]+postfix[1],
 			apac[2]+postfix[1],
 			apac[3]+postfix[1],
-			apac[4]+postfix[1]]
+			apac[4]+postfix[1],
+			apac[5]+postfix[1],
+			apac[6]+postfix[1],
+			apac[7]+postfix[1],
+			apac[8]+postfix[1],
+			apac[9]+postfix[1],
+			apac[10]+postfix[1],
+			apac[11]+postfix[1]]
 		end
 		
 		def eu
-			['tier3_eu_west',
-			'softlayer_eu_west',
-			'aws_eu',
-			'azure_europe_north',
-			'azure_europe_west',
-			'gogrid_europe_north',
-			'joyent_eu',
-			'digital_ocean_eu',
-			'csc_eu_west']
+			%w[ aws_eu
+				azure_europe_north
+				azure_europe_west
+				csc_eu_west
+				digital_ocean_eu
+				gce_eu_west
+				gogrid_europe_north
+				host_virtual_eu_west
+				joyent_eu
+				linode_eu_west
+				softlayer_eu_west
+				tier3_eu_west
+			]
 		end
 		
 		def europe_reg
@@ -80,8 +106,11 @@ class Options
 			prefix[0]+'_'+eu[4]+postfix[0],
 			prefix[0]+'_'+eu[5]+postfix[0],
 			prefix[0]+'_'+eu[6]+postfix[0],
-			prefix[0]+'_'+eu[6]+postfix[0],
-			prefix[0]+'_'+eu[7]+postfix[0]]
+			prefix[0]+'_'+eu[7]+postfix[0],
+			prefix[0]+'_'+eu[8]+postfix[0],
+			prefix[0]+'_'+eu[9]+postfix[0],
+			prefix[0]+'_'+eu[10]+postfix[0],
+			prefix[0]+'_'+eu[11]+postfix[0]]
 		end
 		
 		def europe_ip
@@ -93,20 +122,23 @@ class Options
 			eu[5]+postfix[1],
 			eu[6]+postfix[1],
 			eu[7]+postfix[1],
-			eu[8]+postfix[1]]
+			eu[8]+postfix[1],
+			eu[9]+postfix[1],
+			eu[10]+postfix[1],
+			eu[11]+postfix[1]]
 		end
 		
 		def na_east
-			['tier3_us_central',
-			'tier3_us_east',
-			'softlayer_us_central',
-			'softlayer_us_east',
-			'aws_us_east',
-			'azure_us_central',
-			'azure_us_east',
-			'virtustream_us_east',
-			'digital_ocean_us_east',
-			'profitbricks_us_east']
+			%w[	aws_us_east
+				azure_us_east
+				digital_ocean_us_east
+				earthlink_us_east
+				linode_us_east
+				profitbricks_us_east
+				softlayer_us_east
+				tier3_us_east
+				virtustream_us_east
+			]
 		end
 		
 		def north_america_reg_east
@@ -118,8 +150,7 @@ class Options
 			prefix[0]+'_'+na_east[5]+postfix[0],
 			prefix[0]+'_'+na_east[6]+postfix[0],
 			prefix[0]+'_'+na_east[7]+postfix[0],
-			prefix[0]+'_'+na_east[8]+postfix[0],
-			prefix[0]+'_'+na_east[9]+postfix[0]]
+			prefix[0]+'_'+na_east[8]+postfix[0]]
 		end
 		
 		def na_east_ip
@@ -131,23 +162,23 @@ class Options
 			na_east[5]+postfix[1],
 			na_east[6]+postfix[1],
 			na_east[7]+postfix[1],
-			na_east[8]+postfix[1],
-			na_east[9]+postfix[1]]
+			na_east[8]+postfix[1]]
 		end
 		
 		def na_west
-			['tier3_us_west',
-			'softlayer_us_west',
-			'aws_gov_us_west',
-			'aws_us_west',
-			'azure_us_west',
-			'dimension_data_us_west',
-			'gogrid_us_west',
-			'hp_us_west',
-			'rackspace',
-			'joyent_us_west',
-			'digital_ocean_us_west',
-			'profitbricks_us_west']
+			%w[	aws_gov_us_west
+				aws_us_west
+				azure_us_west
+				digital_ocean_us_west
+				dimension_data_us_west
+				gogrid_us_west
+				host_virtual_us_west
+				hp_us_west
+				joyent_us_west
+				profitbricks_us_west
+				softlayer_us_west
+				tier3_us_west
+			]
 		end
 		
 		def north_america_reg_west

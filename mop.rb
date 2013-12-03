@@ -6,7 +6,7 @@ $LOAD_PATH << './lib'
 require 'nokogiri'
 require 'awesome_print'
 
-rb_file_master = Dir.glob("./analysis/*.*")
+rb_file_master = Dir.glob("./analysis/*"+ARGV[0]+"*")
 rb_file_master.each do |rb_file|
 	f = File.open(rb_file)
 	doc = Nokogiri::XML(f)
@@ -26,7 +26,9 @@ rb_file_master.each do |rb_file|
 			i+=1
 		end
 	elsif rb_file =~ /zmap/
-		puts "zmap"
+		reader = File.read(rb_file)
+		p = /"target_port": (\d{1,5}),/.match(reader)[1]
+		puts p
 	elsif rb_file =~ /nmap/
 		rule_name = root["nmaprun"]
 		items = root.xpath("host")
@@ -35,7 +37,6 @@ rb_file_master.each do |rb_file|
 			if items[i].at_xpath("hostnames") != nil
 				namearea = items[i].at_xpath("hostnames")
 				strip_name = namearea.xpath("hostname")
-			else puts "blah"
 			end
 			iparea = items[i].xpath("address")
 			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
