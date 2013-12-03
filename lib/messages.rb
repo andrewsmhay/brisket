@@ -87,5 +87,17 @@ class Messages
     def git_pull
       "[+] Pulling from brisket git repo..."
     end
+
+    def free_space
+      "[+] Showing free space on the filesystem..."
+    end
+
+    def log_file
+      "[+] Displaying the last 10 brisket.log entries..."
+    end
+
+    def proc_listing
+      "[+] Checking to see if rub.rb is running..."
+    end
   end
 end

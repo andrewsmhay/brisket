@@ -15,13 +15,34 @@ i=0
 
 if ARGV[0] == 'git'
 puts Messages.update_git
-while i < Bnodes.brisket_nodes.count
-	puts Messages.ssh_to_bnode+Bnodes.brisket_nodes[i]
-	puts Messages.git_pull
-	system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"sh -c 'cd /home/scanner/brisket && git pull'\"")
-	i+=1
+	while i < Bnodes.brisket_nodes.count
+		puts Messages.ssh_to_bnode+Bnodes.brisket_nodes[i]
+		puts Messages.git_pull
+		system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"sh -c 'cd /home/scanner/brisket && git pull'\"")
+		i+=1
 end
-elsif ARGV[0] == 'status'
+elsif ARGV[0] == 'space'
+	while i < Bnodes.brisket_nodes.count
+		puts Messages.ssh_to_bnode+Bnodes.brisket_nodes[i]
+		puts Messages.free_space
+		system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"df -BM\"")
+		i+=1
+	end
+elsif ARGV[0] == 'logs'
+	while i < Bnodes.brisket_nodes.count
+		puts Messages.ssh_to_bnode+Bnodes.brisket_nodes[i]
+		puts Messages.log_file
+		system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"tail -10 /var/log/brisket.log\"")
+		i+=1
+	end
+elsif ARGV[0] == 'proc'
+	while i < Bnodes.brisket_nodes.count
+		puts Messages.ssh_to_bnode+Bnodes.brisket_nodes[i]
+		puts Messages.proc_listing
+		system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"ps aux | grep '[r]ub'\"")
+		i+=1
+	end
+else ARGV[0] == 'status'
 	while i < Bnodes.brisket_nodes.count
 		s = TCPSocket.open(Bnodes.brisket_nodes[i], port)	
 		puts "[+] "+Bnodes.brisket_nodes[i]+" is up..."
