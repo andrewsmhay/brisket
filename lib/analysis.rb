@@ -21,14 +21,6 @@ class Analysis
 			/(\d{1,5})/
 		end
 
-		def ip_regex_pre
-			"(/\<address addr\=\"/, '')"
-		end
-
-		def ip_regex_post
-			"(/\"\saddrtype\=\"ipv4\"\/\>/, '')"
-		end
-
       	def results(strip_ip, port_only, target_geo)
       		puts strip_ip+","+
       		port_only+","+
