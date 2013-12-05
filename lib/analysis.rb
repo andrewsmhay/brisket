@@ -13,7 +13,7 @@ class Analysis
 			to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 		end
 
-		def nmap_root
+		def nmap_rule_name
 			root["nmaprun"]
 		end
 	end
