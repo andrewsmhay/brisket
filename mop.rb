@@ -8,6 +8,7 @@ require 'awesome_print'
 require 'analysis'
 require 'geoip'
 require 'directories'
+require 'fileutils'
 
 scan_date_ary = []
 commands = []
