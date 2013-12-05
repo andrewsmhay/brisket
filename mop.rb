@@ -7,6 +7,7 @@ require 'nokogiri'
 require 'awesome_print'
 require 'analysis'
 require 'geoip'
+require 'directories'
 
 scan_date_ary = []
 commands = []
@@ -19,14 +20,14 @@ Analysis.dateinput ARGV[1]
 
 rb_file_master = Dir.glob("./analysis/"+Analysis.scan_date+"/*"+ARGV[0]+"*")
 rb_file_master.each do |rb_file|
-	filename = rb_file.to_s.gsub(Directories.ossec_dir, '')
-	csvname = "OSSEC_"+filename.gsub(/.xml/ , '.csv')
+	filename = rb_file.to_s.gsub("./analysis/"+Analysis.scan_date, '')
+	csvname = "STATS_"+filename.gsub(/.xml/ , '.csv')
 	stats = File.open(Directories.stats+csvname, "a")
 	f = File.open(rb_file)
 	doc = Nokogiri::XML(f)
 	root = doc.root
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
-	puts Analysis.header
+	stats.write(Analysis.header)
 	if rb_file =~ /masscan/
 		rule_name = root["nmaprun"]
 		items = root.xpath("host")
@@ -44,7 +45,10 @@ rb_file_master.each do |rb_file|
 			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 			target_geo = Analysis.ip_convert strip_ip
 			
-			Analysis.results(Analysis.thescannerip, strip_ip, csp, port_only, target_geo, Analysis.us_date)
+			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+strip_ip+","+port_only+","+target_geo.latitude.to_s+","+
+      					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
+      					target_geo.region_name.to_s+","+target_geo.city_name.to_s)
+			#Analysis.results(Analysis.thescannerip, strip_ip, csp, port_only, target_geo, Analysis.us_date)
 			i+=1
 		end
 	elsif rb_file =~ /zmap/
@@ -67,5 +71,6 @@ rb_file_master.each do |rb_file|
 		end
 	else puts "error"
 end
+stats.close
 f.close
 end
