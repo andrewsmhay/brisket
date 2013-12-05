@@ -49,7 +49,7 @@ class Analysis
 
       	def results(strip_ip, csp, port_only, target_geo, us_date)
       		puts us_date+","+
-      		csp.gsub( /_\w[^_]_/, '')+","+
+      		csp.gsub( /\_\w[^\_]\_/, '')+","+
       		strip_ip+","+
       		port_only+","+
       		target_geo.latitude.to_s+","+
