@@ -47,7 +47,7 @@ rb_file_master.each do |rb_file|
 			
 			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+strip_ip+","+port_only+","+target_geo.latitude.to_s+","+
       					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
-      					target_geo.region_name.to_s+","+target_geo.city_name.to_s)
+      					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
 			#Analysis.results(Analysis.thescannerip, strip_ip, csp, port_only, target_geo, Analysis.us_date)
 			i+=1
 		end
