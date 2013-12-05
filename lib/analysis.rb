@@ -13,15 +13,15 @@ class Analysis
       		GeoIP.new('GeoLiteCity.dat').city(geo.to_s)
       	end
 
-      	def results strip_ip port_only target_geo
+      	def results strip_ip port_only
       		strip_ip+","+
       		port_only+","+
-      		target_geo.latitude.to_s+","+
-      		target_geo.longitude.to_s+","+
-      		target_geo.country_name.to_s+","+
-      		target_geo.continent_code.to_s+","+
-      		target_geo.region_name.to_s+","+
-      		target_geo.city_name.to_s
+      		ip_convert.latitude.to_s+","+
+      		ip_convert.longitude.to_s+","+
+      		ip_convert.country_name.to_s+","+
+      		ip_convert.continent_code.to_s+","+
+      		ip_convert.region_name.to_s+","+
+      		ip_convert.city_name.to_s
       	end
     end
 end
