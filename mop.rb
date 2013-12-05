@@ -10,8 +10,7 @@ require 'analysis'
 commands = []
 ARGV.each {|arg| commands << arg}
 # 1 type, 2 date
-puts ARGV[0]
-puts ARGV[1]
+
 rb_file_master = Dir.glob("./analysis/"+ARGV[1]+"/*"+ARGV[0]+"*")
 rb_file_master.each do |rb_file|
 	f = File.open(rb_file)
@@ -19,7 +18,7 @@ rb_file_master.each do |rb_file|
 	root = doc.root
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 	if rb_file =~ /masscan/
-		rule_name = Analysis.nmap_rule_name
+		rule_name = root["nmaprun"]
 		items = root.xpath("host")
 		i = 0
 		until i == items.count
