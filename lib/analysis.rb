@@ -13,6 +13,7 @@ class Analysis
       	geo.each do |ip|
       		GeoIP.new('GeoLiteCity.dat').city(ip)
       	end
+      	end
 
     end
 end
