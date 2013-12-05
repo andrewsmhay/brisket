@@ -13,6 +13,10 @@ class Analysis
       		GeoIP.new('GeoLiteCity.dat').city(geo.to_s)
       	end
 
+      	def scanner_name
+      		/\d+\/\d+\/\d+\/(\w[^_]+)_/
+      	end
+
       	def csp_masscan_regex
       		/_masscan_(\w[^_]+)_/
       	end
@@ -47,8 +51,9 @@ class Analysis
 	      @@date_d+"/"+@@date_m+"/"+@@date_y
 	    end
 
-      	def results(strip_ip, csp, port_only, target_geo, us_date)
+      	def results(scanner_name, strip_ip, csp, port_only, target_geo, us_date)
       		puts us_date+","+
+      		scanner_name+","+
       		csp+","+
       		strip_ip+","+
       		port_only+","+

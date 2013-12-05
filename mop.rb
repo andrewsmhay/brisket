@@ -36,8 +36,9 @@ rb_file_master.each do |rb_file|
 			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 			target_geo = Analysis.ip_convert strip_ip
 			csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
+			scanner_name = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
 
-			Analysis.results(strip_ip, csp, port_only, target_geo, Analysis.us_date)
+			Analysis.results(scanner_name, strip_ip, csp, port_only, target_geo, Analysis.us_date)
 			i+=1
 		end
 	elsif rb_file =~ /zmap/
