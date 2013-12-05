@@ -10,7 +10,7 @@ class Analysis
 		end
 
 		def ip_convert geo
-      		GeoIP.new('GeoLiteCity.dat').city(geo)
+      		GeoIP.new('GeoLiteCity.dat').city(geo.to_s)
       	end
 
     end
