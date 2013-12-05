@@ -10,9 +10,7 @@ class Analysis
 		end
 
 		def ip_convert geo
-      	geo.each do |ip|
-      		GeoIP.new('GeoLiteCity.dat').city(ip)
-      	end
+      		GeoIP.new('GeoLiteCity.dat').city(geo)
       	end
 
     end
