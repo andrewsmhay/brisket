@@ -26,7 +26,7 @@ rb_file_master.each do |rb_file|
 			portarea = items[i].at_xpath("ports")
 			strip_port = /portid\=\"(.+)\"/.match(portarea.to_s)
 			port_only = /(\d{1,5})/.match(strip_port.to_s).to_s
-			strip_ip = iparea.Analysis.stripip
+			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 			puts strip_ip+","+port_only
 			i+=1
 		end
@@ -44,7 +44,7 @@ rb_file_master.each do |rb_file|
 				strip_name = namearea.xpath("hostname")
 			end
 			iparea = items[i].xpath("address")
-			strip_ip = iparea.Analysis.stripip
+			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 			puts strip_ip+","+strip_name.to_s
 			i+=1
 		end
