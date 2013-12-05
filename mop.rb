@@ -19,6 +19,14 @@ ARGV.each {|arg| commands << arg}
 Analysis.dateinput ARGV[1]
 
 rb_file_master = Dir.glob("./analysis/"+Analysis.scan_date+"/*"+ARGV[0]+"*")
+
+if File.directory?(Directories.stats+"/"+Analysis.scan_date)
+	puts "[+] Directory already exists, not need to create..."
+else
+	FileUtils.mkdir_p Directories.stats+"/"+Analysis.scan_date
+	puts "[+] Created "+Directories.stats+"/"+Analysis.scan_date
+end
+
 rb_file_master.each do |rb_file|
 	filename = rb_file.to_s.gsub("./analysis/"+Analysis.scan_date, '')
 	csvname = filename.gsub(/.xml/ , '.csv')
