@@ -10,7 +10,7 @@ class Directories
     end
 
     def stats
-      working_dir+"/stats"
+      "./stats"
     end
 
     def conf_dir
