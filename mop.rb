@@ -25,13 +25,13 @@ if File.directory?(Directories.stats+"/"+Analysis.scan_date)
 	puts "[+] Directory already exists, not need to create..."
 else
 	FileUtils.mkdir_p Directories.stats+"/"+Analysis.scan_date
-	puts "[+] Created "+Analysis.scan_date
+	puts "[+] Created "+Directories.stats+"/"+Analysis.scan_date
 end
 
 rb_file_master.each do |rb_file|
 	filename = rb_file.to_s.gsub("./analysis/"+Analysis.scan_date, '')
 	csvname = filename.gsub(/.xml/ , '.csv')
-	stats = File.open(Directories.stats+csvname, "a")
+	stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
 	f = File.open(rb_file)
 	doc = Nokogiri::XML(f)
 	root = doc.root
