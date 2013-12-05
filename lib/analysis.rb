@@ -14,7 +14,7 @@ class Analysis
       	end
 
       	def csp
-      		/_masscan_(\w[^_]+)_/
+      		/\_masscan\_(\w[^\_]+)\_/
       	end
 
       	def strip_port_regex
