@@ -8,14 +8,19 @@ require 'awesome_print'
 require 'analysis'
 require 'geoip'
 
+scan_date_ary = []
 commands = []
 ARGV.each {|arg| commands << arg}
-# 0=type, 1=date, 2=report_type (banner or no banner) 
+# 0=type, 1=date in D/M/YYYY, 2=report_type (banner or no banner) 
 if ARGV[1] =~ /\-/
-	puts ARGV[1].split("\-")
+	scan_date_ary = ARGV[1].split("\-")
 elsif ARGV[1] =~ /\//
-	puts ARGV[1].split("\/")
+	scan_date_ary = ARGV[1].split("\/")
 end	
+date_y = scan_date_ary.pop
+date_m = scan_date_ary.pop
+date_d = scan_date_ary.pop
+puts date_y+"/"+date_m+"/"+date_d
 
 rb_file_master = Dir.glob("./analysis/"+ARGV[1]+"/*"+ARGV[0]+"*")
 rb_file_master.each do |rb_file|
