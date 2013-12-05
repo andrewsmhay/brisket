@@ -30,7 +30,7 @@ rb_file_master.each do |rb_file|
 			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 			target_geo = Analysis.ip_convert strip_ip
 			
-			Analysis.results strip_ip port_only target_geo
+			Analysis.results(strip_ip, port_only, target_geo)
 			i+=1
 		end
 	elsif rb_file =~ /zmap/
