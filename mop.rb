@@ -19,7 +19,7 @@ rb_file_master.each do |rb_file|
 	root = doc.root
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 	if rb_file =~ /masscan/
-		Analysis.nmap_rule_name
+		rule_name = Analysis.nmap_rule_name
 		items = root.xpath("host")
 		i = 0
 		until i == items.count
