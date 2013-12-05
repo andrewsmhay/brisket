@@ -30,7 +30,7 @@ rb_file_master.each do |rb_file|
 			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 			target_geo = Analysis.ip_convert strip_ip
 			#GeoIP.new('GeoLiteCity.dat').city(strip_ip)
-			puts strip_ip+","+port_only+","+target_geo.latitude.to_s+","+target_geo.longitude.to_s
+			puts strip_ip+","+port_only+","+target_geo.latitude.to_s+","+target_geo.longitude.to_s+","+target_geocountry_code3.to_s+","+target_geo.continent_code.to_s+","+target_geo.region_name.to_s+","+target_geo.city_name.to_s
 			i+=1
 		end
 	elsif rb_file =~ /zmap/
