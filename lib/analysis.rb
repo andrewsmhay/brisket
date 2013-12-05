@@ -21,7 +21,7 @@ class Analysis
 			/(\d{1,5})/.match(strip_port.to_s).to_s
 		end
 
-      	def results(strip_ip, port_only, target_geo)
+      	def results(strip_ip, target_geo)
       		puts strip_ip+","+
       		port_only+","+
       		target_geo.latitude.to_s+","+
