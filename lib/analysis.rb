@@ -13,7 +13,7 @@ class Analysis
       		GeoIP.new('GeoLiteCity.dat').city(geo.to_s)
       	end
 
-      	def scanner_name
+      	def scanner_name_regex
       		/\d+\/\d+\/\d+\/(\w[^_]+)_/
       	end
 
