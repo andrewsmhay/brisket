@@ -12,9 +12,9 @@ commands = []
 ARGV.each {|arg| commands << arg}
 # 0=type, 1=date, 2=report_type (banner or no banner) 
 if ARGV[1] =~ /\-/
-	puts "dash"
+	puts ARGV[1].split("\-")
 elsif ARGV[1] =~ /\//
-	puts "slash"
+	puts ARGV[1].split("\/")
 end	
 
 rb_file_master = Dir.glob("./analysis/"+ARGV[1]+"/*"+ARGV[0]+"*")
