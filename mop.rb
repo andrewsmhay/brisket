@@ -27,6 +27,10 @@ rb_file_master.each do |rb_file|
 	if rb_file =~ /masscan/
 		rule_name = root["nmaprun"]
 		items = root.xpath("host")
+		
+		csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
+		scanner_name = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
+
 		i = 0
 		until i == items.count
 			iparea = items[i].xpath("address")
@@ -35,9 +39,7 @@ rb_file_master.each do |rb_file|
 			port_only = Analysis.port_only_regex.match(strip_port.to_s).to_s
 			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 			target_geo = Analysis.ip_convert strip_ip
-			csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
-			scanner_name = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
-
+			
 			Analysis.results(scanner_name, strip_ip, csp, port_only, target_geo, Analysis.us_date)
 			i+=1
 		end
