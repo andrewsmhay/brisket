@@ -28,7 +28,7 @@ rb_file_master.each do |rb_file|
 			strip_port = /portid\=\"(.+)\"/.match(portarea.to_s)
 			port_only = /(\d{1,5})/.match(strip_port.to_s).to_s
 			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
-			target_geo = Analysis.ip_convert strip_ip
+			target_geo = Analysis.ip_convert strip_ip.to_s
 			#GeoIP.new('GeoLiteCity.dat').city(strip_ip)
 			puts strip_ip+","+port_only+","+target_geo
 			i+=1
