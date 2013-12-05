@@ -11,19 +11,17 @@ require 'geoip'
 commands = []
 ARGV.each {|arg| commands << arg}
 # 0=type, 1=date, 2=report_type (banner or no banner) 
-if ARGV[1] =~ /\-/
+if ARGV[1].to_s =~ /\-/
 	puts "dash"
-elsif ARGV[1] =~ /\//
+elsif ARGV[1].to_s =~ /\//
 	puts "slash"
-end
-		
+end	
 
 rb_file_master = Dir.glob("./analysis/"+ARGV[1]+"/*"+ARGV[0]+"*")
 rb_file_master.each do |rb_file|
 	f = File.open(rb_file)
 	doc = Nokogiri::XML(f)
 	root = doc.root
-	puts Analysis.
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 	puts Analysis.header
 	if rb_file =~ /masscan/
