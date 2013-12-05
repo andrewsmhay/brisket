@@ -13,7 +13,15 @@ class Analysis
       		GeoIP.new('GeoLiteCity.dat').city(geo.to_s)
       	end
 
-      	def results strip_ip,port_only,target_geo
+      	def strip_port
+      		/portid\=\"(.+)\"/.match(portarea.to_s)
+      	end
+
+      	def port_only
+			/(\d{1,5})/.match(strip_port.to_s).to_s
+		end
+
+      	def results(strip_ip, port_only, target_geo)
       		puts strip_ip+","+
       		port_only+","+
       		target_geo.latitude.to_s+","+
