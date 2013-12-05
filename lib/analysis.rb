@@ -29,9 +29,9 @@ class Analysis
 			elsif userdate =~ /\_/
 				scan_date_ary = userdate.split("\_")
 			end	
-			date_y = scan_date_ary.pop
-			date_m = scan_date_ary.pop
-			date_d = scan_date_ary.pop
+			@date_y = scan_date_ary.pop
+			@date_m = scan_date_ary.pop
+			@date_d = scan_date_ary.pop
 		end
 
 		def scan_date
