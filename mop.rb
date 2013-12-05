@@ -27,7 +27,7 @@ rb_file_master.each do |rb_file|
 			portarea = items[i].at_xpath("ports")
 			strip_port = Analysis.strip_port_regex.match(portarea.to_s)
 			port_only = Analysis.port_only_regex.match(strip_port.to_s).to_s
-			strip_ip = iparea.to_s.(Analysis.ip_regex)
+			strip_ip = iparea.to_s.(Analysis.ip_regex_post)
 			target_geo = Analysis.ip_convert strip_ip
 			
 			Analysis.results(strip_ip, port_only, target_geo)

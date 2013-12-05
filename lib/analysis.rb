@@ -21,8 +21,12 @@ class Analysis
 			/(\d{1,5})/
 		end
 
-		def ip_regex
-			gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
+		def ip_regex_pre
+			.gsub(/\<address addr\=\"/, '')
+		end
+
+		def ip_regex_post
+			ip_regex_pre+.gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 		end
 
       	def results(strip_ip, port_only, target_geo)
