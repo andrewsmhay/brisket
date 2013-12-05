@@ -22,11 +22,11 @@ class Analysis
 		end
 
 		def ip_regex_pre
-			(/\<address addr\=\"/, '')
+			"(/\<address addr\=\"/, '')"
 		end
 
 		def ip_regex_post
-			(/\"\saddrtype\=\"ipv4\"\/\>/, '')
+			"(/\"\saddrtype\=\"ipv4\"\/\>/, '')"
 		end
 
       	def results(strip_ip, port_only, target_geo)
