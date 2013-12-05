@@ -12,18 +12,25 @@ scan_date_ary = []
 commands = []
 ARGV.each {|arg| commands << arg}
 # 0=type, 1=date in D/M/YYYY, 2=report_type (banner or no banner) 
+# ./mop.rb masscan 3/12/2013
+#
+=begin
 if ARGV[1] =~ /\-/
 	scan_date_ary = ARGV[1].split("\-")
 elsif ARGV[1] =~ /\//
 	scan_date_ary = ARGV[1].split("\/")
+elsif ARGV[1] =~ /\_/
+	scan_date_ary = ARGV[1].split("\_")
 end	
 date_y = scan_date_ary.pop
 date_m = scan_date_ary.pop
 date_d = scan_date_ary.pop
 scan_date = date_y+"/"+date_m+"/"+date_d
-puts scan_date
+us_date = date_d+"/"+date_m+"/"+date_y
+=end
+Analysis.dateinput ARGV[1]
 
-rb_file_master = Dir.glob("./analysis/"+scan_date+"/*"+ARGV[0]+"*")
+rb_file_master = Dir.glob("./analysis/"+Analysis.scan_date+"/*"+ARGV[0]+"*")
 rb_file_master.each do |rb_file|
 	f = File.open(rb_file)
 	doc = Nokogiri::XML(f)
@@ -42,12 +49,12 @@ rb_file_master.each do |rb_file|
 			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 			target_geo = Analysis.ip_convert strip_ip
 			
-			Analysis.results(strip_ip, port_only, target_geo)
+			Analysis.results(strip_ip, port_only, target_geo, Analysis.us_date)
 			i+=1
 		end
 	elsif rb_file =~ /zmap/
 		reader = File.read(rb_file)
-		p = /"target_port": (\d{1,5}),/.match(reader)[1]
+		port_only = /"target_port": (\d{1,5}),/.match(reader)[1]
 		
 	elsif rb_file =~ /nmap/
 		rule_name = root["nmaprun"]
