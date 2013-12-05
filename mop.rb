@@ -20,9 +20,10 @@ end
 date_y = scan_date_ary.pop
 date_m = scan_date_ary.pop
 date_d = scan_date_ary.pop
-puts date_y+"/"+date_m+"/"+date_d
+scan_date = date_y+"/"+date_m+"/"+date_d
+puts scan_date
 
-rb_file_master = Dir.glob("./analysis/"+ARGV[1]+"/*"+ARGV[0]+"*")
+rb_file_master = Dir.glob("./analysis/"+scan_date+"/*"+ARGV[0]+"*")
 rb_file_master.each do |rb_file|
 	f = File.open(rb_file)
 	doc = Nokogiri::XML(f)
