@@ -11,9 +11,9 @@ require 'geoip'
 commands = []
 ARGV.each {|arg| commands << arg}
 # 0=type, 1=date, 2=report_type (banner or no banner) 
-if ARGV[1].to_s =~ /\-/
+if ARGV[1] =~ /\-/
 	puts "dash"
-elsif ARGV[1].to_s =~ /\//
+elsif ARGV[1] =~ /\//
 	puts "slash"
 end	
 
