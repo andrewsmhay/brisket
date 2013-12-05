@@ -29,6 +29,36 @@ class Analysis
 			/(\d{1,5})/
 		end
 
+		def scanner_host sname
+			if sname == 'vps7026'
+				scanner_host_ip = '46.38.48.66'
+			elsif sname == 'vps199'
+				scanner_host_ip = '199.175.51.99'
+			elsif sname == 'vps7094'
+				scanner_host_ip = '66.85.144.237'
+			elsif sname == 'vps7095'
+				scanner_host_ip = '109.68.190.145'
+			elsif sname == 'vps7220'
+				scanner_host_ip = '173.244.206.19'
+			elsif sname == 'vps7221'
+				scanner_host_ip = '66.85.140.77'
+			elsif sname == 'vps7222'
+				scanner_host_ip = '109.68.191.26'
+			elsif sname == 'vps7237'
+				scanner_host_ip = '173.244.206.13'
+			elsif sname == 'vps7292'
+				scanner_host_ip = '66.85.140.110'
+			elsif sname == 'vps7293'
+				scanner_host_ip = '173.244.215.194'
+			else scanner_host_ip = sname
+			end
+			@@scanner_ip = scanner_host_ip
+		end
+
+		def thescannerip
+			@@scanner_ip
+		end
+
 		def dateinput userdate
 	      if userdate =~ /\-/
 	        scan_date_ary = userdate.split("\-")
