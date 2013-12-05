@@ -36,7 +36,7 @@ rb_file_master.each do |rb_file|
 	doc = Nokogiri::XML(f)
 	root = doc.root
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
-	stats.write(Analysis.header)
+	stats.write(Analysis.header+"\n")
 	if rb_file =~ /masscan/
 		rule_name = root["nmaprun"]
 		items = root.xpath("host")
