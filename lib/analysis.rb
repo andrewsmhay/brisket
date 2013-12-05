@@ -47,7 +47,7 @@ class Analysis
 	      @@date_d+"/"+@@date_m+"/"+@@date_y
 	    end
 
-      	def results(strip_ip, port_only, target_geo, us_date)
+      	def results(strip_ip, csp, port_only, target_geo, us_date)
       		puts us_date+","+
       		csp+","+
       		strip_ip+","+

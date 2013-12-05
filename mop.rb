@@ -36,7 +36,6 @@ rb_file_master.each do |rb_file|
 			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 			target_geo = Analysis.ip_convert strip_ip
 			csp = Analysis.csp.match(rb_file.to_s)
-			region = Analysis.region.match(rb_file.to_s)
 
 			Analysis.results(strip_ip, csp, port_only, target_geo, Analysis.us_date)
 			i+=1
