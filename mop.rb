@@ -19,6 +19,9 @@ Analysis.dateinput ARGV[1]
 
 rb_file_master = Dir.glob("./analysis/"+Analysis.scan_date+"/*"+ARGV[0]+"*")
 rb_file_master.each do |rb_file|
+	filename = rb_file.to_s.gsub(Directories.ossec_dir, '')
+	csvname = "OSSEC_"+filename.gsub(/.xml/ , '.csv')
+	stats = File.open(Directories.stats+csvname, "a")
 	f = File.open(rb_file)
 	doc = Nokogiri::XML(f)
 	root = doc.root

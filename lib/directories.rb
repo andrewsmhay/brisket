@@ -5,6 +5,10 @@ class Directories
       "/home/scanner/"
     end
 
+    def stats
+      working_dir+"stats/"
+    end
+
     def working_dir
       scanner_dir+"brisket"
     end
