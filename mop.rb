@@ -12,7 +12,7 @@ ARGV.each {|arg| commands << arg}
 # 1 type, 2 date
 puts ARGV[0]
 puts ARGV[1]
-rb_file_master = Dir.glob("./analysis/"+ARGV[1]+"*"+ARGV[0]+"*")
+rb_file_master = Dir.glob("./analysis/"+ARGV[1]+"/*"+ARGV[0]+"*")
 rb_file_master.each do |rb_file|
 	f = File.open(rb_file)
 	doc = Nokogiri::XML(f)
