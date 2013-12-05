@@ -6,10 +6,11 @@ $LOAD_PATH << './lib'
 require 'nokogiri'
 require 'awesome_print'
 require 'analysis'
+require 'geoip'
 
 commands = []
 ARGV.each {|arg| commands << arg}
-# 1 type, 2 date
+# 0=type, 1=date, 2=report_type (banner or no banner) 
 
 rb_file_master = Dir.glob("./analysis/"+ARGV[1]+"/*"+ARGV[0]+"*")
 rb_file_master.each do |rb_file|
@@ -27,7 +28,9 @@ rb_file_master.each do |rb_file|
 			strip_port = /portid\=\"(.+)\"/.match(portarea.to_s)
 			port_only = /(\d{1,5})/.match(strip_port.to_s).to_s
 			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
-			puts strip_ip+","+port_only
+			target_geo = Analysis.ip_convert strip_ip
+			#GeoIP.new('GeoLiteCity.dat').city(strip_ip)
+			puts strip_ip+","+port_only+","+target_geo
 			i+=1
 		end
 	elsif rb_file =~ /zmap/

@@ -9,5 +9,10 @@ class Analysis
 			header+",Banner"
 		end
 
-	end
+		def ip_convert geo
+      	geo.each do |ip|
+      		GeoIP.new('GeoLiteCity.dat').city(ip)
+      	end
+
+    end
 end
