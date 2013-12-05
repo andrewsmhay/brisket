@@ -13,6 +13,10 @@ class Analysis
       		GeoIP.new('GeoLiteCity.dat').city(geo.to_s)
       	end
 
+      	def csp
+      		/_masscan_(\w[^_]+)_/
+      	end
+
       	def strip_port_regex
       		/portid\=\"(.+)\"/
       	end
@@ -20,27 +24,7 @@ class Analysis
       	def port_only_regex
 			/(\d{1,5})/
 		end
-=begin
-		def dateinput userdate
-			if userdate =~ /\-/
-				scan_date_ary = userdate.split("\-")
-			elsif userdate =~ /\//
-				scan_date_ary = userdate.split("\/")
-			elsif userdate =~ /\_/
-				scan_date_ary = userdate.split("\_")
-			end	
-			@date_y = scan_date_ary.pop
-			@date_m = scan_date_ary.pop
-			@date_d = scan_date_ary.pop
-		end
 
-		def scan_date
-			date_y+"/"+date_m+"/"+date_d
-		end
-		def us_date
-			date_d+"/"+date_m+"/"+date_y
-		end
-=end
 		def dateinput userdate
 	      if userdate =~ /\-/
 	        scan_date_ary = userdate.split("\-")
@@ -64,7 +48,8 @@ class Analysis
 	    end
 
       	def results(strip_ip, port_only, target_geo, us_date)
-      		puts us_date+","+ 
+      		puts us_date+","+
+      		csp+","+
       		strip_ip+","+
       		port_only+","+
       		target_geo.latitude.to_s+","+

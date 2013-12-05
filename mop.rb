@@ -14,20 +14,7 @@ ARGV.each {|arg| commands << arg}
 # 0=type, 1=date in D/M/YYYY, 2=report_type (banner or no banner) 
 # ./mop.rb masscan 3/12/2013
 #
-=begin
-if ARGV[1] =~ /\-/
-	scan_date_ary = ARGV[1].split("\-")
-elsif ARGV[1] =~ /\//
-	scan_date_ary = ARGV[1].split("\/")
-elsif ARGV[1] =~ /\_/
-	scan_date_ary = ARGV[1].split("\_")
-end	
-date_y = scan_date_ary.pop
-date_m = scan_date_ary.pop
-date_d = scan_date_ary.pop
-scan_date = date_y+"/"+date_m+"/"+date_d
-us_date = date_d+"/"+date_m+"/"+date_y
-=end
+
 Analysis.dateinput ARGV[1]
 
 rb_file_master = Dir.glob("./analysis/"+Analysis.scan_date+"/*"+ARGV[0]+"*")
@@ -48,8 +35,10 @@ rb_file_master.each do |rb_file|
 			port_only = Analysis.port_only_regex.match(strip_port.to_s).to_s
 			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 			target_geo = Analysis.ip_convert strip_ip
-			
-			Analysis.results(strip_ip, port_only, target_geo, Analysis.us_date)
+			csp = Analysis.csp.match(rb_file.to_s)
+			region = Analysis.region.match(rb_file.to_s)
+
+			Analysis.results(strip_ip, csp, port_only, target_geo, Analysis.us_date)
 			i+=1
 		end
 	elsif rb_file =~ /zmap/
