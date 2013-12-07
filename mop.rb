@@ -61,10 +61,13 @@ rb_file_master.each do |rb_file|
 			#Analysis.results(Analysis.thescannerip, strip_ip, csp, port_only, target_geo, Analysis.us_date)
 			i+=1
 		end
+		stats.close
+		f.close
 	elsif rb_file =~ /zmap/
 		reader = File.read(rb_file)
 		port_only = /"target_port": (\d{1,5}),/.match(reader)[1]
-		
+		stats.close
+		f.close
 	elsif rb_file =~ /nmap/
 		rule_name = root["nmaprun"]
 		items = root.xpath("host")
@@ -79,8 +82,8 @@ rb_file_master.each do |rb_file|
 			puts strip_ip+","+strip_name.to_s
 			i+=1
 		end
+		stats.close
+		f.close
 	else puts "error"
 end
-stats.close
-f.close
 end
