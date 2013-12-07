@@ -36,6 +36,7 @@ rb_file_master.each do |rb_file|
 	doc = Nokogiri::XML(f)
 	root = doc.root
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
+	f.close
 	stats.write(Analysis.header+"\n")
 	if rb_file =~ /masscan/
 		rule_name = root["nmaprun"]
@@ -62,12 +63,10 @@ rb_file_master.each do |rb_file|
 			i+=1
 		end
 		stats.close
-		f.close
 	elsif rb_file =~ /zmap/
 		reader = File.read(rb_file)
 		port_only = /"target_port": (\d{1,5}),/.match(reader)[1]
 		stats.close
-		f.close
 	elsif rb_file =~ /nmap/
 		rule_name = root["nmaprun"]
 		items = root.xpath("host")
@@ -83,7 +82,6 @@ rb_file_master.each do |rb_file|
 			i+=1
 		end
 		stats.close
-		f.close
 	else puts "error"
 end
 end
