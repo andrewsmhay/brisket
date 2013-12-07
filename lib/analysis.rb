@@ -29,6 +29,10 @@ class Analysis
 			/(\d{1,5})/
 		end
 
+		def ip_strip
+			/(\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b)/
+		end
+
 		def scanner_host sname
 			if sname == 'vps7026'
 				scanner_host_ip = '46.38.48.66'

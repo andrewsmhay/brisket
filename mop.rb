@@ -51,7 +51,8 @@ rb_file_master.each do |rb_file|
 			portarea = items[i].at_xpath("ports")
 			strip_port = Analysis.strip_port_regex.match(portarea.to_s)
 			port_only = Analysis.port_only_regex.match(strip_port.to_s).to_s
-			strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
+			#strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
+			strip_ip = Analysis.ip_strip.match(iparea.to_s)[1].to_s
 			target_geo = Analysis.ip_convert strip_ip
 			
 			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+strip_ip+","+port_only+","+target_geo.latitude.to_s+","+
