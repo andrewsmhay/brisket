@@ -10,7 +10,7 @@ gem 'i18n'
 gem 'mini_portile'
 gem 'minitest'
 gem 'multi_json'
-#gem 'nokogiri' <- Only required for analysis
+gem 'nokogiri'
 gem 'rake'
 gem 'rspec'
 gem 'rspec-core'
