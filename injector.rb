@@ -10,15 +10,14 @@ require 'net/ssh'
 require 'aws-sdk'
 
 ec2 = AWS::EC2.new(
-		    :access_key_id => '', # => Enter your own EC2 Access Key ID
-		    :secret_access_key => '') # => Enter your own EC2 Secret Access Key
-
-master_instance = "" # => enter your instance ID
+:access_key_id => '',
+:secret_access_key => '')
+master_instance = ""
 brisket_mother = ec2.instances[master_instance]
 
 f = File.open(Directories.brisket_log, 'a+')
 
-if brisket_mother.status == ":stopped"
+if brisket_mother.status.to_s == "stopped"
 	puts Messages.brisket_start
 	f.puts Messages.syslog_stamp+Messages.brisket_start
   	
@@ -47,7 +46,7 @@ if brisket_mother.status == ":stopped"
 	f.puts Messages.syslog_stamp+Archive.cleanup_done
 
 	f.close
-elsif brisket_mother.status == ":running"
+elsif brisket_mother.status.to_s == "running"
 	puts Messages.brisket_started
 	f.puts Messages.syslog_stamp+Messages.brisket_started
 
