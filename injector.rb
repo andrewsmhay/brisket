@@ -8,6 +8,7 @@ require 'directories'
 require 'net/scp'
 require 'net/ssh'
 require 'aws-sdk'
+require 'keys'
 
 master_instance = "i-f3367794"
 brisket_mother = Cloudkeys.ec2_keys.instances[master_instance]

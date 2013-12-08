@@ -1,4 +1,4 @@
-class CloudKeys
+class Cloudkeys
 	class << self
 		class ec2_keys
 			ec2 = AWS::EC2.new(
