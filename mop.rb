@@ -15,7 +15,6 @@ commands = []
 ARGV.each {|arg| commands << arg}
 # 0=type, 1=date in D/M/YYYY, 2=report_type (banner or no banner) 
 # ./mop.rb masscan 3/12/2013
-#
 
 Analysis.dateinput ARGV[1]
 
