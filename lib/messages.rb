@@ -99,5 +99,13 @@ class Messages
     def proc_listing
       "[+] Checking to see if rub.rb is running..."
     end
+
+    def brisket_start
+      "[+] Starting the Brisket Mothership..."
+    end
+
+    def brisket_started
+      "[+] The Brisket Mothership has started..."
+    end
   end
 end
