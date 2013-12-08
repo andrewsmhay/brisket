@@ -105,7 +105,11 @@ class Messages
     end
 
     def brisket_started
-      "[+] The Brisket Mothership has started..."
+      "[+] The Brisket Mothership started..."
+    end
+
+    def brisket_error
+      "[+] Error, please check Brisket Mothership logs..."
     end
   end
 end
