@@ -4,7 +4,6 @@
 #
 $LOAD_PATH << './lib'
 require 'nokogiri'
-require 'awesome_print'
 require 'analysis'
 require 'geoip'
 require 'directories'
@@ -21,7 +20,7 @@ Analysis.dateinput ARGV[1]
 rb_file_master = Dir.glob("./analysis/"+Analysis.scan_date+"/*"+ARGV[0]+"*")
 
 if File.directory?(Directories.stats+"/"+Analysis.scan_date)
-	puts "[+] Directory already exists, not need to create..."
+	puts "[+] Directory already exists, no need to create..."
 else
 	FileUtils.mkdir_p Directories.stats+"/"+Analysis.scan_date
 	puts "[+] Created "+Directories.stats+"/"+Analysis.scan_date
@@ -76,7 +75,6 @@ rb_file_master.each do |rb_file|
 			end
 			iparea = items[i].xpath("address")
 			strip_ip = Analysis.ip_strip.match(iparea.to_s)[1].to_s
-			#strip_ip = iparea.to_s.gsub(/\<address addr\=\"/, '').gsub(/\"\saddrtype\=\"ipv4\"\/\>/, '')
 			puts strip_ip+","+strip_name.to_s
 			i+=1
 		end
