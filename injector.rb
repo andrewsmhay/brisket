@@ -70,5 +70,7 @@ elsif brisket_mother.status == ":running"
 	f.puts Messages.syslog_stamp+Archive.cleanup_done
 
 	f.close
-else f.puts Messages.syslog_stamp+Messages.brisket_error
+else 
+	puts Messages.brisket_error
+	f.puts Messages.syslog_stamp+Messages.brisket_error
 end
