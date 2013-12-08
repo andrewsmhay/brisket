@@ -8,10 +8,13 @@ require 'directories'
 require 'net/scp'
 require 'net/ssh'
 require 'aws-sdk'
-require 'keys'
+
+ec2 = AWS::EC2.new(
+		    :access_key_id => '', # => Enter your own EC2 Access Key ID
+		    :secret_access_key => '') # => Enter your own EC2 Secret Access Key
 
 master_instance = "i-f3367794"
-brisket_mother = Cloudkeys.ec2.instances[master_instance]
+brisket_mother = ec2.instances[master_instance]
 
 f = File.open(Directories.brisket_log, 'a+')
 
