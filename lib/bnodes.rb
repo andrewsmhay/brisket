@@ -2,7 +2,9 @@ class Bnodes
 	class << self
 		def brisket_nodes
 			# insert your own scanner node information
-			%w( 173.244.206.13
+			%w( 173.244.215.194
+				66.85.140.110
+				173.244.206.13
 				109.68.191.26
 				66.85.140.77
 				173.244.206.19
