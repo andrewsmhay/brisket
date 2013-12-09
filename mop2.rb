@@ -61,7 +61,7 @@ rb_file_master.each do |rb_file|
 		until i == items.count
 	
 			target_geo = Analysis.ip_convert @@ip_class
-			
+			Ox.sax_parse(handler, f)
 			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+@@ip_class+@@portid_class+target_geo.latitude.to_s+","+
       					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
       					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
