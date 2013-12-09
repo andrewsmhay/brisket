@@ -15,7 +15,7 @@ Data
 <i>Cooking Note: You must trim the brisket before adding the rub to it.</i>
 
 Used to prepare the scan configuration file with the appropriate set of ports for the scan.
-<p><code>
+<pre><code>
 ./trim.rb <i>ports</i> masscan<br />
 Where <i>ports</i> is one of the following options:<br />
 * remote - common remote access server ports
@@ -26,7 +26,7 @@ Where <i>ports</i> is one of the following options:<br />
 * db - common database ports
 * special - special ports for selective scanning
 * all - all of the above ports
-</code></p>
+</code></pre>
 
 The <code>trim.rb</code> command generates the masscan configuration file to be used during the scan.
 
