@@ -16,8 +16,8 @@ Data
 
 Used to prepare the scan configuration file with the appropriate set of ports for the scan.
 <p><code>
-./trim.rb <i>ports</i> masscan<p></p>
-Where <i>ports</i> is one of the following options:<p></p>
+./trim.rb <i>ports</i> masscan<br />
+Where <i>ports</i> is one of the following options:<br />
 * remote - common remote access server ports
 * apps - common application server ports
 * www - common web server ports
