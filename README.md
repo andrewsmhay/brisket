@@ -19,7 +19,6 @@ Used to prepare the scan configuration file with the appropriate set of ports fo
 ./trim.rb <i>ports</i> masscan
 
 Where <i>ports</i> is one of the following options:
-
 * remote - common remote access server ports
 * apps - common application server ports
 * www - common web server ports
