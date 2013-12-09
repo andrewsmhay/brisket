@@ -17,7 +17,7 @@ Each script has different requirements but you should be able to run <code>bundl
 Used to prepare the scan configuration file with the appropriate set of ports for the scan.
 
 <pre><code>
-	./trim.rb <i>ports</i> masscan
+$ sudo ./trim.rb <i>ports</i> masscan
 </code></pre>
 
 Where <i>ports</i> is one of the following options:
@@ -32,7 +32,7 @@ Where <i>ports</i> is one of the following options:
 
 e.g.
 <pre><code>
-	<b>./trim.rb remote masscan</b>
+<b>$ sudo ./trim.rb remote masscan</b>
 </code></pre>
 
 ####rub.rb
@@ -41,7 +41,7 @@ e.g.
 Used to call the scanner and export the results in the appropriate results date directory and file.
 
 <pre><code>
-	./rub.rb <i>region</i> <i>scanner</i>
+$ sudo ./rub.rb <i>region</i> <i>scanner</i>
 </code></pre>
 
 Where <i>region</i> is one of the following options:
@@ -61,7 +61,7 @@ and where <i>scanner</i> is one of the following options:
 
 e.g.
 <pre><code>
-	<b>./rub.rb apac masscan</b>
+<b>$ sudo ./rub.rb apac masscan</b>
 </code></pre>
 
 ####mop.rb
@@ -70,7 +70,7 @@ e.g.
 Script to convert the various results formats into a common .csv file format.
 
 <pre><code>
-	./mop.rb <i>scanner</i> <i>date</i>
+$ sudo ./mop.rb <i>scanner</i> <i>date</i>
 </code></pre>
 
 Where <i>scanner</i> is one of the following options:
@@ -82,7 +82,7 @@ and where <i>date</i> is the date directory that contains the scanner results fi
 
 e.g.
 <pre><code>
-	<b>./mop.rb masscan 2/3/2014</b>
+<b>$ sudo ./mop.rb masscan 2/3/2014</b>
 </code></pre>
 
 Note - For <i>March 2, 2014</i> the directory structure would be 2014/3/2 and should be entered as 2/3/2014.
@@ -93,7 +93,7 @@ Note - For <i>March 2, 2014</i> the directory structure would be 2014/3/2 and sh
 Script to archive, transfer, and cleanup scan data. All scanner results are archived using <code>tar</code> and <code>bzip2</code>. The daily archive file is transferred to the CloudCooker for futher processing. Local scan results and the daily archive are deleted upon transmission to the CloudCooker.
 
 <pre><code>
-	<b>./injector.rb</b>
+<b>$ sudo ./injector.rb</b>
 </code></pre>
 
 ####fixins.rb
@@ -101,7 +101,7 @@ Script to archive, transfer, and cleanup scan data. All scanner results are arch
 
 This script downloads and unpacks the most recent GeoLiteCity database file for use in converting IP addresses to latitude and longitude data.
 <pre><code>
-	<b>./fixins.rb city</b>
+<b>$ sudo ./fixins.rb city</b>
 </code></pre>
 ###Contact
 
