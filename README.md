@@ -16,18 +16,16 @@ Data
 
 Used to prepare the scan configuration file with the appropriate set of ports for the scan.
 <p><code>
-./trim.rb <i>ports</i> masscan
-
-Where <i>ports</i> is one of the following options:
-remote - common remote access server ports
-apps - common application server ports
-www - common web server ports
-mail - common mail ports
-ms - common Microsoft ports
-db - common database ports
-special - special ports for selective scanning
-all - all of the above ports
-
+./trim.rb <i>ports</i> masscan<p></p>
+Where <i>ports</i> is one of the following options:<p></p>
+* remote - common remote access server ports
+* apps - common application server ports
+* www - common web server ports
+* mail - common mail ports
+* ms - common Microsoft ports
+* db - common database ports
+* special - special ports for selective scanning
+* all - all of the above ports
 </code></p>
 
 The <code>trim.rb</code> command generates the masscan configuration file to be used during the scan.
