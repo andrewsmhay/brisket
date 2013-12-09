@@ -1,9 +1,11 @@
-##Brisket - because the data is better when it's cooked low and slow
+##Brisket
 
 ###About
 
 The primary purpose of this application is to scan, store, and prepare Cloud Server Provider (CSP) guest/instance/host data for further statistical and trend analysis.
-
+### Description
+See the position paper for a sneak peak into what this project was created for.
+- <a href="github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md">github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md</a>
 ###Requirements
 Each script has different requirements but you should be able to run <code>bundle install</code> to install the gems listed in the Gemfile.
 
@@ -13,7 +15,7 @@ Each script has different requirements but you should be able to run <code>bundl
 
 Used to prepare the scan configuration file with the appropriate set of ports for the scan.
 <pre><code>
-./trim.rb <i>ports</i> masscan
+	./trim.rb <i>ports</i> masscan
 
 Where <i>ports</i> is one of the following options:
  remote - common remote access server ports
@@ -26,8 +28,7 @@ Where <i>ports</i> is one of the following options:
  all - all of the above ports
 
 e.g.
-
-<b>./trim.rb remote masscan</b>
+	<b>./trim.rb remote masscan</b>
 </code></pre>
 
 ####rub.rb
@@ -35,7 +36,7 @@ e.g.
 
 Used to call the  scanner and export the results in the appropriate results date directory and file.
 <pre><code>
-./rub.rb <i>region</i> <i>scanner</i>
+	./rub.rb <i>region</i> <i>scanner</i>
 
 Where <i>region</i> is one of the following options:
  apac
@@ -53,7 +54,7 @@ and where <i>scanner</i> is one of the following options:
  zmap - the zmap scanner
 
 e.g.
-<b>./rub.rb apac masscan</b>
+	<b>./rub.rb apac masscan</b>
 </code></pre>
 
 ####mop.rb
@@ -61,7 +62,7 @@ e.g.
 
 Script to convert the various results formats into a common .csv file format.
 <pre><code>
-./mop.rb <i>scanner</i> <i>date</i>
+	./mop.rb <i>scanner</i> <i>date</i>
 
 Where <i>scanner</i> is one of the following options:
  masscan - the masscan scanner
@@ -71,19 +72,31 @@ Where <i>scanner</i> is one of the following options:
 Where <i>date</i> is the date directory that contains the scanner results files to convert in <i>M/D/YYYY</i> format.
 
 e.g. 
-<b>./mop.rb masscan 2/3/2014</b>
+	<b>./mop.rb masscan 2/3/2014</b>
 </code></pre>
 
 Note - For <i>March 2, 2014</i> the directory structure would be 2014/3/2 and should be entered as 2/3/2014.
+
+####injector.rb
+<i>Add marinade to the brisket to keep it moist on the inside...</i>
+
+Script to archive, transfer, and cleanup scan data. All scanner results are archived using <code>tar</code> and <code>bzip2</code>. The daily archive file is transferred to the CloudCooker for futher processing. Local scan results and the daily archive are deleted upon transmission to the CloudCooker.
+
+<pre><code>
+	<b>./injector.rb</b>
+</code></pre>
+
+<pre><code>
+
+</code></pre>
 
 ####fixins.rb
 <i>Cooking Note: It just ain't a BBQ without some proper fixins to make the meal complete.</i>
 
 This script downloads and unpacks the most recent GeoLiteCity database file for use in converting IP addresses to latitude and longitude data.
 <pre><code>
-./fixins.rb city
+	<b>./fixins.rb city</b>
 </code></pre>
-
 ###Contact
 
 To provide any feedback or ask any questions please reach out to Andrew Hay on Twitter at <a href="http://twitter.com/andrewsmhay" target="new">@andrewsmhay</a> or CloudPassage at <a href="http://twitter.com/cloudpassage" target="new">@cloudpassage</a>.
