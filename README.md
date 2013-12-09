@@ -15,30 +15,35 @@ Each script has different requirements but you should be able to run <code>bundl
 <i>Cooking Note: You must trim the brisket before adding the rub to it.</i>
 
 Used to prepare the scan configuration file with the appropriate set of ports for the scan.
+
 <pre><code>
 	./trim.rb <i>ports</i> masscan
+</code></pre>
 
 Where <i>ports</i> is one of the following options:
- remote - common remote access server ports
- apps - common application server ports
- www - common web server ports
- mail - common mail ports
- ms - common Microsoft ports
- db - common database ports
- special - special ports for selective scanning
- all - all of the above ports
+* remote - common remote access server ports
+* apps - common application server ports
+* www - common web server ports
+* mail - common mail ports
+* ms - common Microsoft ports
+* db - common database ports
+* special - special ports for selective scanning
+* all - all of the above ports
 
 e.g.
+<pre><code>
 	<b>./trim.rb remote masscan</b>
 </code></pre>
 
 ####rub.rb
 <i>Cooking Note: Once trimmed, the brisket must be seasoned.</i>
 
-Used to call the  scanner and export the results in the appropriate results date directory and file.
+Used to call the scanner and export the results in the appropriate results date directory and file.
+
 <pre><code>
 	./rub.rb <i>region</i> <i>scanner</i>
 </code></pre>
+
 Where <i>region</i> is one of the following options:
 * apac
 * europe
@@ -53,8 +58,9 @@ and where <i>scanner</i> is one of the following options:
 * nmap - the nmap scanner
 * nmap_virtual - the nmap scanner with configurations for virtual interfaces
 * zmap - the zmap scanner
-<pre><code>
+
 e.g.
+<pre><code>
 	<b>./rub.rb apac masscan</b>
 </code></pre>
 
@@ -62,17 +68,20 @@ e.g.
 <i>Keep it moist if you want to win!</i>
 
 Script to convert the various results formats into a common .csv file format.
+
 <pre><code>
 	./mop.rb <i>scanner</i> <i>date</i>
+</code></pre>
 
 Where <i>scanner</i> is one of the following options:
- masscan - the masscan scanner
- nmap - the nmap scanner
- zmap - the zmap scanner
+* masscan - the masscan scanner
+* nmap - the nmap scanner
+* zmap - the zmap scanner
 
-Where <i>date</i> is the date directory that contains the scanner results files to convert in <i>M/D/YYYY</i> format.
+and where <i>date</i> is the date directory that contains the scanner results files to convert in <i>M/D/YYYY</i> format.
 
-e.g. 
+e.g.
+<pre><code>
 	<b>./mop.rb masscan 2/3/2014</b>
 </code></pre>
 
