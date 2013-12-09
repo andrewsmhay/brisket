@@ -40,19 +40,19 @@ Used to call the  scanner and export the results in the appropriate results date
 	./rub.rb <i>region</i> <i>scanner</i>
 </code></pre>
 Where <i>region</i> is one of the following options:
- apac
- europe
- us_east
- us_west
- us_all
- south_america
- all
+* apac
+* europe
+* us_east
+* us_west
+* us_all
+* south_america
+* all
 
 and where <i>scanner</i> is one of the following options:
- masscan - the masscan scanner
- nmap - the nmap scanner
- nmap_virtual - the nmap scanner with configurations for virtual interfaces
- zmap - the zmap scanner
+* masscan - the masscan scanner
+* nmap - the nmap scanner
+* nmap_virtual - the nmap scanner with configurations for virtual interfaces
+* zmap - the zmap scanner
 <pre><code>
 e.g.
 	<b>./rub.rb apac masscan</b>
