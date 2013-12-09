@@ -12,30 +12,6 @@ The primary purpose of this application is to scan, store, and prepare Cloud Ser
 
 ###Requirements
 Each script has different requirements.
-####trim.rb
-Gems
-* require 'rake'
-* require 'date'
-
-####rub.rb
-Gems
-* require 'rake'
-* require 'date'
-
-####crutch.rb
-Gems
-* require 'nokogiri'
-* require 'geoip'
-
-####fixins.rb
-Gems
-require 'open-uri'
-require 'zlib'
-
-####turnintime.rb
-Gems
-* require 'nokogiri'
-* require 'geoip'
 
 Data
 * The most recent <a href="http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz" target="new">GeoLite City database</a> from MaxMind.
@@ -54,13 +30,6 @@ Used to prepare the scan configuration file with the appropriate set of ports fo
 Used to call the masscan scanner and export the results in the appropriate results date directory and file.
 
 ./rub.rb apac|europe|us_east|us_west|us_all|south_america|all
-
-####crutch.rb
-<i>Cooking Note: Once the brisket is cooked, you put a <a href="http://www.texasmonthly.com/story/importance-wrapping-brisket" target="new">"Texas Crutch"</a> on it to finish it off.</i>
-
-Crutch is used to perform analysis on the collected IP, port, banner, and geolocation data.
-
-./crutch.rb apac|europe|us_east|us_west|south_america|all
 
 ####fixins.rb
 <i>Cooking Note: It just ain't a BBQ without some proper fixins to make the meal complete.</i>
