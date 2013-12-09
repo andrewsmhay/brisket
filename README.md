@@ -1,12 +1,6 @@
 ##Brisket - because the data is better when it's cooked low and slow
 
 ###About
-This repository serves as a collection of frontend scripts to control <a href="https://github.com/robertdavidgraham" target="new">Robert David Graham</a>'s asynchronous TCP port scanner, <a href="https://github.com/robertdavidgraham/masscan" target="new">masscan</a>. From the masscan page:
-
-> It produces results similar to nmap, the most famous port scanner. Internally, it operates 
-> more like scanrand, unicornscan, and ZMap, using asynchronous transmission. The major 
-> difference is that it's faster than these other scanners. In addition, it's more flexible, 
-> allowing arbitrary address ranges and port ranges.
 
 The primary purpose of this application is to scan, store, and prepare Cloud Server Provider (CSP) guest/instance/host data for further statistical and trend analysis.
 
@@ -21,15 +15,40 @@ Data
 <i>Cooking Note: You must trim the brisket before adding the rub to it.</i>
 
 Used to prepare the scan configuration file with the appropriate set of ports for the scan.
+<p><code>
+./trim.rb <i>ports</i> masscan
 
-./trim.rb remote|apps|web|db|all
+Where <i>ports</i> is one of the following options:
+remote - common remote access server ports
+apps - common application server ports
+www - common web server ports
+mail - common mail ports
+ms - common Microsoft ports
+db - common database ports
+special - special ports for selective scanning
+all - all of the above ports
+
+</code></p>
+
+The <code>trim.rb</code> command generates the masscan configuration file to be used during the scan.
 
 ####rub.rb
 <i>Cooking Note: Once trimmed, the brisket must be seasoned.</i>
 
-Used to call the masscan scanner and export the results in the appropriate results date directory and file.
+Used to call the  scanner and export the results in the appropriate results date directory and file.
+<p><code>
+./rub.rb <i>region</i> <i>scanner</i>
 
-./rub.rb apac|europe|us_east|us_west|us_all|south_america|all
+Where <i>region</i> is one of the following options:
+
+apac|europe|us_east|us_west|us_all|south_america|all
+
+and where <i>scanner</i> is one of the following options:
+masscan - the masscan scanner
+nmap - the nmap scanner
+nmap_virtual - the nmap scanner with configurations for virtual interfaces
+zmap - the zmap scanner
+</code></p>
 
 ####fixins.rb
 <i>Cooking Note: It just ain't a BBQ without some proper fixins to make the meal complete.</i>

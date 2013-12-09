@@ -47,7 +47,7 @@ rb_file_master.each do |rb_file|
 	f = File.open(rb_file)
 	
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
-	f.close
+	
 	
 	stats.write(Analysis.header+"\n")
 	
@@ -56,12 +56,11 @@ rb_file_master.each do |rb_file|
 		csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
 		scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
 		Analysis.scanner_host scanner_host
-
+		Ox.sax_parse(handler, f)
 		i = 0
 		until i == items.count
 	
 			target_geo = Analysis.ip_convert @@ip_class
-			Ox.sax_parse(handler, f)
 			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+@@ip_class+@@portid_class+target_geo.latitude.to_s+","+
       					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
       					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
@@ -74,8 +73,6 @@ rb_file_master.each do |rb_file|
 		port_only = /"target_port": (\d{1,5}),/.match(reader)[1]
 		stats.close
 	elsif rb_file =~ /nmap/
-		rule_name = root["nmaprun"]
-		items = root.xpath("host")
 		i = 0
 =begin
 		until i == items.count
