@@ -6,6 +6,7 @@ The primary purpose of this application is to scan, store, and prepare Cloud Ser
 ### Description
 See the position paper for a sneak peak into what this project was created for.
 - <a href="github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md">github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md</a>
+
 ###Requirements
 Each script has different requirements but you should be able to run <code>bundle install</code> to install the gems listed in the Gemfile.
 
@@ -84,10 +85,6 @@ Script to archive, transfer, and cleanup scan data. All scanner results are arch
 
 <pre><code>
 	<b>./injector.rb</b>
-</code></pre>
-
-<pre><code>
-
 </code></pre>
 
 ####fixins.rb
