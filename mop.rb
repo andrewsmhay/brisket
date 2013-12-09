@@ -8,6 +8,23 @@ require 'analysis'
 require 'geoip'
 require 'directories'
 require 'fileutils'
+require 'ox'
+
+=begin
+class Sample < ::Ox::Sax
+  def attr(name, value)
+	if "#{name}" == "addr"
+		print "#{value},"
+	elsif "#{name}" == "portid"
+        print "#{value}\n"
+	end
+  end
+  def text(value); puts "text #{value}"; end
+end
+
+handler = Sample.new()
+Ox.sax_parse(handler, rb_file)
+=end
 
 scan_date_ary = []
 commands = []
@@ -31,6 +48,7 @@ rb_file_master.each do |rb_file|
 	csvname = filename.gsub(/.xml/ , '.csv')
 	stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
 	f = File.open(rb_file)
+	
 	doc = Nokogiri::XML(f)
 	root = doc.root
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
