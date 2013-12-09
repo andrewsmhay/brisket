@@ -34,7 +34,7 @@ e.g.
 <i>Cooking Note: Once trimmed, the brisket must be seasoned.</i>
 
 Used to call the  scanner and export the results in the appropriate results date directory and file.
-<p><code>
+<pre><code>
 ./rub.rb <i>region</i> <i>scanner</i>
 
 Where <i>region</i> is one of the following options:
@@ -53,9 +53,8 @@ and where <i>scanner</i> is one of the following options:
  zmap - the zmap scanner
 
 e.g.
-
 <b>./rub.rb apac masscan</b>
-</code></p>
+</code></pre>
 
 ####mop.rb
 <i>Keep it moist if you want to win!</i>
@@ -72,9 +71,9 @@ Where <i>scanner</i> is one of the following options:
 Where <i>date</i> is the date directory that contains the scanner results files to convert in <i>M/D/YYYY</i> format.
 
 e.g. 
-
 <b>./mop.rb masscan 2/3/2014</b>
 </code></pre>
+
 Note - For <i>March 2, 2014</i> the directory structure would be 2014/3/2 and should be entered as 2/3/2014.
 
 ####fixins.rb
