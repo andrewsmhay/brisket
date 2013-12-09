@@ -38,7 +38,7 @@ e.g.
 Used to call the  scanner and export the results in the appropriate results date directory and file.
 <pre><code>
 	./rub.rb <i>region</i> <i>scanner</i>
-
+</code</pre>
 Where <i>region</i> is one of the following options:
  apac
  europe
@@ -53,7 +53,7 @@ and where <i>scanner</i> is one of the following options:
  nmap - the nmap scanner
  nmap_virtual - the nmap scanner with configurations for virtual interfaces
  zmap - the zmap scanner
-
+<pre><code>
 e.g.
 	<b>./rub.rb apac masscan</b>
 </code></pre>
