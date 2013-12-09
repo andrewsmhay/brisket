@@ -38,7 +38,7 @@ e.g.
 Used to call the  scanner and export the results in the appropriate results date directory and file.
 <pre><code>
 	./rub.rb <i>region</i> <i>scanner</i>
-</code</pre>
+</code></pre>
 Where <i>region</i> is one of the following options:
  apac
  europe
