@@ -5,10 +5,7 @@
 The primary purpose of this application is to scan, store, and prepare Cloud Server Provider (CSP) guest/instance/host data for further statistical and trend analysis.
 
 ###Requirements
-Each script has different requirements.
-
-Data
-* The most recent <a href="http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz" target="new">GeoLite City database</a> from MaxMind.
+Each script has different requirements but you should be able to run <code>bundle install</code> to install the gems listed in the Gemfile.
 
 ###Usage
 ####trim.rb
@@ -19,18 +16,19 @@ Used to prepare the scan configuration file with the appropriate set of ports fo
 ./trim.rb <i>ports</i> masscan
 
 Where <i>ports</i> is one of the following options:
-* remote - common remote access server ports
-* apps - common application server ports
-* www - common web server ports
-* mail - common mail ports
-* ms - common Microsoft ports
-* db - common database ports
-* special - special ports for selective scanning
-* all - all of the above ports
+ remote - common remote access server ports
+ apps - common application server ports
+ www - common web server ports
+ mail - common mail ports
+ ms - common Microsoft ports
+ db - common database ports
+ special - special ports for selective scanning
+ all - all of the above ports
 
+e.g.
+
+<b>./trim.rb remote masscan</b>
 </code></pre>
-
-The <code>trim.rb</code> command generates the masscan configuration file to be used during the scan.
 
 ####rub.rb
 <i>Cooking Note: Once trimmed, the brisket must be seasoned.</i>
@@ -40,29 +38,52 @@ Used to call the  scanner and export the results in the appropriate results date
 ./rub.rb <i>region</i> <i>scanner</i>
 
 Where <i>region</i> is one of the following options:
-
-apac|europe|us_east|us_west|us_all|south_america|all
+ apac
+ europe
+ us_east
+ us_west
+ us_all
+ south_america
+ all
 
 and where <i>scanner</i> is one of the following options:
-masscan - the masscan scanner
-nmap - the nmap scanner
-nmap_virtual - the nmap scanner with configurations for virtual interfaces
-zmap - the zmap scanner
+ masscan - the masscan scanner
+ nmap - the nmap scanner
+ nmap_virtual - the nmap scanner with configurations for virtual interfaces
+ zmap - the zmap scanner
+
+e.g.
+
+<b>./rub.rb apac masscan</b>
 </code></p>
+
+####mop.rb
+<i>Keep it moist if you want to win!</i>
+
+Script to convert the various results formats into a common .csv file format.
+<pre><code>
+./mop.rb <i>scanner</i> <i>date</i>
+
+Where <i>scanner</i> is one of the following options:
+ masscan - the masscan scanner
+ nmap - the nmap scanner
+ zmap - the zmap scanner
+
+Where <i>date</i> is the date directory that contains the scanner results files to convert in <i>M/D/YYYY</i> format.
+
+e.g. 
+
+<b>./mop.rb masscan 2/3/2014</b>
+</code></pre>
+Note - For <i>March 2, 2014</i> the directory structure would be 2014/3/2 and should be entered as 2/3/2014.
 
 ####fixins.rb
 <i>Cooking Note: It just ain't a BBQ without some proper fixins to make the meal complete.</i>
 
 This script downloads and unpacks the most recent GeoLiteCity database file for use in converting IP addresses to latitude and longitude data.
-
-./trim.rb city
-
-####turnintime.rb
-<i>You can't win the competition if you don't turn your meat in on time.</i>
-
-Simple script to display the unique IP, port, and banner counts in addition to the types of ports and banners discovered.
-
-./turnintime.rb <apac|europe|us_east|us_west|south_america|all>
+<pre><code>
+./fixins.rb city
+</code></pre>
 
 ###Contact
 
