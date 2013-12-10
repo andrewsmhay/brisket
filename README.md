@@ -8,7 +8,7 @@ See the position paper for a sneak peak into what this project was created for.
 - <a href="github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md">github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md</a>
 
 #### Sensor Placement
-<img src="https://github.com/andrewsmhay/brisket/misc/sensor.png">
+<img src="https://raw.github.com/andrewsmhay/brisket/master/misc/sensor.png">
 ###Requirements
 Each script has different requirements but you should be able to run <code>bundle install</code> to install the gems listed in the Gemfile.
 
