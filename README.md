@@ -7,7 +7,8 @@ The primary purpose of this application is to scan, store, and prepare Cloud Ser
 See the position paper for a sneak peak into what this project was created for.
 - <a href="github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md">github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md</a>
 
-#### Sensor Placement
+#### Scanner Placement
+Scanners are hosted in several US and European countries (blue). The main analysis server (a.k.a. CloudCooker) is located in the US (black).
 <img src="https://raw.github.com/andrewsmhay/brisket/master/misc/sensor.png">
 ###Requirements
 Each script has different requirements but you should be able to run <code>bundle install</code> to install the gems listed in the Gemfile.
