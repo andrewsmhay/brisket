@@ -8,6 +8,7 @@ require 'directories'
 require 'net/scp'
 require 'net/ssh'
 require 'aws-sdk'
+require 'bnodes'
 
 ec2 = AWS::EC2.new(
 :access_key_id => '',
