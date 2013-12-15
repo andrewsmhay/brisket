@@ -42,6 +42,13 @@ elsif ARGV[0] == 'proc'
 		system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"ps aux | grep '[r]ub'\"")
 		i+=1
 	end
+elsif ARGV[0] == 'archive'
+	while i < Bnodes.brisket_nodes.count
+		puts Messages.ssh_to_bnode+Bnodes.brisket_nodes[i]
+		puts Messages.proc_listing
+		system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"ls -lah *.bz2\"")
+		i+=1
+	end
 else ARGV[0] == 'status'
 	while i < Bnodes.brisket_nodes.count
 		s = TCPSocket.open(Bnodes.brisket_nodes[i], port)	

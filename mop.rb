@@ -81,6 +81,7 @@ rb_file_master.each do |rb_file|
 	elsif rb_file =~ /zmap/
 		reader = File.read(rb_file)
 		port_only = /"target_port": (\d{1,5}),/.match(reader)[1]
+		
 		stats.close
 	elsif rb_file =~ /nmap/
 		rule_name = root["nmaprun"]
