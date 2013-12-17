@@ -45,7 +45,7 @@ elsif ARGV[0] == 'proc'
 elsif ARGV[0] == 'archive'
 	while i < Bnodes.brisket_nodes.count
 		puts Messages.ssh_to_bnode+Bnodes.brisket_nodes[i]
-		puts Messages.proc_listing
+		puts Messages.archive_listing
 		system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"ls -lah *.bz2\"")
 		i+=1
 	end

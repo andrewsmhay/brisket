@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-$LOAD_PATH << '/home/scanner/brisket/lib'
+$LOAD_PATH << './lib'
 require 'messages'
 require 'archive'
 require 'naming'

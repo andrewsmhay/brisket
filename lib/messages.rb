@@ -100,6 +100,10 @@ class Messages
       "[+] Checking to see if rub.rb is running..."
     end
 
+    def archive_listing
+      "[+] Checking for archive files..."
+    end
+
     def brisket_start
       "[+] Starting the Brisket Mothership..."
     end
