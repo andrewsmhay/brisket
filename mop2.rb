@@ -97,22 +97,15 @@ rb_file_master.each do |rb_file|
 		scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
 		Analysis.scanner_host scanner_host
 		Ox.sax_parse(handler,f)
-		#i = 0
-		#until i == items.count
 		handler.addressList.each do |addr|
-  			#puts "#{addr['address']},#{addr['port']}"
-			#end
-			target_geo = Analysis.ip_convert "#{addr['address']}"
+  			target_geo = Analysis.ip_convert "#{addr['address']}"
 			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+"#{addr['address']},#{addr['port']},"+target_geo.latitude.to_s+","+
       					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
       					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
-			
-			#i+=1
 		end
 		stats.close
 	elsif rb_file =~ /zmap/
-		#reader = File.open(rb_file, 'r')
-		#firstline = reader.first
+
 		csp = Analysis.csp_zmap_regex.match(rb_file.to_s)[1].to_s
 		firstline = f.first
 		port_only = /\"target_port\": (\d{1,5}),/.match(firstline)[1]
@@ -129,19 +122,7 @@ rb_file_master.each do |rb_file|
 		stats.close
 	elsif rb_file =~ /nmap/
 		i = 0
-=begin
-		until i == items.count
-			
-			if items[i].at_xpath("hostnames") != nil
-				namearea = items[i].at_xpath("hostnames")
-				strip_name = namearea.xpath("hostname")
-			end
-			iparea = items[i].xpath("address")
-			strip_ip = Analysis.ip_strip.match(iparea.to_s)[1].to_s
-			puts strip_ip+","+strip_name.to_s
-			i+=1
-		end
-=end
+
 		stats.close
 	else puts "error"
 end
