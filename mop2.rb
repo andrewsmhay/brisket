@@ -65,7 +65,7 @@ end
 scan_date_ary = []
 commands = []
 ARGV.each {|arg| commands << arg}
-# 0=type, 1=date in D/M/YYYY, 2=report_type (banner or no banner) 
+# [0]=type, [1]=date in D/M/YYYY
 # ./mop.rb masscan 3/12/2013
 
 Analysis.dateinput ARGV[1]
@@ -96,7 +96,7 @@ rb_file_master.each do |rb_file|
 		csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
 		scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
 		Analysis.scanner_host scanner_host
-		Ox.sax_parse(handler,rb_file)
+		Ox.sax_parse(handler,f)
 		#i = 0
 		#until i == items.count
 		handler.addressList.each do |addr|
