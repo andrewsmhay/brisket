@@ -76,7 +76,7 @@ rb_file_master.each do |rb_file|
 		scanner_host = /\"source_ip_first\": \"(\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b)\", \"/.match(firstline)[1]
 		Analysis.scanner_host scanner_host
 		i = 0
-		reader.each do |line|
+		f.each do |line|
 			zmap_ip = /\"saddr\": \"(.*)\"/.match(line)[1]
 			target_geo = Analysis.ip_convert zmap_ip
 			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+"andrew"+","+zmap_ip+","+port_only+","+target_geo.latitude.to_s+","+
