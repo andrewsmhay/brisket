@@ -71,6 +71,7 @@ rb_file_master.each do |rb_file|
 	elsif rb_file =~ /zmap/
 		#reader = File.open(rb_file, 'r')
 		#firstline = reader.first
+		csp = Analysis.csp_zmap_regex.match(rb_file.to_s)[1].to_s
 		firstline = f.first
 		port_only = /\"target_port\": (\d{1,5}),/.match(firstline)[1]
 		scanner_host = /\"source_ip_first\": \"(\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b)\", \"/.match(firstline)[1]
@@ -79,7 +80,7 @@ rb_file_master.each do |rb_file|
 		f.each do |line|
 			zmap_ip = /\"saddr\": \"(.*)\"/.match(line)[1]
 			target_geo = Analysis.ip_convert zmap_ip
-			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+"andrew"+","+zmap_ip+","+port_only+","+target_geo.latitude.to_s+","+
+			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+zmap_ip+","+port_only+","+target_geo.latitude.to_s+","+
       					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
       					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
 		end

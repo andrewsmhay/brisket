@@ -21,6 +21,10 @@ class Analysis
       		/_masscan_(\w[^_]+)_/
       	end
 
+      	def csp_zmap_regex
+      		/_zmap_(\w[^_]+)_/
+      	end
+
       	def strip_port_regex
       		/portid\=\"(.+)\"/
       	end
