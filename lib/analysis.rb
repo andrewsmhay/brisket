@@ -2,7 +2,7 @@ class Analysis
 	class << self
 		
 		def header
-			"Date,Provider,Provider Region,IP,Port,Latt,Long,Country,Continent,Region,City"
+			"Date,Scanner,CSP,IP,Port,Latt,Long,Country,Continent,Region,City"
 		end
 
 		def header_plus

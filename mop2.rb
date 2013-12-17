@@ -9,19 +9,60 @@ require 'directories'
 require 'fileutils'
 require 'ox'
 
-class Sample < ::Ox::Sax
-  def attr(name, value)
-	if "#{name}" == "addr"
-		@@ip_class = "#{value},"
-	elsif "#{name}" == "portid"
-        @@portid_class = "#{value}\n"
-	end
+class MyParser < ::Ox::Sax
+  attr_accessor :addressList
+
+  def initialize()
+    @currStack = []
+    @addressList = []
   end
-  def text(value); puts "text #{value}"; end
+
+  def start_element(elem)
+    @currStack << elem
+    if (elem.to_s == "host")
+      @addressList << { :address => nil, :protocol => nil, :port => nil }
+    end
+  end
+
+  def end_element(elem)
+    @currStack.first(@currStack.size - 1)
+  end
+
+  def most_recent_host
+    if (@addressList.size > 0)
+      @addressList[@addressList.size - 1]
+    else
+      nil
+    end
+  end
+
+  def top
+    if (@currStack.size > 0)
+      @currStack[@currStack.size - 1].to_s
+    else
+      nil
+    end
+  end
+  
+  def attr(name, value)
+    if top != nil
+      if (top == 'address') && (name.to_s == 'addr')
+        most_recent_host['address'] = value.to_s
+      elsif (top == 'port') && (name.to_s == 'protocol')
+        most_recent_host['protocol'] = value.to_s
+      elsif (top == 'port') && (name.to_s == 'portid')
+        most_recent_host['port'] = value.to_s
+      end
+    end
+  end
+
+  def text(value)
+    if (top != nil) && (top != 'banner')
+    end
+  end
 end
 
-handler = Sample.new()
-
+handler = MyParser.new()
 
 scan_date_ary = []
 commands = []
@@ -56,16 +97,18 @@ rb_file_master.each do |rb_file|
 		csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
 		scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
 		Analysis.scanner_host scanner_host
-		Ox.sax_parse(handler, f)
-		i = 0
-		until i == items.count
-	
-			target_geo = Analysis.ip_convert @@ip_class
-			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+@@ip_class+@@portid_class+target_geo.latitude.to_s+","+
+		Ox.sax_parse(handler,rb_file)
+		#i = 0
+		#until i == items.count
+		handler.addressList.each do |addr|
+  			puts "#{addr['address']},#{addr['port']}"
+			#end
+			target_geo = Analysis.ip_convert "#{addr['address']}"
+			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+"#{addr['address']},#{addr['port']},"+target_geo.latitude.to_s+","+
       					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
       					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
 			
-			i+=1
+			#i+=1
 		end
 		stats.close
 	elsif rb_file =~ /zmap/
