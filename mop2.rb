@@ -69,8 +69,18 @@ rb_file_master.each do |rb_file|
 		end
 		stats.close
 	elsif rb_file =~ /zmap/
-		reader = File.read(rb_file)
-		port_only = /"target_port": (\d{1,5}),/.match(reader)[1]
+		reader = File.open(rb_file, 'r')
+		firstline = reader.first
+		port_only = /\"target_port\": (\d{1,5}),/.match(firstline)[1]
+		scanner_host = /\"source_ip_first\": \"(\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b)\", \"/.match(firstline)[1]
+		Analysis.scanner_host scanner_host
+		i = 0
+		reader.each do |line|
+			zmap_ip = /\"saddr\": \"(.*)\"/.match(line)[1]
+			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+zmap_ip+","+port_only+","+target_geo.latitude.to_s+","+
+      					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
+      					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
+		end
 		stats.close
 	elsif rb_file =~ /nmap/
 		i = 0

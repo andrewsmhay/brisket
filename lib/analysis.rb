@@ -54,6 +54,12 @@ class Analysis
 				scanner_host_ip = '66.85.140.110'
 			elsif sname == 'vps7293'
 				scanner_host_ip = '173.244.215.194'
+			elsif sname == 'honghong'
+				scanner_host_ip = '119.9.74.172'
+			elsif sname == 'syd'
+				scanner_host_ip = '119.9.46.159'
+			elsif sname == 'piscan1'
+				scanner_host_ip = '192.168.1.192'
 			else scanner_host_ip = sname
 			end
 			@@scanner_ip = scanner_host_ip
