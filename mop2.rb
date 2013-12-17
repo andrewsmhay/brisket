@@ -69,8 +69,9 @@ rb_file_master.each do |rb_file|
 		end
 		stats.close
 	elsif rb_file =~ /zmap/
-		reader = File.open(rb_file, 'r')
-		firstline = reader.first
+		#reader = File.open(rb_file, 'r')
+		#firstline = reader.first
+		firstline = f.first
 		port_only = /\"target_port\": (\d{1,5}),/.match(firstline)[1]
 		scanner_host = /\"source_ip_first\": \"(\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b)\", \"/.match(firstline)[1]
 		Analysis.scanner_host scanner_host
