@@ -77,7 +77,7 @@ rb_file_master.each do |rb_file|
 		i = 0
 		reader.each do |line|
 			zmap_ip = /\"saddr\": \"(.*)\"/.match(line)[1]
-			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+zmap_ip+","+port_only+","+target_geo.latitude.to_s+","+
+			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+"andrew"+","+zmap_ip+","+port_only+","+target_geo.latitude.to_s+","+
       					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
       					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
 		end
