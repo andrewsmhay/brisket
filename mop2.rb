@@ -100,7 +100,7 @@ rb_file_master.each do |rb_file|
 		#i = 0
 		#until i == items.count
 		handler.addressList.each do |addr|
-  			puts "#{addr['address']},#{addr['port']}"
+  			#puts "#{addr['address']},#{addr['port']}"
 			#end
 			target_geo = Analysis.ip_convert "#{addr['address']}"
 			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+"#{addr['address']},#{addr['port']},"+target_geo.latitude.to_s+","+
