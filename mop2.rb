@@ -62,8 +62,6 @@ class MyParser < ::Ox::Sax
   end
 end
 
-handler = MyParser.new()
-
 scan_date_ary = []
 commands = []
 ARGV.each {|arg| commands << arg}
@@ -94,6 +92,7 @@ rb_file_master.each do |rb_file|
 	
 	if rb_file =~ /masscan/
 		
+		handler = MyParser.new()
 		csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
 		scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
 		Analysis.scanner_host scanner_host
