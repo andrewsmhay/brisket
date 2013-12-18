@@ -100,7 +100,7 @@ rb_file_master.each do |rb_file|
 		IO.foreach(rb_file) do |x|
 			if x.to_s =~ /host endtime/
 				ipx = Analysis.ip_strip.match(x)[1]
-				portx = Analysis.strip_port_regex(x)[1]
+				portx = Analysis.strip_port_regex.match(x)[1]
 				#Ox.sax_parse(handler,x)
 				#handler.addressList.each do |addr|
 		  			#target_geo = Analysis.ip_convert "#{addr['address']}"
