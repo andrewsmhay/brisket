@@ -20,7 +20,8 @@ class MyParser < ::Ox::Sax
   def start_element(elem)
     @currStack << elem
     if (elem.to_s == "host")
-      @addressList << { :address => nil, :protocol => nil, :port => nil }
+      #@addressList << { :address => nil, :protocol => nil, :port => nil }
+      @addressList << { :address => nil, :port => nil }
     end
   end
 
@@ -48,8 +49,8 @@ class MyParser < ::Ox::Sax
     if top != nil
       if (top == 'address') && (name.to_s == 'addr')
         most_recent_host['address'] = value.to_s
-      elsif (top == 'port') && (name.to_s == 'protocol')
-        most_recent_host['protocol'] = value.to_s
+      #elsif (top == 'port') && (name.to_s == 'protocol')
+      #  most_recent_host['protocol'] = value.to_s
       elsif (top == 'port') && (name.to_s == 'portid')
         most_recent_host['port'] = value.to_s
       end
@@ -83,12 +84,12 @@ rb_file_master.each do |rb_file|
 	filename = rb_file.to_s.gsub("./analysis/"+Analysis.scan_date, '')
 	csvname = filename.gsub(/.xml/ , '.csv')
 	stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
-	f = File.open(rb_file)
-	
-	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
-	
 	
 	stats.write(Analysis.header+"\n")
+
+	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
+
+	#f = File.open(rb_file)
 	
 	if rb_file =~ /masscan/
 		
@@ -96,12 +97,14 @@ rb_file_master.each do |rb_file|
 		csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
 		scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
 		Analysis.scanner_host scanner_host
-		Ox.sax_parse(handler,f)
-		handler.addressList.each do |addr|
-  			target_geo = Analysis.ip_convert "#{addr['address']}"
-			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+"#{addr['address']},#{addr['port']},"+target_geo.latitude.to_s+","+
-      					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
-      					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
+		IO.foreach("rb_file") do |x|
+			Ox.sax_parse(handler,x)
+			handler.addressList.each do |addr|
+	  			target_geo = Analysis.ip_convert "#{addr['address']}"
+				stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+"#{addr['address']},#{addr['port']},"+target_geo.latitude.to_s+","+
+	      					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
+	      					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
+			end
 		end
 		stats.close
 	elsif rb_file =~ /zmap/
