@@ -99,13 +99,17 @@ rb_file_master.each do |rb_file|
 		Analysis.scanner_host scanner_host
 		IO.foreach(rb_file) do |x|
 			if x.to_s =~ /host endtime/
-				Ox.sax_parse(handler,x)
-				handler.addressList.each do |addr|
-		  			target_geo = Analysis.ip_convert "#{addr['address']}"
-					stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+"#{addr['address']},#{addr['port']},"+target_geo.latitude.to_s+","+
+				ipx = Analysis.ip_strip.match(x)[1]
+				portx = Anaysis.strip_port_regex(x)[1]
+				#Ox.sax_parse(handler,x)
+				#handler.addressList.each do |addr|
+		  			#target_geo = Analysis.ip_convert "#{addr['address']}"
+		  			target_geo = Analysis.ip_convert ipx
+					#stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+"#{addr['address']},#{addr['port']},"+target_geo.latitude.to_s+","+
+					stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+portx+","+target_geo.latitude.to_s+","+	
 		      					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
 		      					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
-				end
+				#end
 			end
 		end
 		stats.close
