@@ -97,7 +97,7 @@ rb_file_master.each do |rb_file|
 		csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
 		scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
 		Analysis.scanner_host scanner_host
-		IO.foreach("rb_file") do |x|
+		IO.foreach(rb_file) do |x|
 			Ox.sax_parse(handler,x)
 			handler.addressList.each do |addr|
 	  			target_geo = Analysis.ip_convert "#{addr['address']}"
