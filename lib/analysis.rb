@@ -26,7 +26,7 @@ class Analysis
       	end
 
       	def strip_port_regex
-      		/portid\=\"(.+)\"/
+      		/portid\=\"(\d{1,5})\"/
       	end
 
       	def port_only_regex
