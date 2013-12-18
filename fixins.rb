@@ -5,7 +5,7 @@ require 'zlib'
 working_dir = "/home/scanner/brisket"
 geo_dat_city = "http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz"
 opt_sel = ['city']
-opt_sel_err = "[-] Usage: ./trim.rb city"
+opt_sel_err = "[-] Usage: ./fixins.rb city"
 
 commands = []
 ARGV.each {|arg| commands << arg}
