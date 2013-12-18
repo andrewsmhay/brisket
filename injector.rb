@@ -37,7 +37,7 @@ elsif ARGV[0] == "pull"
 	f.puts Messages.syslog_stamp+"[+] Pulling files from scanners..."
 	while i < Bnodes.brisket_nodes.count
 		puts Messages.ssh_to_bnode+Bnodes.brisket_nodes[i]
-		system("scp "+cooker_key+" scanner@'#{Bnodes.brisket_nodes[i]}':*.bz2 .")
+		system("scp "+cooker_key+" scanner@'#{Bnodes.brisket_nodes[i]}':*.bz2 ./results/.")
 		i+=1
 	end
 elsif ARGV[0] == "clean"
