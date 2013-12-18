@@ -70,7 +70,7 @@ if ARGV[1] == Options.scan_sel[0]
     		item_xml = Naming.hostname + "_" + ARGV[1] + "_" + item.gsub(/(.ip)/, '.xml')
     		system(Scanner.masscmd + " -p" + Ports.all_ports + Directories.include_file_cmd + item + " " + Scanner.rate_cmd + " " + Directories.results_out + item_xml + " --echo > " + item_dir)
   	end
-  else puts Messages.trim_opt_sel_ports_err
+  else puts Messages.trim_opt_sel_err
   end
 
 puts Messages.conf_txt
