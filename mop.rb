@@ -27,15 +27,15 @@ end
 
 rb_file_master.each do |rb_file|
 	filename = rb_file.to_s.gsub("./analysis/"+Analysis.scan_date, '')
-	csvname = filename.gsub(/.xml/ , '.csv')
-	stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
-	
-	stats.write(Analysis.header+"\n")
-
-	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 	
 	if rb_file =~ /masscan/
+		csvname = filename.gsub(/.xml/ , '.csv')
+		stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
 	
+		stats.write(Analysis.header+"\n")
+
+		puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
+
 		csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
 		scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
 		Analysis.scanner_host scanner_host
@@ -51,6 +51,12 @@ rb_file_master.each do |rb_file|
 		end
 		stats.close
 	elsif rb_file =~ /zmap/
+		csvname = filename.gsub(/.json/ , '.csv')
+		stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
+	
+		stats.write(Analysis.header+"\n")
+
+		puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 		f = File.open(rb_file)
 		csp = Analysis.csp_zmap_regex.match(rb_file.to_s)[1].to_s
 		firstline = f.first
