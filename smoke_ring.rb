@@ -26,13 +26,26 @@ rb_file_master.each do |rb_file|
 	new_file = File.open(rb_file_location+"tmp"+filename, "a")
 
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
-
-	IO.foreach(rb_file) do |x|
-		if x =~ /closed/
-		else new_file.write(x)
+	if ARGV[0] == "masscan"
+		IO.foreach(rb_file) do |x|
+			if x =~ /closed/
+			else new_file.write(x)
+			end
 		end
+	elsif ARGV[0] == "nmap"
+		IO.foreach(rb_file) do |x|
+			if x =~ /\<address addr\=/
+				ip = Analysis.ip_strip.match(x)[1]
+			elsif x =~ /\<hostname name\=/
+				fqdn = Analysis.fqdn_strip.match(x)[1]
+			end
+			puts ip+","+fqdn
+			#new_file.write(ip+","+fqdn)
+		end
+	else puts "[+] Usage: ./smoke_ring.rb <scanner> d/m/yyyy" 
 	end
 	new_file.close
 	FileUtils.mv(rb_file_location+"tmp"+filename, rb_file_location)
 end
+		
 FileUtils.rm_rf(rb_file_location+"tmp")

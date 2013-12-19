@@ -37,6 +37,10 @@ class Analysis
 			/(\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b)/
 		end
 
+		def fqdn_strip
+			/<hostname name="(.+)" type="PTR"\/>/
+		end
+
 		def scanner_host sname
 			if sname == 'vps7026'
 				scanner_host_ip = '46.38.48.66'
