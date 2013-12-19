@@ -18,7 +18,7 @@ Analysis.dateinput ARGV[1]
 rb_file_location = "./analysis/"+Analysis.scan_date+"/"
 path = "tmp"
 tmp_file_location = rb_file_location+path
-FileUtils.mkdir_p rb_file_location+"tmp"
+FileUtils.mkdir_p tmp_file_location
 rb_file_master = Dir.glob(rb_file_location+"*"+ARGV[0]+"*")
 
 rb_file_master.each do |rb_file|
