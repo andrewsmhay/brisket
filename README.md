@@ -5,7 +5,7 @@
 The primary purpose of this application is to scan, store, and prepare Cloud Server Provider (CSP) guest/instance/host data for further statistical and trend analysis.
 ### Description
 See the position paper for a sneak peak into what this project was created for.
-- <a href="github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md">github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md</a>
+- <a href="https://github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md">github.com/andrewsmhay/research/blob/master/pp/propertyvalues.md</a>
 
 #### Scanner Placement
 Scanners are hosted in several North American, European, and Asia/Pacific countries (blue). The main analysis server (a.k.a. CloudCooker) is located in the US (black).
