@@ -51,7 +51,7 @@ rb_file_master.each do |rb_file|
 		end
 		stats.close
 	elsif rb_file =~ /zmap/
-
+		f = File.open(rb_file)
 		csp = Analysis.csp_zmap_regex.match(rb_file.to_s)[1].to_s
 		firstline = f.first
 		port_only = /\"target_port\": (\d{1,5}),/.match(firstline)[1]
