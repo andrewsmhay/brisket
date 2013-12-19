@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+$LOAD_PATH << '/home/scanner/brisket/lib'
 require 'open-uri'
 require 'zlib'
 

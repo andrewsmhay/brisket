@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-$LOAD_PATH << './lib'
+$LOAD_PATH << '/home/scanner/brisket/lib'
 require 'rake'
 require 'date'
 require 'directories'

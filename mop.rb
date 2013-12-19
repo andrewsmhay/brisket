@@ -2,7 +2,7 @@
 #
 # Used to calculate statistics
 #
-$LOAD_PATH << './lib'
+$LOAD_PATH << '/home/scanner/brisket/lib'
 require 'analysis'
 require 'geoip'
 require 'directories'
