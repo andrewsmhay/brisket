@@ -22,8 +22,8 @@ rb_tmp_path = FileUtils.mkdir_p(tmp_file_location) unless File.exists?(tmp_file_
 rb_file_master = Dir.glob(rb_file_location+"*"+ARGV[0]+"*")
 
 rb_file_master.each do |rb_file|
-	
-	new_file = File.open(Directories.stats+"/"+Analysis.scan_date+"/tmp/"+rb_file, "a")
+	filename = rb_file.to_s.gsub("./analysis/"+Analysis.scan_date, '')
+	new_file = File.open(Directories.stats+"/"+Analysis.scan_date+"/tmp/"+filename, "a")
 
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 
