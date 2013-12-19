@@ -33,4 +33,6 @@ rb_file_master.each do |rb_file|
 		end
 	end
 	new_file.close
+	FileUtils.mv(rb_file_location+"tmp"+filename, rb_file_location)
+	FileUtils.rm_rf(rb_file_location+"tmp")
 end
