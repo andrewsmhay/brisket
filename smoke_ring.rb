@@ -35,9 +35,9 @@ rb_file_master.each do |rb_file|
 	elsif ARGV[0] == "nmap"
 		IO.foreach(rb_file) do |x|
 			if x =~ /\<address addr\=/
-				ip = Analysis.ip_strip.match(x)[1]
+				ip = Analysis.ip_strip.match(x)[1].to_s
 			elsif x =~ /\<hostname name\=/
-				fqdn = Analysis.fqdn_strip.match(x)[1]
+				fqdn = Analysis.fqdn_strip.match(x)[1].to_s
 			end
 			puts ip+","+fqdn
 			#new_file.write(ip+","+fqdn)
