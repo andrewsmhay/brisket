@@ -28,7 +28,7 @@ rb_file_master.each do |rb_file|
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 
 	IO.foreach(rb_file) do |x|
-		if x =~ /open/
+		if x =~ /!closed/
 			new_file.write(x)
 		end
 	end
