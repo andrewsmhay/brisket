@@ -36,10 +36,12 @@ rb_file_master.each do |rb_file|
 		IO.foreach(rb_file) do |x|
 			if x =~ /\<address addr\=/
 				ip = Analysis.ip_strip.match(x)[1].to_s
+				puts ip
 			elsif x =~ /\<hostname name\=/
 				fqdn = Analysis.fqdn_strip.match(x)[1].to_s
+				puts fqdn
 			end
-			puts ip+","+fqdn
+			#puts ip+","+fqdn
 			#new_file.write(ip+","+fqdn)
 		end
 	else puts "[+] Usage: ./smoke_ring.rb <scanner> d/m/yyyy" 
