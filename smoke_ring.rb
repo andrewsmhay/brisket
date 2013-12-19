@@ -23,7 +23,7 @@ rb_file_master = Dir.glob(rb_file_location+"*"+ARGV[0]+"*")
 
 rb_file_master.each do |rb_file|
 	filename = rb_file.to_s.gsub("./analysis/"+Analysis.scan_date, '')
-	new_file = File.open(Directories.stats+"/"+Analysis.scan_date+"/tmp"+filename, "a")
+	new_file = File.open(rb_file_location+"tmp"+filename, "a")
 
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 
