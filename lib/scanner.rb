@@ -100,6 +100,10 @@ class Scanner
       " -e "+random_seed.to_s
     end
     
+    def output_filter
+      "--output-filter=\"success = 1\" "
+    end
+
     def verbosity
       " -q" #quiet
     end
@@ -111,7 +115,7 @@ class Scanner
     def zmap scans
       scans.shuffle.each do |a|
         Ports.all_ports_ary.each do |b|
-          system(zmapcmd + " -p " + b + zmap_seed + zmap_rate_cmd + verbosity + " -w " + Directories.data_dir + a + " -b " + Directories.blacklist + " -O json " + "-o " + Directories.results_dir_date + Naming.hostname + "_" + Options.prefix[2] + "_" + a.gsub(/.ip/, '') + "_port_" + b + Options.postfix[3])
+          system(zmapcmd + " -p " + b + zmap_seed + zmap_rate_cmd + verbosity + " -w " + Directories.data_dir + a + " -b " + Directories.blacklist + " -O json " +output_filter+ "-o " + Directories.results_dir_date + Naming.hostname + "_" + Options.prefix[2] + "_" + a.gsub(/.ip/, '') + "_port_" + b + Options.postfix[3])
         end
       end    
     end
