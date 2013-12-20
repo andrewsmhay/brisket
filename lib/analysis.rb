@@ -25,6 +25,10 @@ class Analysis
       		/\d+\/\d+\/\d+\/(\w[^_]+)_/
       	end
 
+      	def scanner_name_regex_with_xtra
+      		/(\w+)_masscan/
+      	end
+
       	def csp_masscan_regex
       		/_masscan_(\w[^_]+)_/
       	end
