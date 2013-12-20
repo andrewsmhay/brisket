@@ -38,8 +38,8 @@ rb_file_master.each do |rb_file|
 			puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 
 			csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
-			scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
-			Analysis.scanner_host scanner_host
+			scanner_host = Analysis.scanner_name_regex_with_xtra.match(rb_file.to_s)[1].to_s
+			Analysis.scanner_host scanner_host.gsub(/banner_/, '')
 			IO.foreach(rb_file) do |x|
 				ipx = Analysis.ip_strip.match(x)[1]
 				portx = Analysis.strip_port_regex.match(x)[1]
@@ -64,8 +64,8 @@ rb_file_master.each do |rb_file|
 			puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 
 			csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
-			scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
-			Analysis.scanner_host scanner_host
+			scanner_host = Analysis.scanner_name_regex_with_xtra.match(rb_file.to_s)[1].to_s
+			Analysis.scanner_host scanner_host.gsub(/title_/, '')
 			IO.foreach(rb_file) do |x|
 				ipx = Analysis.ip_strip.match(x)[1]
 				portx = Analysis.strip_port_regex.match(x)[1]
