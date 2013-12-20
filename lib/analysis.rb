@@ -9,6 +9,14 @@ class Analysis
 			header+",Banner"
 		end
 
+		def banner_header
+			"Date,Scanner,CSP,IP,App,AppStack"
+		end
+
+		def banner_title_header
+			"Date,Scanner,CSP,IP,PageTitle"
+		end
+
 		def ip_convert geo
       		GeoIP.new('GeoLiteCity.dat').city(geo.to_s)
       	end
@@ -39,6 +47,18 @@ class Analysis
 
 		def fqdn_strip
 			/<hostname name="(.+)" type="PTR"\/>/
+		end
+
+		def banner_http_server
+			/Server:\s(.*?)\\x0d\\x0a/
+		end
+
+		def banner_app_stack
+			/Powered-By:\s(.*?)\\x0d\\x0a/
+		end
+
+		def banner_http_title
+			/<banner>(.*?)<\/banner>/
 		end
 
 		def scanner_host sname

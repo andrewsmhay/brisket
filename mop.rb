@@ -29,27 +29,68 @@ rb_file_master.each do |rb_file|
 	filename = rb_file.to_s.gsub("./analysis/"+Analysis.scan_date, '')
 	
 	if rb_file =~ /masscan/
-		csvname = filename.gsub(/.xml/ , '.csv')
-		stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
-	
-		stats.write(Analysis.header+"\n")
+		if rb_file =~ /^banner/
+			csvname = filename.gsub(/.xml/ , '.csv')
+			stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/banner_"+csvname, "a")
+		
+			stats.write(Analysis.banner_header+"\n")
 
-		puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
+			puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 
-		csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
-		scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
-		Analysis.scanner_host scanner_host
-		IO.foreach(rb_file) do |x|
-			if x.to_s =~ /host endtime/
+			csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
+			scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
+			Analysis.scanner_host scanner_host
+			IO.foreach(rb_file) do |x|
 				ipx = Analysis.ip_strip.match(x)[1]
-				portx = Analysis.strip_port_regex.match(x)[1]
-		  			target_geo = Analysis.ip_convert ipx
-					stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+portx+","+target_geo.latitude.to_s+","+	
-		      					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
-		      					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
+				banner_http_server = Analysis.banner_http_server.match(x)[1]
+				banner_stack = Analysis.banner_app_stack.match(x)[1]
+				stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+banner_http_server+","+banner_stack+"\n")
+				end
 			end
+			stats.close
+
+		elsif rb_file =~ /^title/
+			csvname = filename.gsub(/.xml/ , '.csv')
+			stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/title_"+csvname, "a")
+		
+			stats.write(Analysis.banner_title_header+"\n")
+
+			puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
+
+			csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
+			scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
+			Analysis.scanner_host scanner_host
+			IO.foreach(rb_file) do |x|
+				ipx = Analysis.ip_strip.match(x)[1]
+				banner_http_title = Analysis.banner_http_title.match(x)[1]
+				stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+banner_http_title+"\n")
+				end
+			end
+			stats.close
+
+		else
+			csvname = filename.gsub(/.xml/ , '.csv')
+			stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
+		
+			stats.write(Analysis.header+"\n")
+
+			puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
+
+			csp = Analysis.csp_masscan_regex.match(rb_file.to_s)[1].to_s
+			scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
+			Analysis.scanner_host scanner_host
+			IO.foreach(rb_file) do |x|
+				if x.to_s =~ /host endtime/
+					ipx = Analysis.ip_strip.match(x)[1]
+					portx = Analysis.strip_port_regex.match(x)[1]
+			  			target_geo = Analysis.ip_convert ipx
+						stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+portx+","+target_geo.latitude.to_s+","+	
+			      					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
+			      					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
+				end
+			end
+			stats.close
 		end
-		stats.close
 	elsif rb_file =~ /zmap/
 		csvname = filename.gsub(/.json/ , '.csv')
 		stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
