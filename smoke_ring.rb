@@ -25,14 +25,14 @@ rb_file_master = Dir.glob(rb_file_location+"*"+ARGV[0]+"*")
 
 rb_file_master.each do |rb_file|
 	filename = rb_file.to_s.gsub("./analysis/"+Analysis.scan_date, '')
-	filename2 = "title_"+filename
-	filename3 = "banner_"+filename
+	filename2 = "title_"+filename.gsub("/", '')
+	filename3 = "banner_"+filename.gsub("/", '')
 	new_file = File.open(rb_file_location+"tmp"+filename, "a")
 
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 	if ARGV[0] == "masscan"
-		new_file_title = File.open(rb_file_location+"tmp"+filename2, "a")
-		new_file_banner = File.open(rb_file_location+"tmp"+filename3, "a")
+		new_file_title = File.open(rb_file_location+"tmp/"+filename2, "a")
+		new_file_banner = File.open(rb_file_location+"tmp/"+filename3, "a")
 		IO.foreach(rb_file) do |x|
 			if x =~ /closed/
 			elsif x =~ /service name="title"/
