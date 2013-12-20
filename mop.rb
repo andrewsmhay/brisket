@@ -43,7 +43,7 @@ rb_file_master.each do |rb_file|
 			IO.foreach(rb_file) do |x|
 				ipx = Analysis.ip_strip.match(x)[1]
 				banner_http_server = Analysis.banner_http_server.match(x)[1]
-				if x =~ Analysis.banner_app_stack
+				if x.to_s =~ Analysis.banner_app_stack
 					banner_stack = Analysis.banner_app_stack.match(x)[1]
 				else banner_stack = "none"
 				end
