@@ -31,7 +31,7 @@ rb_file_master.each do |rb_file|
 	if rb_file =~ /masscan/
 		if rb_file =~ /banner/
 			csvname = filename.gsub(/.xml/ , '.csv')
-			stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/banner_"+csvname, "a")
+			stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
 		
 			stats.write(Analysis.banner_header+"\n")
 
@@ -50,7 +50,7 @@ rb_file_master.each do |rb_file|
 
 		elsif rb_file =~ /title/
 			csvname = filename.gsub(/.xml/ , '.csv')
-			stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/title_"+csvname, "a")
+			stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
 		
 			stats.write(Analysis.banner_title_header+"\n")
 
