@@ -88,7 +88,7 @@ rb_file_master.each do |rb_file|
 				end
 			end
 			stats.close
-		
+		end
 	elsif rb_file =~ /zmap/
 		csvname = filename.gsub(/.json/ , '.csv')
 		stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
