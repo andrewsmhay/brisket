@@ -25,17 +25,21 @@ rb_file_master = Dir.glob(rb_file_location+"*"+ARGV[0]+"*")
 
 rb_file_master.each do |rb_file|
 	filename = rb_file.to_s.gsub("./analysis/"+Analysis.scan_date, '')
+	filename2 = "title_"+filename
+	filename3 = "banner_"+filename
 	new_file = File.open(rb_file_location+"tmp"+filename, "a")
 
 	puts "[+] "+rb_file.gsub(/\.\/analysis\//, '')
 	if ARGV[0] == "masscan"
-		new_file_title = File.open(rb_file_location+"tmp"+filename, "a")
-		new_file_banner = File.open(rb_file_location+"tmp"+filename, "a")
+		new_file_title = File.open(rb_file_location+"tmp"+filename2, "a")
+		new_file_banner = File.open(rb_file_location+"tmp"+filename3, "a")
 		IO.foreach(rb_file) do |x|
 			if x =~ /closed/
 			elsif x =~ /service name="title"/
 				new_file_title.write(x)
 			elsif x =~ /<service name="http"><banner>/
+				new_file_banner.write(x)
+			elsif x =~ /<service name="ssl"><banner>/
 				new_file_banner.write(x)
 			else new_file.write(x)	
 			end
@@ -60,7 +64,7 @@ rb_file_master.each do |rb_file|
 	else puts "[+] Usage: ./smoke_ring.rb <scanner> d/m/yyyy" 
 	end
 	new_file.close
-	FileUtils.mv(rb_file_location+"tmp"+filename, rb_file_location)
+	#FileUtils.mv(rb_file_location+"tmp"+filename, rb_file_location)
 end
 		
 #FileUtils.rm_rf(rb_file_location+"tmp")
