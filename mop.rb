@@ -45,7 +45,6 @@ rb_file_master.each do |rb_file|
 				banner_http_server = Analysis.banner_http_server.match(x)[1]
 				banner_stack = Analysis.banner_app_stack.match(x)[1]
 				stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+banner_http_server+","+banner_stack+"\n")
-				end
 			end
 			stats.close
 
@@ -64,7 +63,6 @@ rb_file_master.each do |rb_file|
 				ipx = Analysis.ip_strip.match(x)[1]
 				banner_http_title = Analysis.banner_http_title.match(x)[1]
 				stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+banner_http_title+"\n")
-				end
 			end
 			stats.close
 
@@ -90,7 +88,7 @@ rb_file_master.each do |rb_file|
 				end
 			end
 			stats.close
-		end
+		
 	elsif rb_file =~ /zmap/
 		csvname = filename.gsub(/.json/ , '.csv')
 		stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
