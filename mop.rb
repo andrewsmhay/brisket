@@ -29,7 +29,7 @@ rb_file_master.each do |rb_file|
 	filename = rb_file.to_s.gsub("./analysis/"+Analysis.scan_date, '')
 	
 	if rb_file =~ /masscan/
-		if rb_file =~ /banner/
+		if rb_file =~ /banner_/
 			csvname = filename.gsub(/.xml/ , '.csv')
 			stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
 		
@@ -48,7 +48,7 @@ rb_file_master.each do |rb_file|
 			end
 			stats.close
 
-		elsif rb_file =~ /title/
+		elsif rb_file =~ /title_/
 			csvname = filename.gsub(/.xml/ , '.csv')
 			stats = File.open(Directories.stats+"/"+Analysis.scan_date+"/"+csvname, "a")
 		
@@ -78,7 +78,7 @@ rb_file_master.each do |rb_file|
 			scanner_host = Analysis.scanner_name_regex.match(rb_file.to_s)[1].to_s
 			Analysis.scanner_host scanner_host
 			IO.foreach(rb_file) do |x|
-				if x.to_s =~ /host endtime/
+				if x.to_s =~ /state state\=\"open\"/
 					ipx = Analysis.ip_strip.match(x)[1]
 					portx = Analysis.strip_port_regex.match(x)[1]
 			  			target_geo = Analysis.ip_convert ipx
