@@ -42,12 +42,16 @@ rb_file_master.each do |rb_file|
 			Analysis.scanner_host scanner_host
 			IO.foreach(rb_file) do |x|
 				ipx = Analysis.ip_strip.match(x)[1]
-				banner_http_server = Analysis.banner_http_server.match(x)[1]
+				portx = Analysis.strip_port_regex.match(x)[1]
+				if x.to_s =~ Analysis.banner_http_server
+					banner_http_server = Analysis.banner_http_server.match(x)[1]
+				else banner_http_server = "none"
+				end
 				if x.to_s =~ Analysis.banner_app_stack
 					banner_stack = Analysis.banner_app_stack.match(x)[1]
 				else banner_stack = "none"
 				end
-				stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+banner_http_server+","+banner_stack+"\n")
+				stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+portx+","+banner_http_server+","+banner_stack+"\n")
 			end
 			stats.close
 
@@ -64,8 +68,9 @@ rb_file_master.each do |rb_file|
 			Analysis.scanner_host scanner_host
 			IO.foreach(rb_file) do |x|
 				ipx = Analysis.ip_strip.match(x)[1]
+				portx = Analysis.strip_port_regex.match(x)[1]
 				banner_http_title = Analysis.banner_http_title.match(x)[1]
-				stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+banner_http_title+"\n")
+				stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+portx+","+banner_http_title+"\n")
 			end
 			stats.close
 
