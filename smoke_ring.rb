@@ -64,7 +64,9 @@ rb_file_master.each do |rb_file|
 	else puts "[+] Usage: ./smoke_ring.rb <scanner> d/m/yyyy" 
 	end
 	new_file.close
-	#FileUtils.mv(rb_file_location+"tmp"+filename, rb_file_location)
+	FileUtils.mv(rb_file_location+"tmp"+filename, rb_file_location)
+	FileUtils.mv(rb_file_location+"tmp/"+filename2, rb_file_location)
+	FileUtils.mv(rb_file_location+"tmp/"+filename3, rb_file_location)
 end
 		
-#FileUtils.rm_rf(rb_file_location+"tmp")
+FileUtils.rm_rf(rb_file_location+"tmp")
