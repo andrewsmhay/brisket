@@ -44,6 +44,9 @@ rb_file_master.each do |rb_file|
 				ipx = Analysis.ip_strip.match(x)[1]
 				banner_http_server = Analysis.banner_http_server.match(x)[1]
 				banner_stack = Analysis.banner_app_stack.match(x)[1]
+				if banner_stack.empty?
+					banner_stack = "NULL"
+				end
 				stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+banner_http_server+","+banner_stack+"\n")
 			end
 			stats.close
