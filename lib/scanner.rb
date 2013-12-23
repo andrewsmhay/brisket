@@ -27,7 +27,7 @@ class Scanner
     def mass scans
       scans.shuffle.each do |a|
         #system(masscmd + " -c " + Directories.conf_dir + a + Directories.exclude_file_cmd)
-        system(masscmd + " -c " + Directories.conf_dir + a + " --banners --nocapture cert" + Directories.exclude_file_cmd)
+        system(masscmd + " -c " + Directories.conf_dir + a + " --open --banners --nocapture cert" + Directories.exclude_file_cmd)
       end    
     end
 
