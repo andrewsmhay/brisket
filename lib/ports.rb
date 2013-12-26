@@ -53,17 +53,19 @@ class Ports
       ['80',      # http
         '902',    # SOCKS
         '3128',   # squid
+        '9462',   # Chef server WebUI
         '8080',   # http alternate
         '8443',   # https alternate
         '8888']   # http alternate
     end
 
     def web_ports
-      "80,8080,8443,8888,3128,902"
+      "80,8080,8443,8888,3128,902,9462"
     end
 
     def db_ports_ary
       ['1433',    # MS SQL
+        '1434'    # MS SQL
         '1521',   # Oracle
         '3306',   # MySQL
         '5432',   # postgresql
@@ -72,7 +74,7 @@ class Ports
     end
 
     def db_ports
-      "1433,1521,3306,5432,6379,5984"
+      "1433,1434,1521,3306,5432,6379,5984"
     end
 
     def special_ports_ary
@@ -80,12 +82,13 @@ class Ports
         '9050',   # tor
         '1514',   # tcp syslog
         '1984',   # rackspace agent
+        '4000',   # Chef server knife access
         '8140',   # puppet
         '61613']  # puppet orchestration
     end
 
     def special_ports
-      "6667,9050,1514,1984,8140,61613"
+      "6667,9050,1514,1984,8140,61613,4000"
     end
 
     def all_ports_ary
