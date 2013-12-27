@@ -19,7 +19,7 @@ puts Messages.update_git
 		puts Messages.ssh_to_bnode+Bnodes.brisket_nodes[i]
 		puts Messages.git_pull
 		system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"sh -c 'cd /home/scanner/brisket && git pull'\"")
-		system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"sh -c 'cd /home/scanner/masscan && git pull'\"")
+		system("ssh scanner@'#{Bnodes.brisket_nodes[i]}' \"sh -c 'cd /home/scanner/masscan && git pull && make'\"")
 		i+=1
 end
 elsif ARGV[0] == 'space'
