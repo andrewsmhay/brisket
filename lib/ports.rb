@@ -65,7 +65,7 @@ class Ports
 
     def db_ports_ary
       ['1433',    # MS SQL
-        '1434'    # MS SQL
+        '1434',   # MS SQL
         '1521',   # Oracle
         '3306',   # MySQL
         '5432',   # postgresql
