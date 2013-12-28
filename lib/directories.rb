@@ -5,6 +5,10 @@ class Directories
       "/home/scanner/"
     end
 
+    def masscan_dir
+      scanner_dir+"masscan"
+    end
+
     def working_dir
       scanner_dir+"brisket"
     end
@@ -23,6 +27,10 @@ class Directories
     
     def dir_date
       Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+Date.today.day.to_s+"/"
+    end
+
+    def dir_date_tomorrow
+      Date.today.year.to_s+"/"+Date.today.month.to_s+"/"+(Date.today.day+1).to_s+"/"
     end
     
     def results_dir
