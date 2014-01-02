@@ -61,6 +61,8 @@ rb_file_master.each do |rb_file|
 			#puts ip+","+fqdn
 			#new_file.write(ip+","+fqdn)
 		end
+	elsif ARGV[0] == "help" && ARGV[0] == "-h"
+		puts "[+] Usage: ./smoke_ring.rb <scanner> d/m/yyyy" 
 	else puts "[+] Usage: ./smoke_ring.rb <scanner> d/m/yyyy" 
 	end
 	new_file.close

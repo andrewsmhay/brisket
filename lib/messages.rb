@@ -11,6 +11,10 @@ class Messages
     def crutch_opt_sel_err
       "[-] Usage: ./crutch.rb <apac|europe|us_east|us_west|south_america|all> <yyyy/mm/dd>"
     end
+
+    def stoke_opt_sel_err
+      "[-] Usage: ./stoke.rb <help|git|update|space|logs|proc|archive|files|status> <today|tomorrow|zmap|masscan>"
+    end
     
     def timenow
       Time.new
