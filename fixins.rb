@@ -16,7 +16,7 @@ open('GeoLiteCity.dat.gz', 'w') do |local_file|
     local_file.write(Zlib::GzipReader.new(remote_file).read)
   end
 end
-File.rename("GeoLiteCity.dat.gz", "GeoLiteCity.dat")
+File.rename("GeoLiteCity.dat.gz", "/home/scanner/brisket/GeoLiteCity.dat")
 puts "[+] GeoLiteCity database downloaded..."
 else puts opt_sel_err
 end
