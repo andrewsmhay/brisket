@@ -10,7 +10,7 @@ class Analysis
 		end
 
 		def banner_header
-			"Date,Scanner,CSP,IP,App,AppStack"
+			"Date,Scanner,CSP,IP,Port,App,AppStack"
 		end
 
 		def banner_title_header
