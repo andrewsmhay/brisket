@@ -120,7 +120,7 @@ class Analysis
 	    end
 
 	    def us_date
-	      @@date_d+"/"+@@date_m+"/"+@@date_y
+	      @@date_m+"/"+@@date_d+"/"+@@date_y
 	    end
 
       	def results(scanner_name, strip_ip, csp, port_only, target_geo, us_date)
