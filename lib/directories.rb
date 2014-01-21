@@ -5,6 +5,10 @@ class Directories
       "/home/scanner/"
     end
 
+    def mac_scanner_dir
+      "/Users/scanner/brisket"
+    end
+
     def masscan_dir
       scanner_dir+"masscan"
     end

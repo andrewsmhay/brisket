@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 $LOAD_PATH << '/Users/scanner/brisket/lib'
 require 'analysis'
-require 'directory'
+require 'directories'
 
 commands = []
 ARGV.each {|arg| commands << arg}
@@ -10,18 +10,15 @@ ARGV.each {|arg| commands << arg}
 
 Analysis.dateinput ARGV[1]
 
-rb_file_location = "./analysis/"+Analysis.scan_date+"/"
+rb_file_location = Directories.mac_scanner_dir+"/analysis/"+Analysis.scan_date+"/"
 rb_file_master = Dir.glob(rb_file_location+"*"+ARGV[0]+"*")
 
 # Split scan, banner, and title XML files into separate files
-# for i in {6..10}; do ./smoke_ring.rb masscan $i/1/2014; done
-
-system("./smoke_ring.rb "+ARGV[0]+" "+ARGV[1])
-
-system("./mop.rb "+ARGV[0]+" "+ARGV[1])
+if ARGV[0] == "masscan"
+	system(Directories.mac_scanner_dir+"/smoke_ring.rb masscan "+ARGV[1])
+end
 # Convert to csv
-# for i in {6..10}; do ./mop.rb masscan $i/1/2014; done
-# for i in {6..10}; do ./mop.rb zmap $i/1/2014; done
+system(Directories.mac_scanner_dir+"/mop.rb "+ARGV[0]+" "+ARGV[1])
 
 # Strip special language chars
 # for i in `ls -1`; do iconv -c -f utf8 -t ascii $i > converted_$i; done
@@ -31,3 +28,6 @@ system("./mop.rb "+ARGV[0]+" "+ARGV[1])
 
 # Create master 'aws' CSV file for the date of the directory
 # for i in `ls -1 *masscan*aws*.csv | egrep -v banner | egrep -v title`; do cat $i | egrep -v "Date" >> aws/aws_10_1_2014.csv; done
+
+
+# sort -u -t ',' -k4,5 converted_aws_2_1_2014.csv > sorted_aws_2_1_2014.csv
