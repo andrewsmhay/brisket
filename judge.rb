@@ -6,7 +6,13 @@ require 'directories'
 commands = []
 ARGV.each {|arg| commands << arg}
 # [0]=type, [1]=date in D/M/YYYY
-# ./smoke_ring.rb masscan 3/12/2013
+# ./smoke_ring.rb masscan 3/12/2013 
+# --testrun
+# --full
+# --extract
+# --splitxml
+# --convert
+# --iconv
 
 Analysis.dateinput ARGV[1]
 
