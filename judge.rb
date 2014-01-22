@@ -10,6 +10,15 @@ ARGV.each {|arg| commands << arg}
 
 Analysis.dateinput ARGV[1]
 
+extract_file_location = Directories.mac_scanner_dir+"/results/"
+extract_file_master = Dir.glob(extract_file_location+"*.tar.bz2")
+
+#if extract_file_master.each.nil
+extract_file_master.each do |tarball|
+	system("tar xvfj "+tarball+" --strip-components 4 -C "+extract_file_location)
+	system("mv "+tarball+" "+extract_file_location+"extracted")
+end
+
 rb_file_location = Directories.mac_scanner_dir+"/analysis/"+Analysis.scan_date+"/"
 rb_file_master = Dir.glob(rb_file_location+"*"+ARGV[0]+"*")
 
