@@ -21,7 +21,9 @@ extract_file_master = Dir.glob(extract_file_location+"*"+Analysis.file_date+".ta
 
 #if extract_file_master.each.nil
 extract_file_master.each do |tarball|
+	puts "[+] Extracting "+tarball+"..."
 	system("tar xvfj "+tarball+" --strip-components 4 -C "+extract_file_location)
+	puts "[+] Moving "+tarball+" to the extrcted directory..."
 	system("mv "+tarball+" "+extract_file_location+"extracted")
 end
 
