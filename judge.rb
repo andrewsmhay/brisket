@@ -17,7 +17,7 @@ ARGV.each {|arg| commands << arg}
 Analysis.dateinput ARGV[1]
 
 extract_file_location = Directories.mac_scanner_dir+"/results/"
-extract_file_master = Dir.glob(extract_file_location+"*.tar.bz2")
+extract_file_master = Dir.glob(extract_file_location+"*"+Analysis.file_date+".tar.bz2")
 
 #if extract_file_master.each.nil
 extract_file_master.each do |tarball|
@@ -30,9 +30,11 @@ rb_file_master = Dir.glob(rb_file_location+"*"+ARGV[0]+"*")
 
 # Split scan, banner, and title XML files into separate files
 if ARGV[0] == "masscan"
+	puts "[+] Running smoke_ring.rb..."
 	system(Directories.mac_scanner_dir+"/smoke_ring.rb masscan "+ARGV[1])
 end
 # Convert to csv
+puts "[+] Converting files to csv format..."
 system(Directories.mac_scanner_dir+"/mop.rb "+ARGV[0]+" "+ARGV[1])
 
 # Strip special language chars

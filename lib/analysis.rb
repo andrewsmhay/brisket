@@ -14,7 +14,7 @@ class Analysis
 		end
 
 		def banner_title_header
-			"Date,Scanner,CSP,IP,PageTitle"
+			"Date,Scanner,CSP,IP,Port,PageTitle"
 		end
 
 		def ip_convert geo
@@ -116,11 +116,15 @@ class Analysis
 	    end
 
 	    def scan_date
-	      @@date_y+"/"+@@date_m+"/"+@@date_d
+	      	@@date_y+"/"+@@date_m+"/"+@@date_d
 	    end
 
 	    def us_date
-	      @@date_m+"/"+@@date_d+"/"+@@date_y
+	    	@@date_m+"/"+@@date_d+"/"+@@date_y
+	    end
+
+	    def file_date
+	    	@@date_y+"_"+@@date_m+"_"+@@date_d
 	    end
 
       	def results(scanner_name, strip_ip, csp, port_only, target_geo, us_date)
