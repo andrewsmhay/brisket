@@ -4,7 +4,7 @@
 #
 $LOAD_PATH << '/home/scanner/brisket/lib'
 require 'analysis'
-require 'geoip'
+#require 'geoip'
 require 'directories'
 require 'fileutils'
 
@@ -89,10 +89,14 @@ rb_file_master.each do |rb_file|
 				if x.to_s =~ /state state\=\"open\"/
 					ipx = Analysis.ip_strip.match(x)[1]
 					portx = Analysis.strip_port_regex.match(x)[1]
-			  			target_geo = Analysis.ip_convert ipx
-						stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+portx+","+target_geo.latitude.to_s+","+	
+#			  			target_geo = Analysis.ip_convert ipx
+						stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+ipx+","+portx+
+=begin
+									","+target_geo.latitude.to_s+","+	
 			      					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
-			      					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
+			      					target_geo.region_name.to_s+","+target_geo.city_name.to_s+
+=end
+			      					"\n")
 				end
 			end
 			stats.close
@@ -113,10 +117,14 @@ rb_file_master.each do |rb_file|
 		i = 0
 		f.each do |line|
 			zmap_ip = /\"saddr\": \"(.*)\"/.match(line)[1]
-			target_geo = Analysis.ip_convert zmap_ip
-			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+zmap_ip+","+port_only+","+target_geo.latitude.to_s+","+
+#			target_geo = Analysis.ip_convert zmap_ip
+			stats.write(Analysis.us_date+","+Analysis.thescannerip+","+csp+","+zmap_ip+","+port_only+
+=begin
+						","+target_geo.latitude.to_s+","+
       					target_geo.longitude.to_s+","+target_geo.country_name.to_s+","+target_geo.continent_code.to_s+","+
-      					target_geo.region_name.to_s+","+target_geo.city_name.to_s+"\n")
+      					target_geo.region_name.to_s+","+target_geo.city_name.to_s+
+=end
+      					"\n")
 		end
 		stats.close
 	elsif rb_file =~ /nmap/

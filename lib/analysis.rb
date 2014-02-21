@@ -2,7 +2,7 @@ class Analysis
 	class << self
 		
 		def header
-			"Date,Scanner,CSP,IP,Port,Latt,Long,Country,Continent,Region,City"
+			"Date,Scanner,CSP,IP,Port" #,Latt,Long,Country,Continent,Region,City"
 		end
 
 		def header_plus
@@ -16,11 +16,11 @@ class Analysis
 		def banner_title_header
 			"Date,Scanner,CSP,IP,Port,PageTitle"
 		end
-
+=begin
 		def ip_convert geo
       		GeoIP.new('GeoLiteCity.dat').city(geo.to_s)
       	end
-
+=end
       	def scanner_name_regex
       		/\d+\/\d+\/\d+\/(\w[^_]+)_/
       	end
@@ -127,18 +127,20 @@ class Analysis
 	    	@@date_y+"_"+@@date_m+"_"+@@date_d
 	    end
 
-      	def results(scanner_name, strip_ip, csp, port_only, target_geo, us_date)
+      	def results(scanner_name, strip_ip, csp, port_only, us_date) #target_geo, us_date)
       		puts us_date+","+
       		scanner_name+","+
       		csp+","+
       		strip_ip+","+
-      		port_only+","+
+      		port_only#+","+
+=begin      		
       		target_geo.latitude.to_s+","+
       		target_geo.longitude.to_s+","+
       		target_geo.country_name.to_s+","+
       		target_geo.continent_code.to_s+","+
       		target_geo.region_name.to_s+","+
       		target_geo.city_name.to_s
+=end
       	end
     end
 end
