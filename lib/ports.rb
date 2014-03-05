@@ -84,11 +84,12 @@ class Ports
         '1984',   # rackspace agent
         '4000',   # Chef server knife access
         '8140',   # puppet
+        '8081',   # Arrayent SDK port - https://sites.google.com/a/arrayent.com/api/
         '61613']  # puppet orchestration
     end
 
     def special_ports
-      "6667,9050,1514,1984,8140,61613,4000"
+      "6667,9050,1514,1984,8140,61613,4000,8081"
     end
 
     def all_ports_ary
